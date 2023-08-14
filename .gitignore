@@ -1,0 +1,17 @@
+# Vite
+node_modules/
+dist/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Dependencias
+package-lock.json
+yarn.lock
+
+# Archivos de entorno
+.env*
+
+# Otros
+.cache/
