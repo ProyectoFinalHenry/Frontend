@@ -1,0 +1,105 @@
+@font-face {
+    font-family: 'Grotesk-Medium';
+    src: url('/src/assets/fuentes/Trio\ Grotesk\ Medium.woff.ttf') format('woff2');
+}
+
+
+.landin-video-cont {
+    margin-top: -1px;
+    width: 100%;
+    height: 60%;
+    height: 60vh;
+    background: #1d1e20;
+    overflow: hidden;
+    margin-bottom: 4em;
+}
+
+.landin-video-cont::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Color de la capa gris (con transparencia) */
+    z-index: 1;
+    overflow: hidden;
+}
+
+.landin-navBar-cont {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+video {
+    object-fit: contain;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.hero-vid.start .hero-video {
+    opacity: 1;
+}
+
+.ladin-p1-cont {
+    width: 60vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.landin-p1 {
+    line-height: 39px;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 39px;
+    vertical-align: baseline;
+    color: #191919;
+}
+
+.landin-message-main {
+    font-family: Grotesk-Medium;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    position: absolute;
+    top: 15%;
+    color: #ffffff;
+
+
+    line-height: 40px;
+    vertical-align: baseline;
+    letter-spacing: 5px;
+    word-spacing: 0px;
+
+    font-weight: 300;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+
+    text-align: center;
+    text-indent: 0px;
+}
+
+
+.landin-message-main a {
+    text-decoration: none;
+    color: #ffffff;
+    line-height:20px;
+    vertical-align:top;
+    letter-spacing:1.5px;
+    word-spacing:0px;
+    font-size: 12px;
+    font-weight: 500;
+    font-family: PostGrotesk-Bold, sans-serif;
+    border: 1px solid #ffffff;
+    padding: 1.3em 1.6em;
+    margin-top: 1em;
+    display: inline-block;
+}
+
+.landin-message-main a:hover {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.5s, color 0.5s; /* Transición lenta */
+}
