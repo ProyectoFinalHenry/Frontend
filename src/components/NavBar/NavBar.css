@@ -1,9 +1,3 @@
-/* @font-face {
-    font-family: 'Grotesk-Medium';
-    src: url('/src/assets/fuentes/Trio\ Grotesk\ Medium.woff.ttf') format('woff2');
-  }
-  
-   */
 .navbar-container {
   display: flex;
   align-items: center;
