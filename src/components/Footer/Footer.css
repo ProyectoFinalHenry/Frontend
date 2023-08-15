@@ -1,0 +1,21 @@
+.footer-cont {
+    background-color: #4b5254;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-social-icons {
+    margin-bottom: 10px;
+}
+
+.footer-icon {
+    color: #fff;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.footer-icon:hover {
+    color: #1d1e20;
+}
