@@ -1,0 +1,38 @@
+/* @font-face {
+    font-family: 'Grotesk-Medium';
+    src: url('/src/assets/fuentes/Trio\ Grotesk\ Medium.woff.ttf') format('woff2');
+  }
+  
+   */
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 1.3em 1em 1.3em;
+  z-index: 2;
+}
+
+.navbar-logo img {
+  width: 130px;
+}
+
+.navbar-links {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: #cccccc;
+  margin: 0 1em;
+  font-size: 1rem;
+  line-height: 17.6px;
+  vertical-align: baseline;
+  letter-spacing: 0.64px;
+  word-spacing: 0px;
+}
+
+.navbar-links a:hover {
+    color: #ffffff;
+    cursor: pointer;
+}

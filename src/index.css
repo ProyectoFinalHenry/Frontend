@@ -1,8 +1,23 @@
+@font-face {
+  font-family: 'PostGrotesk-Book';
+  src: url('/src/assets/fuentes/PostGrotesk-Book.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'PostGrotesk-Bold';
+  src: url('/src/assets/fuentes/PostGrotesk-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Grotesk-Medium';
+  src: url('/src/assets/fuentes/Trio\ Grotesk\ Medium.woff.ttf') format('woff2');
+}
+
+
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  font-family: PostGrotesk-Book, sans-serif;
 }
 
