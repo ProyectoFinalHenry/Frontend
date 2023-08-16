@@ -1,16 +1,17 @@
 @font-face {
   font-family: 'PostGrotesk-Book';
-  src: url('assets/fuentes/PostGrotesk-Book.woff2') format('woff2');
+  src: url('/assets/fuentes/PostGrotesk-Book.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'PostGrotesk-Bold';
-  src: url('assets/fuentes/PostGrotesk-Bold.woff2') format('woff2');
+  src: url('/assets/fuentes/PostGrotesk-Bold.woff2') format('woff2');
 }
+
 
 @font-face {
   font-family: 'Grotesk-Medium';
-  src: url('assets/fuentes/Trio-Grotesk-Medium.woff.ttf') format('woff2');
+  src: url('/assets/fuentes/Trio-Grotesk-Medium.woff2') format('woff2');
 }
 
 
