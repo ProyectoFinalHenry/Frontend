@@ -1,0 +1,43 @@
+.Card-container{
+    width: 383px;
+    height: 376;
+    padding: 0px 10px;
+    margin: 1em;
+    text-align: center;
+}
+
+.card-img-cont{
+    overflow: hidden;
+    width: 373px;
+    height: 265px;
+    margin-bottom: 40px;
+}
+
+.Card-container img{
+    object-fit: contain;
+    width: 100%;
+    height: 250px;
+}
+
+.Card-container p{
+    font-family: PostGrotesk-Bold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 17.5px;
+    letter-spacing: 0.7px;
+    color: #191919;
+    margin-bottom: 10px;
+}
+
+.Card-container span{
+    font-family: PostGrotesk-Book, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 17.5px;
+    letter-spacing: 0.7px;
+    color: #191919;
+    display: block;
+
+}
+
+.star-icons{
+    color: #777777;
+}
