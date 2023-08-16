@@ -6,9 +6,9 @@ import './LandingPage.css'
 const LandingPage = () => {
     return (
         <div className="landing-page">
-            <div className="landin-navBar-cont">
+          {/*   <div className="landin-navBar-cont">
                 <NavBar />
-            </div>
+            </div> */}
 
             <div className='landin-video-cont'>
                 <video id="hero-video" className="hero-video" playsInline loop muted autoPlay>
