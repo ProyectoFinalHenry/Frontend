@@ -13,9 +13,9 @@ function App() {
         <NavBar />
         <Routes>
           <Route path="/" element={<LandinPage />} />
-          <Route path="/Products" element={<Home />} />
-          <Route path="/Detail" element={<Detail />} />
-          <Route path="/AuthForm" element={<AuthForm />} />
+          <Route path="/products/page/:page?" element={<Home />} />
+          <Route path="/detail" element={<Detail />} />
+          <Route path="/auth/form" element={<AuthForm />} />
         </Routes>
         <Footer />
 

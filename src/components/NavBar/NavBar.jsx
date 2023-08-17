@@ -6,11 +6,11 @@ const NavBar = () => {
     return (
         <div className="navbar-container">
           <div className='navbar-logo'>
-            <img src="assets/images/logo-3-white.png" alt="logo" />
+            <img src="/assets/images/logo-3-white.png" alt="logo" />
           </div>
           <div className='navbar-links'>
                 <Link to="/">Inicio</Link>
-                <Link to="/products">Productos</Link>
+                <Link to="/products/page/1">Productos</Link>
                 <Link to="/nosotros">Nosotros</Link>
                 <Link to="/carrito">Carrito</Link>
             </div>
