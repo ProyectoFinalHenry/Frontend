@@ -1,6 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; 
+import React, { useState } from "react";
+import { Link, useParams } from 'react-router-dom'; 
 import Card from '../../components/Card/Card';
+import PaginationButtons from '../../components/PaginationButtons/PaginationButtons';
 import './Home.css'
 
 const db = [
@@ -260,16 +261,29 @@ const db = [
 
 
 const Home = () => {
+
+    //PAGINATION:
+    //const productRender = useSelector((state) => state.filtredPeople);
+    const productRender = db;
+
+    const { page } = useParams();
+    const pageNumber = page ? parseInt(page) : 1;
+    const [currentPage, setCurrentPage] = useState(pageNumber);
+    const itemsPerPage = 8;
+    const totalPages = Math.ceil(productRender.length / itemsPerPage);
+
+    const visibleProduct = productRender.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+
+
     return (
         <div className="home-container">
-
             <div className="home-banner">
              <p className='home-banner-msj'>NUESTROS PRODUCTOS</p>
-             <img className='home-image-banner' src="assets/images/bannere-home.webp" alt="banner" />
+             <img className='home-image-banner' src="/assets/images/bannere-home.webp" alt="banner" />
             </div>
 
             <div  className="home-card-container">
-                {db.map((product) => (
+                {visibleProduct.map((product) => (
                 <Link to={`/detail/${product.id}`} key={product.id}>
                 <Card
                     id={product.id}
@@ -281,6 +295,12 @@ const Home = () => {
                 </Link>
                 ))}
             </div>
+            
+            <PaginationButtons
+              currentPage={currentPage}
+              totalPages={totalPages}
+              setCurrentPage={setCurrentPage}
+            />
 
         </div>
     );
