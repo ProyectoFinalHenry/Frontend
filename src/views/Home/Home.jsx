@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import PaginationButtons from '../../components/PaginationButtons/PaginationButtons'; 
 import SearchBar from '../../components/SearchBar/SearchBar';
+import Filters from '../../components/Filters/Filters';
 import './Home.css'
 
 const db = [
@@ -522,7 +523,7 @@ const Home = () => {
     const { page } = useParams();
     const pageNumber = page ? parseInt(page) : 1;
     const [currentPage, setCurrentPage] = useState(pageNumber);
-    const itemsPerPage = 8;
+    const itemsPerPage = 9;
     const totalPages = Math.ceil(productRender.length / itemsPerPage);
 
     const visibleProduct = productRender.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
@@ -536,6 +537,8 @@ const Home = () => {
              <SearchBar />
              <img className='home-image-banner' src="/assets/images/bannere-home.webp" alt="banner" />
             </div>
+
+            <Filters />
 
             <div  className="home-card-container">
                 {visibleProduct.map((product) => (

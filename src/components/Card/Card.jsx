@@ -13,16 +13,18 @@ const Card = ({ id, image, title, reviews, price }) => {
         <div className="card-img-cont">
             <img src={image} alt="imagen producto" />
         </div>
-      <p>{title}</p>
-      <span>{reviews}</span>
-      <div className="star-icons">
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-        <FaStar />
-      </div>
-      <span>{formattedPrice}</span>
+        <div className="card-data-cont">
+          <p>{title}</p>
+          <span>{reviews}</span>
+          <div className="star-icons">
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaStar />
+          </div>
+          <span>{formattedPrice}</span>
+        </div>
     </div>
   );
 };
