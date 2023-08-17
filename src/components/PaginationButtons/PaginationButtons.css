@@ -1,0 +1,54 @@
+/*       PAGINADO        */
+.home-btn-paginado{
+    text-align: center;
+    margin: 3em 0 3em 3em;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .home-btn-paginado button{
+      background-color: transparent;
+      border: none;
+      color:#919ea4;
+      outline: 1px solid  #696e71;
+      width: 35px;
+      height:35px;
+      font-size: 1rem;
+      box-sizing: border-box; 
+      margin: .2em;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 4px !important;
+
+  }
+  
+  .home-btn-paginado button:disabled {
+    background-color: #343b3e;
+    opacity: .4;
+    cursor: default;
+  }
+  
+  
+  .home-btn-next,
+  .home-btn-prev{
+    width: auto !important;
+  }
+  
+  .home-btn-points{
+    outline:none!important;
+    font-size:1.3rem!important;
+    margin-left:  -12px !important;
+    margin-right:  -12px !important;
+  }
+  
+  .current-page{
+    background-color: #4487b4!important;
+    color: white !important;
+  }
+  
+  .home-btn-paginado button:focus{
+    outline: 1px solid  #b7c0c6;
+  }
+  
