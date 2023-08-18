@@ -1,16 +1,22 @@
 .Card-container{
-    width: 383px;
-    height: 376;
+    width: 399px;
+    height: 386px;
     padding: 0px 10px;
-    margin: 1em;
+    margin: 1em .5em;
     text-align: center;
+    background-color: #f7f3f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid red; */
 }
 
 .card-img-cont{
     overflow: hidden;
-    width: 373px;
+    width: 80%;
     height: 265px;
-    margin-bottom: 40px;
+    margin: 40px 0px;
+ /*    border:1px solid blue; */
 }
 
 .Card-container img{
@@ -18,6 +24,11 @@
     width: 100%;
     height: 250px;
 }
+
+.card-data-cont{
+    padding: 20px 20px;
+}
+
 
 .Card-container p{
     font-family: PostGrotesk-Bold, "Helvetica Neue", Helvetica, Arial, sans-serif;
