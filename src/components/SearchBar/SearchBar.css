@@ -1,0 +1,66 @@
+.sbcontainer{
+    position: absolute;
+    top:-30px;
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 450px;
+    height: 30px;
+    position: absolute;
+    top: 9%;
+    z-index: 3;
+    position: absolute;
+    left: 50%;
+    top: 55%; 
+    transform: translate(-50%, -50%);
+  }
+  
+  
+  .formsb{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 40px; 
+    }
+    
+    .inputsb {
+      padding: 10px 20px;
+      font-size: 18px;
+      border: 2px solid #ffffff;
+      max-width: 100%;
+      border-right: none;
+      border:2px solid #ffffff;
+      background-color: white;
+      width: 100%;
+      font-family: PostGrotesk-Book, sans-serif;
+      font-size: 16px;
+      list-style: 18px;
+      text-align: start;
+      
+    }
+  
+  
+    form, input, button {
+      all: unset;
+    }
+    
+    
+    .buttonsb {
+      padding: 2.5% 4%;
+      font-size: 18px;
+      background-color: #4b5254 !important;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+      margin-left: -2px;
+      border:1px solid #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+   }
+    
+   
+    
+    .imgsb{
+      width: 21px;
+    }
+  

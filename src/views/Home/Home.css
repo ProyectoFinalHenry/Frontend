@@ -10,8 +10,20 @@
     background: #1d1e20;
     overflow: hidden;
     margin-top: -1px;
-    margin-bottom: 4em;
+    margin-bottom: 1em;
     position: relative;
+}
+
+.home-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60vh;
+    background-color: rgba(0, 0, 0, 0.103);
+    z-index: 1;
+    overflow: hidden;
 }
 
 .home-image-banner{
@@ -27,6 +39,7 @@
     line-height: 40px;
     letter-spacing: 5px;
     font-family: Grotesk-Medium, sans-serif;
+    z-index: 2;
 }
 
 
