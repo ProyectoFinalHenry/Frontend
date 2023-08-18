@@ -15,7 +15,7 @@ const location = useLocation();
           <div className='navbar-links'>
                 <Link to="/">Inicio</Link>
                 <Link to="/products/page/1">Productos</Link>
-                <Link to="/nosotros">Nosotros</Link>
+                <Link to="/about">Nosotros</Link>
                 <Link to="/carrito">Carrito</Link>
             </div>
         </div>

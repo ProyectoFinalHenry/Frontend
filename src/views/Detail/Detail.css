@@ -6,8 +6,8 @@
 .detail__container-card {
     display: flex;
     flex-direction: row;
-    margin-top: 150.28px;
-    margin-bottom: 62.14px;
+    margin-top: 120px;
+    margin-bottom: 30px;
     border-style: groove;
     border-radius: 10px;
     padding: 20px;
