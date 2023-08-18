@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LandinPage from './views/LandinPage/LandingPage';
 import Home from './views/Home/Home';
 import Detail from './views/Detail/Detail';
@@ -14,11 +14,10 @@ function App() {
         <Routes>
           <Route path="/" element={<LandinPage />} />
           <Route path="/products/page/:page?" element={<Home />} />
-          <Route path="/detail" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail />} />
           <Route path="/auth/form" element={<AuthForm />} />
         </Routes>
         <Footer />
-
     </div>
   );
 }
