@@ -12,7 +12,7 @@ const Home = () => {
 
   useEffect(()=>{
     async function getProducts(){
-      const {data} = await axios.get("http://localhost:3002/coffee/")
+      const {data} = await axios.get("http://localhost:3001/coffee/")
       setProducts(data)
     }
     getProducts()

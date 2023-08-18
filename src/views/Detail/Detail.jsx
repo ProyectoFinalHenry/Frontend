@@ -10,7 +10,7 @@ const Detail = () => {
 
   useEffect(() => {
     async function getCoffeData() {
-      const { data } = await axios.get(`http://localhost:3002/coffee/${id}`);
+      const { data } = await axios.get(`http://localhost:3001/coffee/${id}`);
       setCoffee(data);
     }
     getCoffeData();
