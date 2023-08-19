@@ -26,14 +26,14 @@ const Detail = () => {
           {/* <span className="stock">{coffee?.stock} units</span> */}
           <ul class="detail__container-card-info-ul">
             <li>
-              <strong class="type">Tipo de Café:</strong>{" "}
+              <strong class="type">Tipo de Café: </strong>{" "}
               {coffee?.TypeOfCoffee?.type}
             </li>
             <li>
-              <strong>Origen:</strong> {coffee?.Origin?.origin}
+              <strong>Origen: </strong> {coffee?.Origin?.origin}
             </li>
             <li>
-              <strong>Perfil de Tueste:</strong>{" "}
+              <strong>Tipo de tostado: </strong>{" "}
               {coffee?.RoastingProfile?.profile}
             </li>
           </ul>
