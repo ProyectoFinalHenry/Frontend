@@ -1,6 +1,10 @@
 .detail__container {
     display: flex;
     justify-content: center;
+    background: url(https://th.bing.com/th/id/R.47e4b8e0891e6c4d57f52dcdd304ecb7?rik=DurECBMcHnp5Cw&pid=ImgRaw&r=0);
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .detail__container-card {
@@ -8,16 +12,11 @@
     flex-direction: row;
     margin-top: 120px;
     margin-bottom: 30px;
-    border-style: groove;
-    border-radius: 10px;
     padding: 20px;
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: #f7f3f2;
-    background: url(https://th.bing.com/th/id/OIP.bbO0GdoLXQocmasklv_lfgHaE8?pid=ImgDet&rs=1);
-    background-size: cover; 
-    background-repeat: no-repeat;
-    background-position: center center;
+    background-color: #00000066;
+    backdrop-filter: (blur(10px));
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.616);
+
     
 }
 
@@ -45,18 +44,22 @@
     font-size: 24px;
 }
 
-.price{
-    font-size: 22px;
+.detail__container-card-info-ul{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-left: 0;
+}
+.detail__container-card-info-ul li{
+    margin-bottom: 25px;
 }
 
-.description{
-    font-size: 20px;
-}
 
 .detail__container-card-img{
     text-align: center;
     margin-top: 20px;
-
+    box-shadow: 0 0 10px 10px #fff2;
 }
 
 @media (min-width: 768px) {
