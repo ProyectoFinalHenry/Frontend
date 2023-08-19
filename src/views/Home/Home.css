@@ -44,7 +44,7 @@
 
 
 .home-card-container{
-    /* border:2px solid red; */
+    border:2px solid red; 
     width: 100%;
     display: flex;
     flex-wrap: wrap;

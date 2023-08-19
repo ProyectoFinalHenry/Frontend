@@ -1,0 +1,39 @@
+.filters-container{
+    display: inline-block;
+    flex-direction: column;
+    border:1px solid rgb(180, 180, 180);
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: .8em 1em;
+    background-color: rgb(236, 236, 236);
+}
+
+.filter-item{
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    margin: .3em;
+    margin-top: 2em;
+}
+
+.filter-item select{
+    height: 40px;
+}
+
+.filters-buttons{
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: .5em;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.filters-buttons button{
+    border:1px solid red;
+    margin: .2em;
+    padding: .5em 1em;
+}
