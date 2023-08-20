@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
-import { fetchProducts, clearFilters } from '../../redux/slides/products/productsSlice';
+import { fetchProducts, clearFilters } from '../../store/reducers/products/productsSlice';
 import { Link, useParams, useNavigate  } from 'react-router-dom'; 
 import Card from '../../components/Card/Card';
 import PaginationButtons from '../../components/PaginationButtons/PaginationButtons'; 

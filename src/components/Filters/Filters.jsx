@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCategories } from '../../redux/slides/categoriesSlice/categoriesSlice'; // Importa clearFilters
-import { filtredProducts } from '../../redux/slides/products/productsSlice';
-import { fetchProducts, clearFilters } from "../../redux/slides/products/productsSlice";
+import { fetchCategories } from '../../store/reducers/categoriesSlice/categoriesSlice'; 
+import { filtredProducts, fetchProducts, clearFilters } from '../../store/reducers/products/productsSlice';
 import './Filters.css';
 
 function Filters({ handleClearFilters }) { // Recibe handleClearFilters como prop

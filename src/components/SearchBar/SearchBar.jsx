@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import "./SearchBar.css";
-import { updateActualSearch } from '../../redux/slides/products/productsSlice';
+import { updateActualSearch } from '../../store/reducers/products/productsSlice';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
