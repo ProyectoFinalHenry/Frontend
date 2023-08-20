@@ -7,7 +7,7 @@ import PaginationButtons from '../../components/PaginationButtons/PaginationButt
 import SearchBar from '../../components/SearchBar/SearchBar';
 import Filters from '../../components/Filters/Filters';
 import './Home.css'
-
+import Spinner from '../../components/Spinner/Spinner';
 
 
 const Home = () => {
@@ -32,14 +32,12 @@ const Home = () => {
   }, [dispatch]);
 
   const handleClearFilters = () => {
-    setCurrentPage(1); // Establece currentPage en 1
-    navigate(`/products/page/1`); // Navega a la página 1
-    dispatch(clearFilters()); // Llama a la acción para limpiar los filtros
+    setCurrentPage(1); 
+    navigate(`/products/page/1`); 
+    dispatch(clearFilters());
   };
 
-  if (loading) {
-    return <p>Loading...</p>; // Muestra un mensaje de carga mientras se obtienen los datos
-  }
+ 
 
   return (
     <div className="home-container">
@@ -49,19 +47,49 @@ const Home = () => {
         <img className='home-image-banner' src="/assets/images/bannere-home.webp" alt="banner" />
       </div>
 
-      <Filters handleClearFilters={handleClearFilters} />
+    
+      <div className="home-card-panel-container">
+        <div className="home-filters-cont">
 
-      <div className="home-card-container">
-        {visibleProduct.map((product) => (
-          <Link to={`/detail/${product.id}`} key={product.id}>
-            <Card
-              id={product.id}
-              image={product.image}
-              title={product.name}
-              price={product.price}
-            />
-          </Link>
-        ))}
+        <Filters handleClearFilters={handleClearFilters} />
+        </div>
+
+        <div className="home-card-container">
+
+        {productRender[0] === 'not found' ? (
+
+          <div className="home-not-found-cont">
+            <img src="/assets/images/not-found-home.png" alt="not found" />
+            <h2>NO HAY RESULTADOS PARA TU BÚSQUEDA</h2>
+          </div>
+
+        ) : (
+          <>
+            {loading ? (
+              <div className="home-spinner-cont">
+                <Spinner />
+              </div>
+            ): (
+              <div className='home-card-container'>
+                {visibleProduct.map((product) => (
+                  <Link to={`/detail/${product.id}`} key={product.id}>
+                    <Card
+                      id={product.id}
+                      image={product.image}
+                      title={product.name}
+                      price={product.price}
+                      reviews={product.Reviews}
+                    />
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
+        )}
+        
+
+        </div>
+
       </div>
 
       <PaginationButtons
@@ -69,6 +97,7 @@ const Home = () => {
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
+
     </div>
   );
 };
