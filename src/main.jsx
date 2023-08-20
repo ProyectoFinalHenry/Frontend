@@ -13,7 +13,6 @@ import { store } from './store/store';
 axios.defaults.baseURL = 'http://localhost:3001/';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-<<<<<<< HEAD
   <Provider store={store}>
     <React.StrictMode>
       <BrowserRouter>
@@ -21,14 +20,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       </BrowserRouter>
     </React.StrictMode>
   </Provider>
-=======
-  <React.StrictMode>
-    <BrowserRouter>
-    <Provider store={store}>
-
-      <App />
-    </Provider>
-    </BrowserRouter>
-  </React.StrictMode>,
->>>>>>> origin/developer
 )
