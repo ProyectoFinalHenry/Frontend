@@ -1,124 +1,100 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import './Filtes.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCategories } from '../../store/reducers/categoriesSlice/categoriesSlice'; 
+import { filtredProducts, fetchProducts, clearFilters } from '../../store/reducers/products/productsSlice';
+import './Filters.css';
 
-const categories = [
-  { id: 1, name: "Categoría 1" },
-  { id: 2, name: "Categoría 2" },
-  { id: 3, name: "Categoría 3" },
-];
+function Filters({ handleClearFilters }) { // Recibe handleClearFilters como prop
 
-const typeOfCoffeeOptions = [
-  { id: 1, name: "Tipo de café 1" },
-  { id: 2, name: "Tipo de café 2" },
-  { id: 3, name: "Tipo de café 3" },
-];
-
-const originOptions = [
-  { id: 1, name: "Origen 1" },
-  { id: 2, name: "Origen 2" },
-  { id: 3, name: "Origen 3" },
-];
-
-const roastingProfileOptions = [
-  { id: 1, name: "Perfil de tostado 1" },
-  { id: 2, name: "Perfil de tostado 2" },
-  { id: 3, name: "Perfil de tostado 3" },
-];
-
-function Filters() {
-  const [price, setPrice] = useState({ min: "", max: "" });
-
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handlecategories = (event) => {
-    const { value } = event.target;
-    // Tu código para manejar las categorías seleccionadas
-  };
+  const [filters, setFilters] = useState({
+    origin: '',
+    roastingProfile: '',
+    typeOfCoffee: '',
+    priceMin: false,
+    priceMax: false,
+  });
 
-  const handleTypeOfCoffee = (event) => {
-    const { value } = event.target;
-    // Tu código para manejar el tipo de café seleccionado
-  };
+  const { origin: originCategories, roastingProfile: roastingProfileCategories, typeOfCoffee: typeOfCoffeeCategories } = useSelector(state => state.categories);
 
-  const handleOrigin = (event) => {
-    const { value } = event.target;
-    // Tu código para manejar el origen seleccionado
-  };
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch]);
 
-  const handleRoastingProfile = (event) => {
+  const handleFilterChange = (event, filterKey) => {
     const { value } = event.target;
-    // Tu código para manejar el perfil de tostado seleccionado
+    setFilters(prevFilters => ({
+      ...prevFilters,
+      [filterKey]: value
+    }));
   };
 
   const handlePriceSorts = (event) => {
     const { value } = event.target;
-    // Tu código para manejar el orden por precio seleccionado
+    setFilters({
+      ...filters,
+      priceMin: value === "asc",
+      priceMax: value === "desc"
+    });
   };
 
-
-  const handleMaxPriceChange = (event) => {
-    const { value } = event.target;
-    setPrice({ ...price, max: value });
-    // Tu código para manejar el cambio de precio máximo
+  const handleApplyFilters = () => {
+    // Código para aplicar los filtros
+    dispatch(filtredProducts(filters));
+    navigate(`/products/page/${''}`);
   };
 
-  const handlerClean = () => {
-    // Tu código para limpiar los filtros
-  };
-
-  const handleAplicarClick = () => {
-    // Tu código para aplicar los filtros
-    navigate(`/productos/page/${1}`);
+  const handleClearFiltersLocal = () => {
+    handleClearFilters(); // Llama a la función recibida como prop desde Home
+    setFilters({
+      origin: '',
+      roastingProfile: '',
+      typeOfCoffee: '',
+      priceMin: false,
+      priceMax: false,
+    });
+    navigate(`/products/page/${1}`);
+    dispatch(clearFilters()); // Llama a la acción para limpiar los filtros
+    dispatch(fetchProducts()); // Vuelve a cargar los productos
   };
 
   return (
     <div className="filters-container">
-
       <div className="filters-group">
         <div className="filter-item">
-          <label>categorías:</label>
-          <select className="filters-select" onChange={handlecategories}>
-            <option value="Todas">Todas</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.id}>
-                {category.name}
+          <label>Tipo de café:</label>
+          <select className="filters-select" onChange={(e) => handleFilterChange(e, "typeOfCoffee")}>
+            <option value="">Todos</option>
+            {typeOfCoffeeCategories.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.type}
               </option>
             ))}
           </select>
         </div>
 
         <div className="filter-item">
-          <label>tipo de café:</label>
-          <select className="filters-select" onChange={handleTypeOfCoffee}>
-            <option value="Todos">Todos</option>
-            {typeOfCoffeeOptions.map((option) => (
+          <label>Origen:</label>
+          <select className="filters-select" onChange={(e) => handleFilterChange(e, "origin")}>
+            <option value="">Todos</option>
+            {originCategories.map((option) => (
               <option key={option.id} value={option.id}>
-                {option.name}
+                {option.origin}
               </option>
             ))}
           </select>
         </div>
 
         <div className="filter-item">
-          <label>origen:</label>
-          <select className="filters-select" onChange={handleOrigin}>
-            <option value="Todos">Todos</option>
-            {originOptions.map((option) => (
+          <label>Perfil de tostado:</label>
+          <select className="filters-select" onChange={(e) => handleFilterChange(e, "roastingProfile")}>
+            <option value="">Todos</option>
+            {roastingProfileCategories.map((option) => (
               <option key={option.id} value={option.id}>
-                {option.name}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="filter-item">
-          <label>perfil de tostado:</label>
-          <select className="filters-select" onChange={handleRoastingProfile}>
-            <option value="Todos">Todos</option>
-            {roastingProfileOptions.map((option) => (
-              <option key={option.id} value={option.id}>
-                {option.name}
+                {option.profile}
               </option>
             ))}
           </select>
@@ -132,19 +108,16 @@ function Filters() {
             <option value="desc">Mayor</option>
           </select>
         </div>
-
+      </div>
 
       <div className="filters-buttons">
-        <button className="filters-button" onClick={handlerClean}>
+        <button className="filters-button" onClick={handleClearFiltersLocal}>
           Limpiar
         </button>
-        <button className="filters-button" onClick={handleAplicarClick}>
+        <button className="filters-button" onClick={handleApplyFilters}>
           Aplicar
         </button>
       </div>
-      
-      </div>
-      
     </div>
   );
 }

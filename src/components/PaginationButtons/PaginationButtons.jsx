@@ -1,32 +1,38 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect} from "react";
+import { useNavigate,useParams } from "react-router-dom";
 import { BiChevronLeft, BiChevronRight, BiFirstPage, BiLastPage } from 'react-icons/bi';
 
 import './PaginationButtons.css'
 
 const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
+
+
    const navigate = useNavigate();
-const handlePage = (e) => {
-   const buttonValue = e.currentTarget.name;
+  
 
-   let newPage = currentPage; 
 
-   if (!isNaN(parseInt(buttonValue))) {
-      setCurrentPage(parseInt(buttonValue));
-      navigate(`/products/page/${parseInt(buttonValue)}`);
-   }
-   if (e.currentTarget.name === "PREV") {
-      newPage = currentPage - 1; 
-      setCurrentPage(newPage);
-      navigate(`/products/page/${newPage}`);
-   }
-   if (e.currentTarget.name === "NEXT") {
-      newPage = currentPage + 1; 
-      setCurrentPage(newPage);
-      navigate(`/products/page/${newPage}`);
-   }
-};
 
+   const handlePage = (e) => {
+      const buttonValue = e.currentTarget.name;
+    
+      let newPage = currentPage; 
+    
+      if (!isNaN(parseInt(buttonValue))) {
+        setCurrentPage(parseInt(buttonValue));
+        navigate(`/products/page/${parseInt(buttonValue)}`);
+      }
+      if (e.currentTarget.name === "PREV") {
+        newPage = currentPage - 1; 
+        setCurrentPage(newPage);
+        navigate(`/products/page/${newPage}`);
+      }
+      if (e.currentTarget.name === "NEXT") {
+        newPage = currentPage + 1; 
+        setCurrentPage(newPage);
+        navigate(`/products/page/${newPage}`);
+      }
+    };
+    
 
    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
