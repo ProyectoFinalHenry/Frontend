@@ -4,7 +4,7 @@
   justify-content: space-between;
   padding: 1em 1.3em 1em 1.3em;
   z-index: 2;
-  position: fixed;
+  position: absolute;
   width: 100%;
   top: 0px;
 }

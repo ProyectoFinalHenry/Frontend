@@ -1,5 +1,2 @@
-export const PathsToNoFill = [
-    "/product/page/1",
-    "/product/page/2",
-    "/"
-]
+export const PathsToNoFill = ["/"];
+export const PathToFill = ["/about"];
