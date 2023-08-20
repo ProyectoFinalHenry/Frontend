@@ -1,0 +1,39 @@
+.about__container{
+    display: flex;
+    justify-content: center;
+    background: url("https://th.bing.com/th/id/R.537e659f0dc3aea2fff4af8e1929c798?rik=3ByGFOXAEuGn2w&riu=http%3a%2f%2fmiam-images.m.i.pic.centerblog.net%2fo%2fbf5f3e18.jpg&ehk=SizCvZJ2%2bf616rSyrwldfmA%2fqVBaHZ%2bYX2CvxNBu%2bSE%3d&risl=&pid=ImgRaw&r=0");
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.about__container-info{
+    max-width: 630px;
+    margin-top: 120px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(20px);
+    background-color: #00000066;
+    padding: 27px;
+    box-shadow: 0 0 10px 10px #fff2;
+}
+
+.about__container-info > *{
+    display: flex;
+    justify-content: center;
+    color: #fff;
+}
+
+.about__container-info-subtitle{
+    margin-bottom: 15px;
+}
+
+.about__container-info-text{
+    display: flex;
+    flex-direction: column;
+}
+
+.about__container-info-text > *{
+    display: flex;
+    margin-bottom: 15px;
+    justify-content: center;
+}

@@ -4,9 +4,13 @@
   justify-content: space-between;
   padding: 1em 1.3em 1em 1.3em;
   z-index: 2;
-  position: absolute;
+  position: fixed;
   width: 100%;
   top: 0px;
+}
+
+.navbar-container.fill {
+  background-color: #4b5254;
 }
 
 .navbar-logo img {
