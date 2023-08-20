@@ -11,10 +11,12 @@ import Spinner from '../../components/Spinner/Spinner';
 
 
 const Home = () => {
+  const products = useSelector((state) => state.product.product);
+  const filtredProducts = useSelector((state) => state.product.filtredProducts);
+  const loading = useSelector((state) => state.product.loading);
+  const productRender = filtredProducts ? filtredProducts : products;
 
-    //PAGINATION:
-    //const productRender = useSelector((state) => state.filtredPeople);
-    const productRender = db;
+
 
   let { page } = useParams();
   const navigate = useNavigate();
@@ -84,14 +86,18 @@ const Home = () => {
             )}
           </>
         )}
+        
+
         </div>
 
       </div>
+
       <PaginationButtons
         currentPage={currentPage}
         totalPages={totalPages}
         setCurrentPage={setCurrentPage}
       />
+
     </div>
   );
 };
