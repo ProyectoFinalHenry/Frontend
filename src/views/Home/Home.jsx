@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch} from 'react-redux';
 import { fetchProducts, clearFilters } from '../../redux/slides/products/productsSlice';
@@ -91,6 +92,7 @@ const Home = () => {
         </div>
 
       </div>
+
 
       <PaginationButtons
         currentPage={currentPage}
