@@ -8,6 +8,7 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import Filters from '../../components/Filters/Filters';
 import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
+import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
 
 
 const Home = () => {
@@ -79,11 +80,13 @@ const Home = () => {
                       title={product.name}
                       price={product.price}
                       reviews={product.Reviews}
+                      stock={product.stock}
                     />
                   </Link>
                 ))}
               </div>
             )}
+            <ScrollToTopButton />
           </>
         )}
         

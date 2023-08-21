@@ -41,7 +41,7 @@ export const filtredProducts = createAsyncThunk('product/filtredProducts', async
     console.log('INICIANDO');
     
     let url = `/coffee?`;
-    if(filters.origin) url += `name=${actualSearch}`;
+    if(actualSearch) url += `name=${actualSearch}`;
     if (filters.origin) url += `&origin=${filters.origin}`;
     if (filters.roastingProfile) url += `&roastingProfile=${filters.roastingProfile}`;
     if (filters.typeOfCoffee) url += `&typeOfCoffee=${filters.typeOfCoffee}`;

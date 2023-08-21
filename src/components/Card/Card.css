@@ -8,7 +8,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* border: 1px solid red; */
+    position: relative;
 }
 
 .card-img-cont{
@@ -51,4 +51,17 @@
 
 .star-icons{
     color: #777777;
+}
+
+.card-stock{
+    width: fit-content;
+    padding: .1em .3em;
+    background-color: #191919;
+    color: #ffffff !important;
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-family: Post-Grotesk-Book, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-size: 13px !important;
+    border-radius: 2px;
 }

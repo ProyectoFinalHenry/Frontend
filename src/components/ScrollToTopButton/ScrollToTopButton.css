@@ -1,0 +1,30 @@
+.scroll-to-top-button {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #c0d6d7;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 28px;
+    height: 44px;
+}
+
+.scroll-to-top-button svg{
+      color: #000000;
+      font-size: 28px;
+
+  }
+
+  .scroll-to-top-button:hover svg{
+    color: #fff;
+}
+
+
+  .scroll-to-top-button.visible {
+    display: block;
+  }
+  
