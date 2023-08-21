@@ -1,57 +1,61 @@
 import { useState } from 'react';
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import './LandingCarousel.css'
 
-const LandingCarousel = ({ topSold }) => {
-    const [isChecked, setIsChecked] = useState(false);
+const LandingCarousel = ({ topSoldProducts }) => {
 
-    const handleCheckboxChange = event => {
-        setIsChecked(event.target.checked);
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
     };
-
-    const toggles = topSold.map((item, i) => (
+  
+    const slideItems = topSoldProducts.map((item, i) => (
         // Lógica para renderizar cada elemento del array
-        <input
-            type="radio"
-            name="toggle"
-            id={'btn-' + (i + 1)}
-            key={(i + 1)}
-            onChange={handleCheckboxChange}
-            checked={(i === 0) ? true : isChecked}
-        />
-    ));
-    const labels = topSold.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <label htmlFor={'btn-' + (i + 1)} key={(i + 1)}></label>
-    ));
-
-    const slides = topSold.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <li className="slide">
-            <div className="slide-content">
-                <h2 className="slide-title">{item.name}</h2>
+        <div className="slide-content">
+            <img src={item.image} alt="stuff" width="320" height="240" />
+            <div>
+                <h3 className="slide-title"><bold>{item.name}</bold></h3>
                 <p className="slide-text">{item.description}</p>
-                <a href="#" className="slide-link">Learn more</a>
             </div>
-            <p className="slide-image">
-                <img src={item.image} alt="stuff" width="320" height="240" />
-            </p>
-        </li>
+                <a href="#" className="slide-link-button">Learn more</a>
+        </div>
     ));
     return (
-        <div>
-            <div className="slider">
-                {
-                    toggles
-                }
-                <div className="slider-controls">
-                    {
-                        labels
-                    }
-                </div>
-                <ul className="slides">
-                    {slides}
-                </ul>
-            </div>
+        <div className='carousel-cont'>
+            <Carousel
+                swipeable={false}
+                draggable={false}
+                showDots={true}
+                responsive={responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                //autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                autoPlaySpeed={1000}
+                keyBoardControl={true}
+                customTransition="all .5"
+                transitionDuration={500}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                //deviceType={this.props.deviceType}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+            >
+                {slideItems}
+            </Carousel>
         </div>
     )
 };
