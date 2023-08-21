@@ -10,7 +10,7 @@
 }
 
 .navbar-container.fill {
-  background-color: #4b5254;
+  background-color: #4b5254 !important;
 }
 
 .navbar-logo img {

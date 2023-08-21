@@ -1,7 +1,7 @@
 .detail__container {
     display: flex;
     justify-content: center;
-    background: url(https://th.bing.com/th/id/R.47e4b8e0891e6c4d57f52dcdd304ecb7?rik=DurECBMcHnp5Cw&pid=ImgRaw&r=0);
+    background: url(https://th.bing.com/th/id/R.47e4b8e0891e6c4d57f52dcdd304ecb7?rik=DurECBMcHnp5Cw&pid=ImgRaw&r=0) !important;
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center center;
