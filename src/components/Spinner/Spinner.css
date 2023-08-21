@@ -5,8 +5,9 @@
     align-items: center;
     color: #777777;
     font-size: 21px;
+    margin-left:-35% ;
 }
 
 .spinner-cont img{
-    width: 100px;
+    width: 160px;
 }
