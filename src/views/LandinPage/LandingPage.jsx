@@ -9,7 +9,7 @@ const LandingPage = () => {
     const [product, setProducts] = useState([]);
 
     async function getProducts() {
-        const { data } = await axios.get("http://localhost:3001/coffee/")
+        const { data } = await axios.get("coffee/")
         setProducts(data)
     }
     useEffect(() => {
@@ -28,7 +28,7 @@ const LandingPage = () => {
 
             <div className="landin-message-main">
                 <p>SABORES DE TODO EL MUNDO A UN CLICK DE DISTANCIA...</p>
-                <Link to="/productos">COMPRAR CAFÉ</Link>
+                <Link to="/products">COMPRAR CAFÉ</Link>
             </div>
 
             <div className='ladin-p1-cont'>
