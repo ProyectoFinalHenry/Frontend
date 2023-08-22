@@ -15,6 +15,7 @@
     background-color: #00000066;
     padding: 27px;
     box-shadow: 0 0 10px 10px #fff2;
+    border-radius: 10px;
 }
 
 .about__container-info > *{
