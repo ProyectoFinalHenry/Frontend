@@ -18,7 +18,7 @@ const NavBar = () => {
         <Link to="/products/page/1">Productos</Link>
         <Link to="/about">Nosotros</Link>
        {/*  <Link to="/carrito">Carrito</Link> */}
-        <Link to="/auth/form">Acceder</Link>
+        <Link to="/auth/sing-in">Acceder</Link>
         <Link to="/create">Agregar</Link>
       </div>
     </div>
