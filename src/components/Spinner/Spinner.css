@@ -1,0 +1,13 @@
+.spinner-cont{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #777777;
+    font-size: 21px;
+    margin-left:-35% ;
+}
+
+.spinner-cont img{
+    width: 160px;
+}

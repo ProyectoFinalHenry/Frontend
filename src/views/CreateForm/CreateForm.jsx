@@ -26,7 +26,7 @@ const CreateForm = () => {
                 const base64data = 'data:image/png;base64,' + reader.result.split(',')[1];
 
                 try {
-                    const { data } = await axios.post('http://localhost:3001/coffee/upload', { file: base64data, fname: name });
+                    const { data } = await axios.post('coffee/upload', { file: base64data, fname: name });
                     const { message, imageUrl } = data;
                     console.log(message);
                     setUrlImage(imageUrl);
@@ -50,9 +50,9 @@ const CreateForm = () => {
 
     const handlePostCoffee = async (postData) => {
         try {
-            const { data } = await axios.post('http://localhost:3001/coffee', postData);
+            const { data } = await axios.post('coffee', postData);
             const { status } = data;
-            if (status === "Created successfully") {
+            if (status) {
                 window.location.href = '/';
             }
 
@@ -131,8 +131,10 @@ const CreateForm = () => {
                             className="form-control"
                             id="tcafe">
                             <option value="">elige tipo de cafe..</option>
-                            <option value="Whole bean coffee">Whole bean coffee</option>
-                            <option value="Ground coffee">Ground coffee</option>
+                            <option value="Café en grano entero">Café en grano entero</option>
+                            <option value="Café molido">Café molido</option>
+                            <option value="Café en cápsula">Café en cápsula</option>
+                            <optio value="Café instantáneo">Café instantáneo</optio>
                         </select>
                         <p>{errors.typeOfCoffee?.message}</p>
                     </div>
@@ -143,9 +145,9 @@ const CreateForm = () => {
                             className="form-control"
                             id="rcafe">
                             <option value="">elige tipo de tostado..</option>
-                            <option value="Medium Roast">Medium Roast</option>
-                            <option value="Light Roast">Light Roast</option>
-                            <option value="Dark Roast">Dark Roast</option>
+                            <option value="Tostado medio">Tostado medio</option>
+                            <option value="Tostado ligero">Tostado ligero</option>
+                            <option value="Tostado oscuro">Tostado oscuro</option>
                         </select>
                         <p>{errors.roastingProfile?.message}</p>
                     </div>
@@ -156,8 +158,8 @@ const CreateForm = () => {
                             className="form-control"
                             id="ocafe">
                             <option value="">elige origen del cafe..</option>
-                            <option value="Single Origin Coffee">Single Origin Coffee</option>
-                            <option value="Blend of Coffee">Blend of Coffee</option>
+                            <option value="Café de origen único">Café de origen único</option>
+                            <option value="Mezcla de Café">Mezcla de Café</option>
                         </select>
                         <p>{errors.origin?.message}</p>
                     </div>

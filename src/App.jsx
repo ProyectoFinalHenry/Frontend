@@ -17,7 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LandinPage />} />
           <Route path="/Products" element={<Home />} />
-          <Route path="/Create" element={<CreateForm/>} />
+          <Route path="/create" element={<CreateForm/>} />
           <Route path="/products/page/:page?" element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path = "/about" element = {<About/>}/>

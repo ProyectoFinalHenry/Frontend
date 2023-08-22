@@ -1,8 +1,23 @@
-import React from 'react';
-import { Link } from 'react-router-dom'; 
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import LandingCarousel from '../../components/LandingCarousel/LandingCarousel';
 import './LandingPage.css'
 
 const LandingPage = () => {
+
+    const [product, setProducts] = useState([]);
+
+    async function getProducts() {
+        const { data } = await axios.get("coffee/")
+        setProducts(data)
+    }
+    useEffect(() => {
+        getProducts()
+    }, [])
+
+    const topSoldProducts = product.slice(0, 8);
+
     return (
         <div className="landing-page">
             <div className='landin-video-cont'>
@@ -11,13 +26,14 @@ const LandingPage = () => {
                 </video>
             </div>
 
-                <div className="landin-message-main">
-                    <p>SABORES DE TODO EL MUNDO A UN CLICK DE DISTANCIA...</p>
-                    <Link to="/productos">COMPRAR CAFÉ</Link>
-                </div>
+            <div className="landin-message-main">
+                <p>SABORES DE TODO EL MUNDO A UN CLICK DE DISTANCIA...</p>
+                <Link to="/products">COMPRAR CAFÉ</Link>
+            </div>
 
             <div className='ladin-p1-cont'>
-            <p className='landin-p1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex fuga blanditiis laboriosam suscipit </p>
+                <h1>Nuestros Productos Más Vendidos</h1>
+                <LandingCarousel topSoldProducts={topSoldProducts} />
             </div>
 
         </div>

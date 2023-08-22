@@ -1,13 +1,13 @@
 .home-container{
    /*  border: 0.1px solid rgba(219, 219, 219, 0); */
     margin-bottom: 5em;
+    min-height: 100vh;
 }
 
 .home-banner{
     width: 100%;
     height: 53%;
     height: 53vh;
-    background: #1d1e20;
     overflow: hidden;
     margin-top: -1px;
     margin-bottom: 1em;
@@ -20,10 +20,15 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 60vh;
-    background-color: rgba(0, 0, 0, 0.103);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.096);
     z-index: 1;
     overflow: hidden;
+}
+
+.home-banner::before{
+    background: rgba(2, 0, 36, 0.616);
+    background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.445) 89%);
 }
 
 .home-image-banner{
@@ -42,18 +47,39 @@
     z-index: 2;
 }
 
+.home-card-panel-container{
+    display: flex;
+}
 
 .home-card-container{
-    /* border:2px solid red; */
-    width: 100%;
-    display: flex;
+    display: inline-flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.home-filters-cont{
+    display: inline-block;
+    width: fit-content;
 }
 
 .home-card-container a {
     text-decoration: none;
     color: inherit;
+}
+
+.home-not-found-cont img{
+    width: 180px;
+}
+
+.home-not-found-cont h2{
+    color: #777777;
+}
+
+.home-not-found-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
