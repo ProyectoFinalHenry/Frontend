@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import './LandingCarousel.css'
@@ -22,7 +21,7 @@ const LandingCarousel = ({ topSoldProducts }) => {
             slidesToSlide: 1 // optional, default to 1.
         }
     };
-  
+
     const slideItems = topSoldProducts.map((item, i) => (
         // Lógica para renderizar cada elemento del array
         <div className="slide-content">
@@ -31,7 +30,7 @@ const LandingCarousel = ({ topSoldProducts }) => {
                 <h3 className="slide-title"><bold>{item.name}</bold></h3>
                 <p className="slide-text">{item.description}</p>
             </div>
-                <a href="#" className="slide-link-button">Learn more</a>
+            <a href="#" className="slide-link-button">Learn more</a>
         </div>
     ));
     return (
@@ -44,10 +43,11 @@ const LandingCarousel = ({ topSoldProducts }) => {
                 ssr={true} // means to render carousel on server-side.
                 infinite={true}
                 //autoPlay={this.props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
+                autoPlay={true}
+                autoPlaySpeed={3000}
                 keyBoardControl={true}
-                customTransition="all .5"
-                transitionDuration={500}
+                customTransition="transform 500ms ease-in-out"
+                transitionDuration={2000}
                 containerClass="carousel-container"
                 removeArrowOnDeviceType={["tablet", "mobile"]}
                 //deviceType={this.props.deviceType}
