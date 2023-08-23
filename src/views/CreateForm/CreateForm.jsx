@@ -11,6 +11,17 @@ const CreateForm = () => {
     const [urlImage, setUrlImage] = useState(null);
     const [postObject, setPostObject] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
+    
+    
+    
+    
+    
+    
+    
+    const TYPE_GET_VALUE = "TypeOfCoffee";
+    const ROAST_GET_VALUE = "RoastingProfile";
+    const ORIGIN_GET_VALUE = "Origin";
     let url = '';
 
     useEffect(() => {
@@ -18,9 +29,10 @@ const CreateForm = () => {
         getAllRoastsCoffee();
         getAllOriginsCoffee();
     }, []);
+
     const getAllTypesCoffee = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3001/coffee/types/");
+            const { data } = await axios.get(`http://localhost:3001/category/${TYPE_GET_VALUE}`);
             setTypes(data);
         } catch (error) {
             console.log("error:", error);
@@ -28,7 +40,7 @@ const CreateForm = () => {
     }
     const getAllRoastsCoffee = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3001/coffee/roasts/");
+            const { data } = await axios.get(`http://localhost:3001/category/${ROAST_GET_VALUE}`);
             setRoasts(data);
         } catch (error) {
             console.log("error:", error);
@@ -36,7 +48,7 @@ const CreateForm = () => {
     }
     const getAllOriginsCoffee = async () => {
         try {
-            const { data } = await axios.get("http://localhost:3001/coffee/origins/");
+            const { data } = await axios.get(`http://localhost:3001/category/${ORIGIN_GET_VALUE}`);
             setOrigins(data);
         } catch (error) {
             console.log("error:", error);
