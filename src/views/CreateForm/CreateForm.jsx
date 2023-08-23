@@ -11,6 +11,14 @@ const CreateForm = () => {
     const [urlImage, setUrlImage] = useState(null);
     const [postObject, setPostObject] = useState(null);
     const { register, handleSubmit, formState: { errors } } = useForm();
+    
+    
+    
+    
+    
+    
+    
+    
     const TYPE_GET_VALUE = "TypeOfCoffee";
     const ROAST_GET_VALUE = "RoastingProfile";
     const ORIGIN_GET_VALUE = "Origin";
