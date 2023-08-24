@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useForm } from "react-hook-form"
+import { ToastContainer } from 'react-toastify';
+import { notifySuccess } from '../../functions/toastify/toastify'
+import 'react-toastify/dist/ReactToastify.css';
 import './CreateForm.css'
 
 const CreateForm = () => {
@@ -98,7 +101,10 @@ const CreateForm = () => {
             const { data } = await axios.post('coffee', postData);
             const { status } = data;
             if (status) {
-                window.location.href = '/';
+                notifySuccess("¡Producto creado con exito!");
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1 * 3000);
             }
 
         } catch (error) {
@@ -106,20 +112,18 @@ const CreateForm = () => {
         }
     }
 
-    const typeSelects = types.map((item) => {
+    const typeSelects = types.map((item, i) => {
         const { type } = item;
-        return <option value={type}>{type}</option>
+        return <option value={type} key={i}>{type}</option>
     });
-    const roastSelects = roasts.map((item) => {
+    const roastSelects = roasts.map((item, i) => {
         const { profile } = item;
-        return <option value={profile}>{profile}</option>
+        return <option value={profile} key={i}>{profile}</option>
     });
-    const originSelects = origins.map((item) => {
+    const originSelects = origins.map((item, i) => {
         const { origin } = item;
-        return <option value={origin}>{origin}</option>
+        return <option value={origin} key={i}>{origin}</option>
     });
-
-    console.log("name:", nameInput);
 
     return (
         <div className="form-create-container">
@@ -133,6 +137,18 @@ const CreateForm = () => {
                 <div>
                     <h1 className="form-header-text">Formulario de creación de productos</h1>
                 </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
+                />
                 <form className="form-create" onSubmit={handleSubmit((data) => {
                     handleUploadFile();
                     setTimeout(() => {
@@ -189,7 +205,7 @@ const CreateForm = () => {
                             type="number"
                             className="form-control"
                             id="scafe" />
-                        <p>{(!stockInput) ? "* Este campo es requerido. Ingresa un valor." : (stockInput < 1) ? "El valor minimo permitido es 1" :errors.stock?.message}</p>
+                        <p>{(!stockInput) ? "* Este campo es requerido. Ingresa un valor." : (stockInput < 1) ? "El valor minimo permitido es 1" : errors.stock?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="tcafe" className="form-label">Tipo de Café</label>
