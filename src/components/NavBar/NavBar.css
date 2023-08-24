@@ -15,6 +15,7 @@
 
 .navbar-logo img {
   width: 130px;
+  cursor: pointer;
 }
 
 .navbar-links {
@@ -36,5 +37,27 @@
 
 .navbar-links a:hover {
   color: #777777;
+  cursor: pointer;
+}
+.navbar--cuenta{
+  text-decoration: none;
+  color: #ffffff;
+  margin: 0 1em;
+  font-size: 1rem;
+  line-height: 17.6px;
+  vertical-align: baseline;
+  letter-spacing: 0.64px;
+  word-spacing: 0px;
+  transition: color 0.3s ease;
+  cursor: pointer; 
+}
+.navbar--shopping{
+  font-size: 20px;
+}
+.navbar--container{
+  display: flex;
+}
+.navbar--btn{
+  color: #ffffff;
   cursor: pointer;
 }

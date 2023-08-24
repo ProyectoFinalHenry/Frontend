@@ -1,17 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initialState = {
+    LoginAndLogOut : false,
+}
+
 export const loginSlice = createSlice({
     name: 'login',
-    initialState: {
-        counter: 10
-    },
+    initialState,
     reducers: {
-        increment: (state, /* action */ ) => {
-            state.counter += 1;
+        getLoginAndLogOut: (state, /* action */ ) => {
+            state.LoginAndLogOut = true;
         },
+        getLogOut: (state) =>{
+            state.LoginAndLogOut = false
+        }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { increment } = loginSlice.actions;
+export const { getLoginAndLogOut ,getLogOut} = loginSlice.actions;

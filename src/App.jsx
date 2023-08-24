@@ -9,8 +9,20 @@ import NavBar from './components/NavBar/NavBar';
 import './App.css';
 import SignIn from './components/Sign-in/SignIn';
 import SignUp from './components/Sign-up/SignUp';
+import { getLoginAndLogOut } from './store/reducers/Login';
+import { useDispatch } from 'react-redux';
+import { onAuthStateChanged } from 'firebase/auth';
+import { FirebaseAuth } from './firebase/credenciales';
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 function App() {
+  const dispatch = useDispatch()
+  onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
+    if (usuarioFirebase) {
+      dispatch(getLoginAndLogOut())
+      navigate("/");
+    }
+  });
   return (
     <div className="App">
         <NavBar />
@@ -20,6 +32,7 @@ function App() {
           <Route path="/create" element={<CreateForm/>} />
           <Route path="/products/page/:page?" element={<Home />} />
           <Route path="/detail/:id" element={<Detail />} />
+          <Route path='/shoppingCart' element={<ShoppingCart/>}/>
           <Route path = "/about" element = {<About/>}/>
           <Route path="/auth/sing-in" element={<SignIn/>} />
           <Route path='/auth/sing-up' element={<SignUp/>}/>

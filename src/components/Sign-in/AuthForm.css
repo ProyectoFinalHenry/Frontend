@@ -3,19 +3,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
     
 }
-.formulario__container{
-    background: #FFF;
-    height: 500px;
+.formulario__containerIn{
+    height: 520px;
     width: 400px;
     padding: 10px;
+    position: relative;
+    background-color: #FFF;
 }
-.formulario__titulo{
+.formulario__logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+.formulario__tituloIn{
     text-align: center;
 }
-.formulario__cuentas{
+.formulario__grano{
+    height: 50px;
+    width: 200px;
+}
+.formulario__cuentasIn{
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -32,9 +42,17 @@
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 .formulario__google:hover{
 background-color: rgb(0, 0, 106);
+}
+.formulario__googleLogo{
+    height: 40px;
+    width: 40px;
 }
 .formulario__gitHud{
     width: 100%;
@@ -47,12 +65,21 @@ background-color: rgb(0, 0, 106);
     color: white;
     border-radius: 5px;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 .formulario__gitHud:hover{
     background-color: rgb(133, 8, 8);
 }
-.formulario__contenido{
-    padding: 10px;
+.formulario_gitHubLogo{
+    height: 40px;
+    width: 40px;
+}
+.formulario__contenidoIn{
+    padding: 5px;
+    padding-top: 20px;
 
 }
 .formulario__label{
@@ -67,8 +94,8 @@ background-color: rgb(0, 0, 106);
     height: 30px;
     padding-left: 10px;
 }
-.formulario__login{
-    width: 100%;
+.formulario__loginIn{
+    width: 90%;
     background-color: blue;
     border:none;
     height: 40px;
@@ -78,11 +105,18 @@ background-color: rgb(0, 0, 106);
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
-    
+    position: absolute;
+    bottom: 30px;
+    margin-left: 10px;    
 }
+.formulario__loginIn:hover{
+    background-color: rgb(0, 0, 133);
+}
+
 .formulario__loginRegister{
     color: blue;
-    text-align: end;
     cursor: pointer ;
+    position: absolute;
+    right: 0;
+    bottom: 5px;
 }

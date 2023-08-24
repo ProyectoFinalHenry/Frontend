@@ -8,7 +8,7 @@
 }
 .formulario__container{
     background: #FFF;
-    height: 500px;
+    height: 520px;
     width: 400px;
     padding: 10px;
 }
@@ -51,10 +51,7 @@ background-color: rgb(0, 0, 106);
 .formulario__gitHud:hover{
     background-color: rgb(133, 8, 8);
 }
-.formulario__contenido{
-    padding: 10px;
 
-}
 .formulario__label{
     text-transform: uppercase;
     font-size: 20px;
@@ -78,7 +75,6 @@ background-color: rgb(0, 0, 106);
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
     
 }
 .formulario__loginRegister{
