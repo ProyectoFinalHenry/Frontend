@@ -24,9 +24,9 @@ const Detail = () => {
           <span className="price">$ {coffee?.price}</span>
           <p className="description">{coffee?.description}</p>
           {/* <span className="stock">{coffee?.stock} units</span> */}
-          <ul class="detail__container-card-info-ul">
+          <ul className="detail__container-card-info-ul">
             <li>
-              <strong class="type">Tipo de Café: </strong>{" "}
+              <strong className="type">Tipo de Café: </strong>{" "}
               {coffee?.TypeOfCoffee?.type}
             </li>
             <li>

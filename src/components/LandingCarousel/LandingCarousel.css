@@ -29,3 +29,11 @@
     color: #ac7d40;
     text-decoration: none;
 }
+
+.slide-image-cont {
+    cursor: pointer;
+}
+
+.slide-star-icons-cont {
+    color: #e7bc71;
+}
