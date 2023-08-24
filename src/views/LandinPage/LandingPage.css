@@ -43,6 +43,11 @@ video {
     margin-right: auto;
 }
 
+.ladin-p1-cont h1 {
+    margin-bottom: 1rem;
+    color: #895929;
+}
+
 .landin-p1 {
     line-height: 39px;
     font-size: 26px;
@@ -79,10 +84,10 @@ video {
 .landin-message-main a {
     text-decoration: none;
     color: #ffffff;
-    line-height:20px;
-    vertical-align:top;
-    letter-spacing:1.5px;
-    word-spacing:0px;
+    line-height: 20px;
+    vertical-align: top;
+    letter-spacing: 1.5px;
+    word-spacing: 0px;
     font-size: 12px;
     font-weight: 500;
     font-family: PostGrotesk-Bold, sans-serif;
@@ -95,5 +100,6 @@ video {
 .landin-message-main a:hover {
     background-color: #ffffff;
     color: #000000;
-    transition: background-color 0.5s, color 0.5s; /* Transición lenta */
+    transition: background-color 0.5s, color 0.5s;
+    /* Transición lenta */
 }

@@ -1,14 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useForm } from "react-hook-form"
 import './CreateForm.css'
 
 const CreateForm = () => {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [types, setTypes] = useState([{}]);
+    const [roasts, setRoasts] = useState([{}]);
+    const [origins, setOrigins] = useState([{}]);
     const [urlImage, setUrlImage] = useState(null);
     const [postObject, setPostObject] = useState(null);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const nameInput = watch("name");
+    const descriptionInput = watch("description");
+    const fileInput = watch("file");
+    const priceInput = (watch("price"));
+    const stockInput = watch("stock");
+    const typeInput = watch("typeOfCoffee");
+    const roastInput = watch("roastingProfile");
+    const originInput = watch("origin");
+    const TYPE_GET_VALUE = "TypeOfCoffee";
+    const ROAST_GET_VALUE = "RoastingProfile";
+    const ORIGIN_GET_VALUE = "Origin";
     let url = '';
+
+    useEffect(() => {
+        getAllTypesCoffee();
+        getAllRoastsCoffee();
+        getAllOriginsCoffee();
+    }, []);
+
+    const getAllTypesCoffee = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/category/${TYPE_GET_VALUE}`);
+            setTypes(data);
+        } catch (error) {
+            console.log("error:", error);
+        }
+    }
+    const getAllRoastsCoffee = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/category/${ROAST_GET_VALUE}`);
+            setRoasts(data);
+        } catch (error) {
+            console.log("error:", error);
+        }
+    }
+    const getAllOriginsCoffee = async () => {
+        try {
+            const { data } = await axios.get(`http://localhost:3001/category/${ORIGIN_GET_VALUE}`);
+            setOrigins(data);
+        } catch (error) {
+            console.log("error:", error);
+        }
+    }
 
     const handleFileChange = (file) => {
         setSelectedFile(file);
@@ -60,6 +105,22 @@ const CreateForm = () => {
             console.log(error.message);
         }
     }
+
+    const typeSelects = types.map((item) => {
+        const { type } = item;
+        return <option value={type}>{type}</option>
+    });
+    const roastSelects = roasts.map((item) => {
+        const { profile } = item;
+        return <option value={profile}>{profile}</option>
+    });
+    const originSelects = origins.map((item) => {
+        const { origin } = item;
+        return <option value={origin}>{origin}</option>
+    });
+
+    console.log("name:", nameInput);
+
     return (
         <div className="form-create-container">
 
@@ -83,18 +144,24 @@ const CreateForm = () => {
                 })}>
                     <div>
                         <label htmlFor="ncafe" className="form-label">Nombre del Café</label>
-                        <input {...register("name", { required: "* Este campo es requerido. Ingresa un valor." })} type="text" className="form-control" id="ncafe" placeholder="introduce nombre del café..." />
-                        <p>{errors.name?.message}</p>
+                        <input
+                            {...register("name", { required: "* Este campo es requerido. Ingresa un valor." })}
+                            type="text"
+                            className="form-control"
+                            id="ncafe"
+                            placeholder="introduce nombre del café..."
+                        />
+                        <p>{(!nameInput) ? "* Este campo es requerido. Ingresa un valor." : errors.name?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="dcafe" className="form-label">Descripción del Café</label>
                         <textarea {...register("description", { required: "* Este campo es requerido. Ingresa un valor." })} className="form-control" id="dcafe" rows="3"></textarea>
-                        <p>{errors.description?.message}</p>
+                        <p>{(!descriptionInput) ? "* Este campo es requerido. Ingresa un valor." : errors.description?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="icafe" className="form-label">Imagen del Café</label>
                         <input {...register("file", { required: "* Este campo es requerido. Ingresa un valor." })} type="file" className="form-control" id="icafe" onChange={handleChange} />
-                        <p>{errors.file?.message}</p>
+                        <p>{(!fileInput) ? "* Este campo es requerido. Ingresa un valor." : errors.file?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="pcafe" className="form-label">Precio del Café</label>
@@ -108,7 +175,7 @@ const CreateForm = () => {
                             type="number"
                             className="form-control"
                             id="pcafe" />
-                        <p>{errors.price?.message}</p>
+                        <p>{(!priceInput) ? "* Este campo es requerido. Ingresa un valor." : (priceInput < 1) ? "El valor minimo permitido es 1" : errors.price?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="scafe" className="form-label">Stock del Café</label>
@@ -122,7 +189,7 @@ const CreateForm = () => {
                             type="number"
                             className="form-control"
                             id="scafe" />
-                        <p>{errors.stock?.message}</p>
+                        <p>{(!stockInput) ? "* Este campo es requerido. Ingresa un valor." : (stockInput < 1) ? "El valor minimo permitido es 1" :errors.stock?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="tcafe" className="form-label">Tipo de Café</label>
@@ -131,12 +198,9 @@ const CreateForm = () => {
                             className="form-control"
                             id="tcafe">
                             <option value="">elige tipo de cafe..</option>
-                            <option value="Café en grano entero">Café en grano entero</option>
-                            <option value="Café molido">Café molido</option>
-                            <option value="Café en cápsula">Café en cápsula</option>
-                            <optio value="Café instantáneo">Café instantáneo</optio>
+                            {typeSelects}
                         </select>
-                        <p>{errors.typeOfCoffee?.message}</p>
+                        <p>{(!typeInput) ? "* Este campo es requerido. Ingresa un valor." : errors.typeOfCoffee?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="rcafe" className="form-label">Tostado de Café</label>
@@ -145,11 +209,9 @@ const CreateForm = () => {
                             className="form-control"
                             id="rcafe">
                             <option value="">elige tipo de tostado..</option>
-                            <option value="Tostado medio">Tostado medio</option>
-                            <option value="Tostado ligero">Tostado ligero</option>
-                            <option value="Tostado oscuro">Tostado oscuro</option>
+                            {roastSelects}
                         </select>
-                        <p>{errors.roastingProfile?.message}</p>
+                        <p>{(!roastInput) ? "* Este campo es requerido. Ingresa un valor." : errors.roastingProfile?.message}</p>
                     </div>
                     <div>
                         <label htmlFor="ocafe" className="form-label">Origen de Café</label>
@@ -158,10 +220,9 @@ const CreateForm = () => {
                             className="form-control"
                             id="ocafe">
                             <option value="">elige origen del cafe..</option>
-                            <option value="Café de origen único">Café de origen único</option>
-                            <option value="Mezcla de Café">Mezcla de Café</option>
+                            {originSelects}
                         </select>
-                        <p>{errors.origin?.message}</p>
+                        <p>{(!originInput) ? "* Este campo es requerido. Ingresa un valor." : errors.origin?.message}</p>
                     </div>
                     <div>
                         <input type="submit" value="submit" className="form-submit-button" />
