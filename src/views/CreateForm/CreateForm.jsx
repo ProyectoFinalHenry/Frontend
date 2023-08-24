@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from 'axios';
 import { useForm } from "react-hook-form"
+import useFormPersist from 'react-hook-form-persist'
+
 import './CreateForm.css'
 
 const CreateForm = () => {
@@ -10,7 +12,12 @@ const CreateForm = () => {
     const [origins, setOrigins] = useState([{}]);
     const [urlImage, setUrlImage] = useState(null);
     const [postObject, setPostObject] = useState(null);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { setValue,register, handleSubmit, watch, formState: { errors } } = useForm();
+    useFormPersist("newCoffeForm", {
+        watch, 
+        setValue,
+        storage: window.localStorage,
+      });
     const nameInput = watch("name");
     const descriptionInput = watch("description");
     const fileInput = watch("file");
@@ -119,7 +126,6 @@ const CreateForm = () => {
         return <option value={origin}>{origin}</option>
     });
 
-    console.log("name:", nameInput);
 
     return (
         <div className="form-create-container">
@@ -196,9 +202,11 @@ const CreateForm = () => {
                         <select
                             {...register("typeOfCoffee", { required: "* Este campo es requerido. Ingresa un valor." })}
                             className="form-control"
-                            id="tcafe">
+                            id="tcafe"
+                            value={typeInput || 'elige tipo de cafe..'}>
                             <option value="">elige tipo de cafe..</option>
                             {typeSelects}
+                        
                         </select>
                         <p>{(!typeInput) ? "* Este campo es requerido. Ingresa un valor." : errors.typeOfCoffee?.message}</p>
                     </div>
@@ -207,7 +215,8 @@ const CreateForm = () => {
                         <select
                             {...register("roastingProfile", { required: "* Este campo es requerido. Ingresa un valor." })}
                             className="form-control"
-                            id="rcafe">
+                            id="rcafe"
+                            value={roastInput || 'elige tipo de tostado..'}>
                             <option value="">elige tipo de tostado..</option>
                             {roastSelects}
                         </select>
@@ -218,7 +227,8 @@ const CreateForm = () => {
                         <select
                             {...register("origin", { required: "* Este campo es requerido. Ingresa un valor." })}
                             className="form-control"
-                            id="ocafe">
+                            id="ocafe"
+                            value={originInput || 'elige tipo de tostado..'}>
                             <option value="">elige origen del cafe..</option>
                             {originSelects}
                         </select>
