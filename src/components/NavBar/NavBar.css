@@ -24,6 +24,7 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
 .navbar-links {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .navbar-links a {
@@ -78,6 +79,10 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
 }
 .navbar--container{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  ;
 }
 .navbar--btn{
   color: #ffffff;
