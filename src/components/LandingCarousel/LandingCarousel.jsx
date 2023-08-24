@@ -1,8 +1,12 @@
+import { FaStar } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom"
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import './LandingCarousel.css'
 
+
 const LandingCarousel = ({ topSoldProducts }) => {
+    const navigate = useNavigate();
 
     const responsive = {
         desktop: {
@@ -22,15 +26,27 @@ const LandingCarousel = ({ topSoldProducts }) => {
         }
     };
 
+    const handleCoffeeDetail = (coffeeId) => {
+        navigate(`detail/${coffeeId}`);
+    }
+
     const slideItems = topSoldProducts.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <div className="slide-content">
-            <img src={item.image} alt="stuff" width="320" height="240" />
+        <div className="slide-content" key={i}>
+            <div
+                className='slide-image-cont'
+                onClick={() => handleCoffeeDetail(item.id)} >
+                <img src={item.image} alt="stuff" width="320" height="240" />
+            </div>
             <div>
-                <h3 className="slide-title"><bold>{item.name}</bold></h3>
+                <h3 className="slide-title"><strong>{item.name}</strong></h3>
                 <p className="slide-text">{item.description}</p>
             </div>
-            <a href="#" className="slide-link-button">Learn more</a>
+            <div className='slide-star-icons-cont'>
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+            </div>
         </div>
     ));
     return (
