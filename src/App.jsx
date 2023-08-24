@@ -6,6 +6,7 @@ import About from "./views/About/About"
 import CreateForm from './views/CreateForm/CreateForm';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
+import Cart from './components/Cart/Cart';
 import './App.css';
 import SignIn from './components/Sign-in/SignIn';
 import SignUp from './components/Sign-up/SignUp';
@@ -34,8 +35,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path='/shoppingCart' element={<ShoppingCart/>}/>
           <Route path = "/about" element = {<About/>}/>
-          <Route path="/auth/sing-in" element={<SignIn/>} />
-          <Route path='/auth/sing-up' element={<SignUp/>}/>
+          
         </Routes>
         <Footer />
     </div>
