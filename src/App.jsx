@@ -35,6 +35,8 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path='/shoppingCart' element={<ShoppingCart/>}/>
           <Route path = "/about" element = {<About/>}/>
+          <Route path='/auth/sing-in' element={<SignIn/>}/>
+          <Route path = "/auth/sing-up" element = {<SignUp/>}/>
           
         </Routes>
         <Footer />
