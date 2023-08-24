@@ -1,57 +1,77 @@
-import { useState } from 'react';
+import { FaStar } from 'react-icons/fa';
+import { useNavigate } from "react-router-dom"
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import './LandingCarousel.css'
 
-const LandingCarousel = ({ topSold }) => {
-    const [isChecked, setIsChecked] = useState(false);
 
-    const handleCheckboxChange = event => {
-        setIsChecked(event.target.checked);
+const LandingCarousel = ({ topSoldProducts }) => {
+    const navigate = useNavigate();
+
+    const responsive = {
+        desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 2,
+            slidesToSlide: 2 // optional, default to 1.
+        },
+        mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            slidesToSlide: 1 // optional, default to 1.
+        }
     };
 
-    const toggles = topSold.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <input
-            type="radio"
-            name="toggle"
-            id={'btn-' + (i + 1)}
-            key={(i + 1)}
-            onChange={handleCheckboxChange}
-            checked={(i === 0) ? true : isChecked}
-        />
-    ));
-    const labels = topSold.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <label htmlFor={'btn-' + (i + 1)} key={(i + 1)}></label>
-    ));
+    const handleCoffeeDetail = (coffeeId) => {
+        navigate(`detail/${coffeeId}`);
+    }
 
-    const slides = topSold.map((item, i) => (
-        // Lógica para renderizar cada elemento del array
-        <li className="slide">
-            <div className="slide-content">
-                <h2 className="slide-title">{item.name}</h2>
-                <p className="slide-text">{item.description}</p>
-                <a href="#" className="slide-link">Learn more</a>
-            </div>
-            <p className="slide-image">
+    const slideItems = topSoldProducts.map((item, i) => (
+        <div className="slide-content" key={i}>
+            <div
+                className='slide-image-cont'
+                onClick={() => handleCoffeeDetail(item.id)} >
                 <img src={item.image} alt="stuff" width="320" height="240" />
-            </p>
-        </li>
+            </div>
+            <div>
+                <h3 className="slide-title"><strong>{item.name}</strong></h3>
+                <p className="slide-text">{item.description}</p>
+            </div>
+            <div className='slide-star-icons-cont'>
+                <FaStar />
+                <FaStar />
+                <FaStar />
+                <FaStar />
+            </div>
+        </div>
     ));
     return (
-        <div>
-            <div className="slider">
-                {
-                    toggles
-                }
-                <div className="slider-controls">
-                    {
-                        labels
-                    }
-                </div>
-                <ul className="slides">
-                    {slides}
-                </ul>
-            </div>
+        <div className='carousel-cont'>
+            <Carousel
+                swipeable={false}
+                draggable={false}
+                showDots={true}
+                responsive={responsive}
+                ssr={true} // means to render carousel on server-side.
+                infinite={true}
+                //autoPlay={this.props.deviceType !== "mobile" ? true : false}
+                autoPlay={true}
+                autoPlaySpeed={3000}
+                keyBoardControl={true}
+                customTransition="transform 500ms ease-in-out"
+                transitionDuration={2000}
+                containerClass="carousel-container"
+                removeArrowOnDeviceType={["tablet", "mobile"]}
+                //deviceType={this.props.deviceType}
+                dotListClass="custom-dot-list-style"
+                itemClass="carousel-item-padding-40-px"
+            >
+                {slideItems}
+            </Carousel>
         </div>
     )
 };

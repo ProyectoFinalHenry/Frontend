@@ -3,7 +3,61 @@ import "./About.css";
 
 export default function About() {
   return (
-    <>
+    <div className="about-container">
+      <div className="about-banner">
+        <p className="about-p-banner">
+          "El café es un viaje milagroso que cruza culturas, fronteras y
+          complejas políticas, uniendo a todos en esta taza aromática y
+          reconfortante"
+        </p>
+        <img
+          className="about-banner-img"
+          src="/assets/images/about-banner-3.png"
+          alt="imagen banner"
+        />
+      </div>
+
+      <article className="about-article">
+        <div className="about-article-text-cont">
+
+          <h1 className="about-article-h1">Nuestra Historia</h1>
+          <p className="about-article-subtitle">
+            Una Pasión que Despierta Sentidos
+          </p>
+          <p className="about-article-p">
+            En cada taza de café, hay una historia: el aroma de la perseverancia y
+            el sabor del éxito. Bienvenidos a Grano de Oro, donde nuestra pasión
+            por el café refleja un viaje de crecimiento y superación. Comenzamos
+            humildemente, compartiendo nuestro amor por el café entre amigos, y
+            ese amor se convirtió en un sueño: llevar la experiencia del café a
+            todo el mundo.
+          </p>
+          <p className="about-article-p">
+            Superamos desafíos, establecimos relaciones con caficultores
+            comprometidos y perfeccionamos cada tostado. Ofrecemos una selección
+            excepcional de cafés premium de todo el mundo, elegidos con cuidado.
+            En Grano de Oro, creemos que el café es un lenguaje universal que
+            conecta personas y culturas. Cada taza que disfrutas es parte de
+            nuestra historia compartida.
+          </p>
+          <p className="about-article-p">
+            Te damos la bienvenida a Grano de Oro. Únete a nuestro viaje aromático
+            mientras elevamos tus momentos cotidianos a experiencias
+            extraordinarias.
+          </p>
+          <p className="about-article-end">
+            ¡Brindemos por el café y los momentos inolvidables!
+          </p>
+        </div>
+        <img src="/assets/images/about-article-img.png" alt="imagen artículo" className="about-article-img" />
+      </article>
+    </div>
+  );
+}
+
+
+/* 
+ <>
       <div className="about__container">
         <div className="about__container-info">
           <h1 className="about__container-info-title">Nuestra Historia</h1>
@@ -64,5 +118,4 @@ export default function About() {
         </div>
       </div>
     </>
-  );
-}
+*/

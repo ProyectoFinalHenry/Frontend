@@ -8,15 +8,15 @@ const LandingPage = () => {
 
     const [product, setProducts] = useState([]);
 
+    async function getProducts() {
+        const { data } = await axios.get("coffee/")
+        setProducts(data)
+    }
     useEffect(() => {
-        async function getProducts() {
-            const { data } = await axios.get("http://localhost:3001/coffee/")
-            setProducts(data)
-        }
         getProducts()
     }, [])
 
-    const mappedData = product.slice(0, 3);
+    const topSoldProducts = product.slice(0, 8);
 
     return (
         <div className="landing-page">
@@ -28,12 +28,12 @@ const LandingPage = () => {
 
             <div className="landin-message-main">
                 <p>SABORES DE TODO EL MUNDO A UN CLICK DE DISTANCIA...</p>
-                <Link to="/productos">COMPRAR CAFÉ</Link>
+                <Link to="/products">COMPRAR CAFÉ</Link>
             </div>
 
             <div className='ladin-p1-cont'>
                 <h1>Nuestros Productos Más Vendidos</h1>
-                <LandingCarousel topSold={mappedData} />
+                <LandingCarousel topSoldProducts={topSoldProducts} />
             </div>
 
         </div>

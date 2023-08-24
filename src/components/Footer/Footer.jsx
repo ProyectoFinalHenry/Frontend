@@ -7,13 +7,13 @@ const Footer = () => {
     return (
         <div className="footer-cont">
             <div className="footer-social-icons">
-                <Link to="/" className="footer-icon">
+                <Link to="#" className="footer-icon">
                     <FaFacebook />
                 </Link>
-                <Link to="/" className="footer-icon">
+                <Link to="#" className="footer-icon">
                     <FaTwitter />
                 </Link>
-                <Link to="/" className="footer-icon">
+                <Link to="#" className="footer-icon">
                     <FaInstagram />
                 </Link>
             </div>
