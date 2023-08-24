@@ -35,4 +35,15 @@ body {
   box-sizing: border-box;
 }
 
+h1{
+  font-family: Grotesk-Medium, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 2em;
+  letter-spacing: .125em;
+  font-weight:1.3;
+}
 
+.text-shadow{
+  text-shadow: 1px 0px 2px rgba(0, 0, 0, 0.596);
+}

@@ -31,20 +31,52 @@
     background: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(0, 0, 0, 0.445) 89%);
 }
 
-.home-image-banner{
- width: 100%;
+.home-banner::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(203, 222, 210, 0.301) 100%);
+    z-index: 1;
+    overflow: hidden;
+}
+
+.home-banner-img{
+    margin-top: -10%;
+    width: 100%; 
+}
+
+.home-banner-img {
+    filter: opacity(1); /* Inicialmente, la imagen está completamente transparente */
+    transform: scale(1.5); /* Escala inicial */
+
+    animation: aparecer 5s ease-in-out forwards; /* Aplicar la animación al cargar la página */
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0.80; /* Comienza con opacidad 0 (invisible) */
+        transform: scale(1.5); /* Comienza con la escala 1.2 */
+    }
+    to {
+        opacity: 1; /* Termina con opacidad 1 (completamente visible) */
+        transform: scale(1); /* Termina con la escala 1 (tamaño original) */
+    }
 }
 
 .home-banner-msj {
     position: absolute;
     left: 50%;
-    top: 50%; 
+    top: 86%; 
     transform: translate(-50%, -50%);
     color: #ffffff;
     line-height: 40px;
     letter-spacing: 5px;
     font-family: Grotesk-Medium, sans-serif;
-    z-index: 2;
+    z-index: 100;
 }
 
 .home-card-panel-container{

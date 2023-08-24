@@ -7,6 +7,7 @@ import AuthForm from './views/AuthForm/AuthForm';
 import CreateForm from './views/CreateForm/CreateForm';
 import Footer from './components/Footer/Footer';
 import NavBar from './components/NavBar/NavBar';
+import Cart from './components/Cart/Cart';
 import './App.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
           <Route path="/detail/:id" element={<Detail />} />
           <Route path = "/about" element = {<About/>}/>
           <Route path="/auth/form" element={<AuthForm />} />
+          <Route path="/cart" element={<Cart/>} />
         </Routes>
         <Footer />
     </div>
