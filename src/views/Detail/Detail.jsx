@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import "./Detail.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import Spinner from '../../components/Spinner/Spinner'
+import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
 
@@ -10,7 +11,7 @@ const Detail = () => {
   const params = useParams();
   const { id } = params;
   const [coffee, setCoffee] = useState([]);
-  const [quantity, setQuantity] = useState(1); // Estado para el valor del input
+  const [quantity, setQuantity] = useState(1); 
 
   useEffect(() => {
     async function getCoffeeData() {
@@ -20,7 +21,8 @@ const Detail = () => {
     getCoffeeData();
   }, [id]);
 
-  // Funciones para manejar el aumento y la disminución de la cantidad
+ 
+
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
@@ -30,6 +32,13 @@ const Detail = () => {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
+
+  console.log(coffee.length<1);
+  if(coffee.length<1) return(
+    <div className="detail-spinner-container">
+      <Spinner />
+    </div>
+  )
 
   return (
     <div className="detail-container">
@@ -62,7 +71,7 @@ const Detail = () => {
                 <AiOutlinePlus />
               </span>
             </div>
-            <button className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> ADD TO CART</button>
+            <button className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> AÑADIR AL CARRITO</button>
           </div>
 
           <p className="detail-product-description">{coffee?.description}</p>
