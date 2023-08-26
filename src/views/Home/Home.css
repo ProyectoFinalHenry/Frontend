@@ -61,7 +61,7 @@
 
 @keyframes aparecer {
     from {
-        opacity: 0.80; /* Comienza con opacidad 0 (invisible) */
+        opacity: 1; /* Comienza con opacidad 0 (invisible) */
         transform: scale(1.2); /* Comienza con la escala 1.2 */
     }
     to {
