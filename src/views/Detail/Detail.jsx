@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../../components/Spinner/Spinner'
+import Reviews  from "../../components/Reviews/Reviews";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -33,7 +34,7 @@ const Detail = () => {
     }
   };
 
-  console.log(coffee.length<1);
+
   if(coffee.length<1) return(
     <div className="detail-spinner-container">
       <Spinner />
@@ -77,7 +78,7 @@ const Detail = () => {
           <p className="detail-product-description">{coffee?.description}</p>
           {/* <span className="stock">{coffee?.stock} units</span> */}
 
-          <ul class="detail-container-card-info-ul">
+          <ul className="detail-container-card-info-ul">
             <li>
               <strong className="type">Tipo de Café: </strong>{" "}
               {coffee?.TypeOfCoffee?.type}
@@ -95,7 +96,7 @@ const Detail = () => {
       </div>
 
       <div className="detail-card-customer-reviews">
-        <h2 className="detail-card-customer-reviews-title">CUSTOMER REVIEWS</h2>
+        <Reviews />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const loading = useSelector((state) => state.product.loading); // Obtener el estado de loading
 
-  console.log(loading);
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
