@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./SearchBar.css";
 import { updateActualSearch } from '../../store/reducers/products/productsSlice';
 
 const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const loading = useSelector((state) => state.product.loading); // Obtener el estado de loading
+
+
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (event) => {
     const { value } = event.target;
-    setSearchTerm(value); // Solo establece el valor del término de búsqueda
+    setSearchTerm(value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     dispatch(updateActualSearch(searchTerm));
-    setSearchTerm(''); // Limpia el valor del input
+    setSearchTerm('');
     navigate(`/products/page/${1}`);
   };
 
@@ -31,8 +34,9 @@ const SearchBar = () => {
           placeholder="Buscar productos..."
           value={searchTerm}
           onChange={handleChange}
+          disabled={loading} // Desactiva el input cuando loading es true
         />
-        <button className='buttonsb' type="submit">
+        <button className='buttonsb' type="submit" disabled={loading}> {/* Desactiva el botón cuando loading es true */}
           <img className='imgsb' src="https://i.postimg.cc/X7QvyvYS/image.png" alt="Buscar" />
         </button>
       </form>

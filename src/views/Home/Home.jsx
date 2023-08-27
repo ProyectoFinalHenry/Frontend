@@ -11,6 +11,8 @@ import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
 
 
+
+
 const Home = () => {
   const products = useSelector((state) => state.product.product);
   const filtredProducts = useSelector((state) => state.product.filtredProducts);
@@ -38,14 +40,17 @@ const Home = () => {
     dispatch(clearFilters());
   };
 
- 
+
 
   return (
     <div className="home-container">
+
       <div className="home-banner">
-        <p className='home-banner-msj'>NUESTROS PRODUCTOS</p>
+        <p className='home-banner-msj text-shadow'>NUESTROS PRODUCTOS</p>
         <SearchBar />
-        <img className='home-image-banner' src="/assets/images/bannere-home.webp" alt="banner" />
+        <div className="home-banner-img">
+          <img  src="/assets/images/about-banner-1.png" alt="imagen banner" />
+        </div>
       </div>
 
     
