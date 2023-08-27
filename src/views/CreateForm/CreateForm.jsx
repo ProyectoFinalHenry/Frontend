@@ -5,6 +5,7 @@ import useFormPersist from 'react-hook-form-persist'
 
 import './CreateForm.css'
 
+
 const CreateForm = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [types, setTypes] = useState([{}]);
