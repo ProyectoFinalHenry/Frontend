@@ -1,0 +1,39 @@
+.account{
+    background: #13161c;
+    position: absolute;
+    right: 0;
+    top: 70px;
+    min-height: 350px;
+    width: 300px;
+    border-radius: 7px ;
+}
+.account__User{
+    border-bottom: 1px solid rgb(190, 190, 190);
+    padding: 10px;
+}
+
+.account__dateUser{
+    height: 220px;
+    width: 90%;
+    margin: 10px auto;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+}
+.account__dateUser p{
+    cursor: pointer;
+}
+.account__User p{
+    color: white;
+}
+.account__image{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
+}
+.account__logOut{
+    color: red;
+    cursor: pointer;
+}
