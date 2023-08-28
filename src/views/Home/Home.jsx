@@ -9,7 +9,7 @@ import Filters from '../../components/Filters/Filters';
 import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
-import Slideshow from './Slider.jsx'
+
 
 
 
@@ -42,11 +42,6 @@ const Home = () => {
 
 
 
-  const customTransitionStyle = {
-    transitionDuration: '1s',
-    transitionTimingFunction: 'ease-in-out',
-  };
-
   return (
     <div className="home-container">
 
@@ -56,10 +51,6 @@ const Home = () => {
         <div className="home-banner-img">
           <img  src="/assets/images/about-banner-1.png" alt="imagen banner" />
         </div>
-      
-        {/* <img className="home-banner-img home-banner-img-current" src="/assets/images/about-banner-1.png" alt="imagen banner" />
-        <img className="home-banner-img home-banner-img-current" src="/assets/images/about-banner-2.png" alt="imagen banner" />
-        <img className="home-banner-img home-banner-img-current" src="/assets/images/about-banner-3.png" alt="imagen banner" />  */}
       </div>
 
     

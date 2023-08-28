@@ -5,10 +5,10 @@ import { fetchCategories } from '../../store/reducers/categoriesSlice/categories
 import { filtredProducts, fetchProducts, clearFilters } from '../../store/reducers/products/productsSlice';
 import './Filters.css';
 
-function Filters({ handleClearFilters }) { // Recibe handleClearFilters como prop
-
+function Filters({ handleClearFilters }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const loading = useSelector(state => state.product.loading);
 
   const [filters, setFilters] = useState({
     origin: '',
@@ -42,13 +42,15 @@ function Filters({ handleClearFilters }) { // Recibe handleClearFilters como pro
   };
 
   const handleApplyFilters = () => {
-    // Código para aplicar los filtros
-    dispatch(filtredProducts(filters));
-    navigate(`/products/page/${''}`);
+    // Agrega una condición para evitar que se apliquen los filtros cuando loading es true
+    if (!loading) {
+      dispatch(filtredProducts(filters));
+      navigate(`/products/page/${''}`);
+    }
   };
 
   const handleClearFiltersLocal = () => {
-    handleClearFilters(); // Llama a la función recibida como prop desde Home
+    handleClearFilters();
     setFilters({
       origin: '',
       roastingProfile: '',
@@ -57,8 +59,8 @@ function Filters({ handleClearFilters }) { // Recibe handleClearFilters como pro
       priceMax: false,
     });
     navigate(`/products/page/${1}`);
-    dispatch(clearFilters()); // Llama a la acción para limpiar los filtros
-    dispatch(fetchProducts()); // Vuelve a cargar los productos
+    dispatch(clearFilters());
+    dispatch(fetchProducts());
   };
 
   return (
@@ -114,7 +116,8 @@ function Filters({ handleClearFilters }) { // Recibe handleClearFilters como pro
         <button className="filters-button" onClick={handleClearFiltersLocal}>
           Limpiar
         </button>
-        <button className="filters-button" onClick={handleApplyFilters}>
+        {/* Desactiva el botón de aplicar filtros si loading es true */}
+        <button className="filters-button" onClick={handleApplyFilters} disabled={loading}>
           Aplicar
         </button>
       </div>

@@ -1,0 +1,122 @@
+
+.reviews-container{
+    margin-left: 2em;
+}
+
+
+/* TITTLE H2 */
+.reviews-h2{
+    margin-bottom: 1em;
+    font-family: PostGrotesk-Bold, sans-serif;
+    color: rgb(25, 25, 25);
+}
+
+/* CARD REVIEWS */
+.reviews-total{
+    display: flex;
+}
+
+/* REVIEWS SUBTITLE */
+.reviews-total-stars{
+    display: inline-block;
+    width: 20%;
+}
+
+.reviews-total-stars-p {
+    font-family: PostGrotesk-Book, sans-serif;
+    font-size: 1.1rem;
+    color: rgb(29, 30, 32);
+}
+
+.reviews-total-stars svg{
+    font-size: 21px;
+}
+
+.reviews-stars-count-five span{
+    font-size: 0.8rem;
+}
+
+
+/* CONTAINER STARS REVIEWS */
+.reviews-total-total-card{
+    width: 100%;
+    margin-bottom: 3em;
+}
+
+.reviews-stars-count-five{
+    display: flex;
+    align-items: center;
+    margin-bottom: .3em;
+    justify-content:space-between;
+    width: 35%;
+    color: rgb(119, 119, 119);
+}
+
+.reviews-stars-count-five-bar{
+    border:  1px solid rgba(128, 128, 128, 0.582);
+    height: 17px;
+    width: 50%;
+}
+
+.reviews-stars-count-five-bar div{
+    height: 100%;
+    background-color:#fbcd0a;
+}
+
+.reviews-stars-count-five span{
+    width: 20%;
+}
+
+
+/* CALIFICACIONES USUARIOS */
+.reviews-users-container{
+    width: 90%;
+    color: #777777;
+    font-family: PostGrotesk-Book, sans-serif;
+    margin-bottom: 3em;
+}
+
+.reviews-users-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: .5em;
+}
+
+.reviews-user-img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: .7em;
+}
+
+
+.reviews-user-img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.reviews-user-date{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reviews-user-date span{
+    margin-left: .5em;
+}
+.reviews-user-name{
+    font-size: 1rem;
+    color: #777777;
+
+}
+
+/* TITLE, DESCRIPCION */
+.reviews-user-review-title{
+    font-size: 1.1rem;
+}   
+
+.reviews-user-desciption{
+    color: rgb(29, 30, 32);
+}
