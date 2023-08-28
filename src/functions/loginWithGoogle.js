@@ -1,5 +1,5 @@
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { FirebaseAuth } from "../firebase/credenciales";
+import { FirebaseAuth } from "../firebase/credenciales";    
 import Swal from "sweetalert2";
 
 const googleProvider = new GoogleAuthProvider()
@@ -7,6 +7,7 @@ const googleProvider = new GoogleAuthProvider()
 export const singInWithGoogle = async() =>{
     try {
         const credentials = await signInWithPopup(FirebaseAuth , googleProvider)
+        console.log(credentials)
         if(credentials.operationType === 'signIn'){
             Swal.fire({
                 position:'center',

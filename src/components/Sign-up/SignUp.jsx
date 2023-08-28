@@ -8,9 +8,13 @@ import { FirebaseAuth } from "../../firebase/credenciales";
 import { useNavigate } from "react-router";
 import registerUser from "../../functions/registerUsers";
 import Swal from "sweetalert2";
-import { newRegisterUser } from "../../store/reducers/thunk";
+import { NewRegisterUser } from "../../store/reducers/thunk";
+import { loginGitHub } from "../../functions/githubLogin";
+import { useDispatch } from "react-redux";
 
 const SignUp = () => {
+
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const [validando, setValidando] = useState(false)
 
@@ -36,9 +40,16 @@ const SignUp = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       if(values){
+        const newUser = {
+          name:values.name, 
+          email:values.email, 
+          password:values.password
+
+        }
+        dispatch(NewRegisterUser(newUser))
         setValidando(true)
-        registerUser(values.email, values.password);
-        newRegisterUser(values.email, values.password)
+        // registerUser(values.email, values.password);
+
         setTimeout(() =>{
           setValidando(false)
         },500)
@@ -46,6 +57,11 @@ const SignUp = () => {
       // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
+
+  const local = localStorage.getItem('tokenUser')
+  if(local){
+    navigate('/')
+  }
 
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {   
@@ -63,9 +79,13 @@ const SignUp = () => {
           <div>
             <div className="formulario__cuentas">
               <div onClick={singInWithGoogle} className="formulario__google">
-                Ingresa con Google
+              <img className="formulario__googleLogo" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png" alt="" />
+              <p>Google</p>
               </div>
-              <div className="formulario__gitHud">Ingresa con Git Hud</div>
+              <div onClick={loginGitHub} className="formulario__gitHud">
+              <img className="formulario_gitHubLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" alt="" />
+              <p>Git Hub</p>
+              </div>
             </div>
             <div className="formulario__contenido">
               <label htmlFor="name" className="formulario__label">

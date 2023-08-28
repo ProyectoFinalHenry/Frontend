@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./AuthForm.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -7,15 +7,16 @@ import { onAuthStateChanged } from "firebase/auth";
 import { FirebaseAuth } from "../../firebase/credenciales";
 import { useNavigate } from "react-router-dom";
 import loginWithEmailPassword from "../../functions/loginWithEmailPassword";
-import { useDispatch } from "react-redux";
-import {getLoginAndLogOut } from "../../store/reducers/Login";
+import { useDispatch, useSelector } from "react-redux";
+import { getLoginAndLogOut } from "../../store/reducers/Login";
+import { loginGitHub } from "../../functions/githubLogin";
+import { NewRegisterUser, SingInUserLogin } from "../../store/reducers/thunk";
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const [contraseña, setContraseña] = useState("");
-  const [ver, setVer] = useState(false);
+  const { TokenUser } = useSelector((state) => state.login);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Ingresa un correo válido")
@@ -35,13 +36,30 @@ const SignIn = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      loginWithEmailPassword(values.email, values.password);
+      const LoginUser = {
+        email: values.email,
+        password: values.password,
+      };
+      dispatch(SingInUserLogin(LoginUser));
       // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
+  useEffect(() => {
+    const local = localStorage.getItem("loginToken");
+    if (local) {
+      navigate('/');
+    }
+  }, [TokenUser]);
 
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
+      const registerGitAndGoogle ={
+        name : usuarioFirebase.displayName,
+        email: usuarioFirebase.email,
+        password: usuarioFirebase.uid,
+        image: usuarioFirebase.photoURL,
+      }
+      dispatch(NewRegisterUser(registerGitAndGoogle))
       navigate("/");
     }
   });
@@ -59,13 +77,21 @@ const SignIn = () => {
           </div>
           <div className="formulario__cuentasIn">
             <div onClick={singInWithGoogle} className="formulario__google">
-              <img className="formulario__googleLogo" src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png" alt="" />
+              <img
+                className="formulario__googleLogo"
+                src="https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png"
+                alt=""
+              />
               <p>Google</p>
             </div>
-            <div className="formulario__gitHud">
-              <img className="formulario_gitHubLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" alt="" />
+            <div className="formulario__gitHud" onClick={loginGitHub}>
+              <img
+                className="formulario_gitHubLogo"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png"
+                alt=""
+              />
               <p>Git Hub</p>
-              </div>
+            </div>
           </div>
 
           <div className="formulario__contenidoIn">

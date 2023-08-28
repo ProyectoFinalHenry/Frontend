@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useLocation ,useNavigate } from "react-router-dom";
 import "./NavBar.css";
 import { PathToFill } from "../../constants/NavbarPathToFill.constants";
@@ -12,9 +12,14 @@ const NavBar = () => {
 
   const navigate = useNavigate()
 
-  const { LoginAndLogOut } = useSelector((state) => state.login);
+  const { LoginAndLogOut  } = useSelector((state) => state.login);
 
   const [account, setAccount] = useState(false);
+
+  const userToken = localStorage.getItem('tokenUser')
+  const loginToken = localStorage.getItem('loginToken')
+
+
 
   return (
     <div className={"navbar-container " + (shouldFill ? "fill" : "")}>
@@ -25,8 +30,11 @@ const NavBar = () => {
       <Link to="/">Inicio</Link>
       <Link to="/products/page/1">Productos</Link>
       <Link to="/about">Nosotros</Link>
-      { LoginAndLogOut && <Link to="shoppingCart"><AiOutlineShoppingCart className="navbar--shopping"/></Link> }
-      {LoginAndLogOut ? (
+      { (userToken || loginToken) && <Link to="shoppingCart">
+        <AiOutlineShoppingCart 
+        className="navbar--shopping"/>
+        </Link> }
+      {(userToken || loginToken)? (
         <div className="navbar--container" onClick={() => setAccount(!account)}>
           <p  className="navbar--cuenta">
             Cuenta

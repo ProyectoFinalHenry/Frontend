@@ -3,7 +3,7 @@
     position: absolute;
     right: 0;
     top: 70px;
-    height: 300px;
+    min-height: 350px;
     width: 300px;
     border-radius: 7px ;
 }
@@ -13,17 +13,25 @@
 }
 
 .account__dateUser{
-    height: 70%;
+    height: 220px;
     width: 90%;
     margin: 10px auto;
     color: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
 
 }
 .account__dateUser p{
     cursor: pointer;
+}
+.account__User p{
+    color: white;
+}
+.account__image{
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;
 }
 .account__logOut{
     color: red;
