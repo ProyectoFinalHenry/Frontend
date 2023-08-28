@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import "./Detail.css";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../../components/Spinner/Spinner'
 import Reviews  from "../../components/Reviews/Reviews";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { useDispatch } from "react-redux";
+import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Detail = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const params = useParams();
   const { id } = params;
   const [coffee, setCoffee] = useState([]);
@@ -22,8 +29,25 @@ const Detail = () => {
     getCoffeeData();
   }, [id]);
 
- 
 
+  
+  const tokenRegister = localStorage.getItem('tokenUser')
+  const tokenLogin = localStorage.getItem('loginToken')
+  
+  const handleShopping = () =>{
+    const addToCart = tokenRegister?tokenRegister:tokenLogin
+    const ProdutAdd = {
+      coffeeId:id,
+      quantity:quantity
+    }
+    dispatch(getProductAdd(addToCart ,ProdutAdd))
+    if(!tokenLogin && !tokenRegister){
+      navigate('/auth/sing-in')
+    }
+  }
+  
+  
+  // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
@@ -62,6 +86,9 @@ const Detail = () => {
               <span className="detail-minus-btn" onClick={decreaseQuantity}>
                 < AiOutlineMinus />
               </span>
+              <form action="">
+                
+              </form>
               <input
                 className="detail-input-add-cart"
                 type="text"
@@ -72,7 +99,8 @@ const Detail = () => {
                 <AiOutlinePlus />
               </span>
             </div>
-            <button className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> AÑADIR AL CARRITO</button>
+
+            <button onClick={handleShopping} className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> ADD TO CART</button>
           </div>
 
           <p className="detail-product-description">{coffee?.description}</p>
@@ -98,6 +126,7 @@ const Detail = () => {
       <div className="detail-card-customer-reviews">
         <Reviews />
       </div>
+      <ToastContainer/>
     </div>
   );
 };

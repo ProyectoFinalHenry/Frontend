@@ -18,11 +18,13 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
 
 .navbar-logo img {
   width: 130px;
+  cursor: pointer;
 }
 
 .navbar-links {
   display: flex;
   justify-content: space-around;
+  align-items: center;
 }
 
 .navbar-links a {
@@ -42,7 +44,10 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
   cursor: pointer;
   text-shadow: 1px 0px 2px rgba(0, 0, 0, 0);
 }
-
+.navbar--cuenta{
+  text-decoration: none;
+  color: #ffffff;
+}
 /* VISTA DETAIL */
 
 .navbar-cont-white{
@@ -66,6 +71,22 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
   vertical-align: baseline;
   letter-spacing: 0.64px;
   word-spacing: 0px;
+  transition: color 0.3s ease;
+  cursor: pointer; 
+}
+.navbar--shopping{
+  font-size: 20px;
+}
+.navbar--container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  ;
+}
+.navbar--btn{
+  color: #ffffff;
+  cursor: pointer;
   transition: color 0.3s ease; 
 }
 
