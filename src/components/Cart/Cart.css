@@ -1,4 +1,52 @@
-.cart-container{
-    min-height: 100vh;
-    padding-top: 5em;
+hr{
+    background: rgba(0,0,0,.1);
+    height: 1px;
+    margin: 0;
+    width: 100%;
+    
+}
+.cart__Container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 120px;
+}
+.cart__image{
+    height: 70px;
+    width: 70px;
+}
+.cart__configuracion{
+    display: flex;
+    gap: 20px;
+}
+.card__configuracion--span{
+    color: #00F;
+    font-weight: 400;
+    cursor: pointer;
+}
+.cart__stock{
+    display: flex;
+    height: 75px;
+    flex-direction: column;
+    justify-content: space-around;
+    
+}
+.cart__stock p{
+    text-align: center;
+    font-size: 12px;
+    color:rgba(0,0,0,.55)
+}
+.cart__quanitity{
+    border: 1px solid #000;
+    height: max-content;
+    text-align: center;
+}
+.cart__quanitity input{
+    width: 40px;
+}
+.cart__input{
+    text-align: center;
+}
+.cart__controlador{
+    font-size: 20px;
 }
