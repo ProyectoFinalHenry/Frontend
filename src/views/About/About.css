@@ -5,7 +5,6 @@
 .about-banner{
     width: 100%;
     max-height: 52vh;
-    min-height: 52vh;
     overflow: hidden;
     margin-top: -1px;
     position: relative;
@@ -26,6 +25,7 @@
 .about-banner-img{
     margin-top:-8%;
     opacity: .80;
+    width: 100%;
 }
 
 .about-p-banner{
@@ -76,7 +76,7 @@
     background: rgb(0,0,0);
     background: linear-gradient(100deg, rgba(0,0,0,0) 0%, rgba(203,222,210,1) 39%);
     z-index: 5;
-
+    overflow: hidden;
 }
 
 .about-article::after{
@@ -139,7 +139,15 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 100%;
     filter: opacity(.70);
-}
+    width: auto;
+    height: 100%; /* La imagen ocupa el 100% del alto del contenedor */
+    max-width: 100%; /* La imagen no se desbordará por los costados */
+  }
 
+  
+  
+  
+  
+  
+  

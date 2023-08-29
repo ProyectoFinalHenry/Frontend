@@ -1,3 +1,5 @@
+// productsSlice.js
+
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -20,49 +22,54 @@ export const fetchProducts = createAsyncThunk('product/fetchProducts', async () 
 
 export const updateActualSearch = createAsyncThunk('product/updateActualSearch', async (searchTerm) => {
   try {
-    const response = await axios.get(`/coffee?name=${searchTerm}`);
-    console.log('DATA: ', response.data);
-    return { searchTerm, data: response.data? response.data : 'not found' }; // Retorna tanto el término de búsqueda como los datos
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          const response = await axios.get(`/coffee?name=${searchTerm}`);
+          resolve({ searchTerm, data: response.data ? response.data : 'not found' });
+        } catch (error) {
+          reject(error);
+        }
+      }, 1000); // Simulación de una llamada API de 1 segundo
+    });
   } catch (error) {
-    /* if (error.response && error.response.status === 404) {
-      return { searchTerm, data: 'not found' };
-    } else {
-    } */
     throw error;
   }
 });
-
-
-
 
 export const filtredProducts = createAsyncThunk('product/filtredProducts', async (filters, { getState }) => {
   try {
-    const { actualSearch } = getState().product; // Obtén el valor de actualSearch del estado
-    console.log('INICIANDO');
-    
-    let url = `/coffee?`;
-    if(actualSearch) url += `name=${actualSearch}`;
-    if (filters.origin) url += `&origin=${filters.origin}`;
-    if (filters.roastingProfile) url += `&roastingProfile=${filters.roastingProfile}`;
-    if (filters.typeOfCoffee) url += `&typeOfCoffee=${filters.typeOfCoffee}`;
-    
-    console.log(url);
-    
-    const response = await axios.get(url);
-    
-    if(filters.priceMin) response.data.sort((a, b) => a.price - b.price);
-    if(filters.priceMax) response.data.sort((a, b) => b.price - a.price);
+    return new Promise((resolve, reject) => {
+      setTimeout(async () => {
+        try {
+          const { actualSearch } = getState().product;
+          console.log('INICIANDO');
 
-    console.log('DATA: ', response.data);
-    
-    return response.data? response.data : 'not found'; 
+          let url = `/coffee?`;
+          if (actualSearch) url += `name=${actualSearch}`;
+          if (filters.origin) url += `&origin=${filters.origin}`;
+          if (filters.roastingProfile) url += `&roastingProfile=${filters.roastingProfile}`;
+          if (filters.typeOfCoffee) url += `&typeOfCoffee=${filters.typeOfCoffee}`;
+
+          console.log(url);
+
+          const response = await axios.get(url);
+
+          if (filters.priceMin) response.data.sort((a, b) => a.price - b.price);
+          if (filters.priceMax) response.data.sort((a, b) => b.price - a.price);
+
+          console.log('DATA: ', response.data);
+
+          resolve(response.data ? response.data : 'not found');
+        } catch (error) {
+          reject(error);
+        }
+      }, 1000); // Simulación de una llamada API de 1 segundo
+    });
   } catch (error) {
     throw error;
   }
 });
-
-
-
 
 const productSlice = createSlice({
   name: 'product',
@@ -89,8 +96,8 @@ const productSlice = createSlice({
       })
       .addCase(updateActualSearch.fulfilled, (state, action) => {
         state.loading = false;
-        state.actualSearch = action.payload.searchTerm; // Actualiza el término de búsqueda
-        state.filtredProducts = action.payload.data; // Almacena los productos filtrados
+        state.actualSearch = action.payload.searchTerm;
+        state.filtredProducts = action.payload.data;
       })
       .addCase(updateActualSearch.pending, (state, action) => {
         state.loading = true;
@@ -107,6 +114,5 @@ const productSlice = createSlice({
   },
 });
 
-
-export const { clearFilters } = productSlice.actions; 
+export const { clearFilters } = productSlice.actions;
 export default productSlice.reducer;

@@ -2,17 +2,19 @@
    /*  border: 0.1px solid rgba(219, 219, 219, 0); */
     margin-bottom: 5em;
     min-height: 100vh;
+    overflow: hidden;
 }
 
 .home-banner{
     width: 100%;
     height: 53%;
-    height: 53vh;
+    max-height: 53vh;
     overflow: hidden;
     margin-top: -1px;
     margin-bottom: 1em;
     position: relative;
 }
+
 
 .home-banner::before {
     content: "";
@@ -44,9 +46,10 @@
     overflow: hidden;
 }
 
-.home-banner-img{
+.home-banner-img img{
     margin-top: -10%;
     width: 100%; 
+
 }
 
 .home-banner-img {
@@ -58,8 +61,8 @@
 
 @keyframes aparecer {
     from {
-        opacity: 0.80; /* Comienza con opacidad 0 (invisible) */
-        transform: scale(1.5); /* Comienza con la escala 1.2 */
+        opacity: 1; /* Comienza con opacidad 0 (invisible) */
+        transform: scale(1.2); /* Comienza con la escala 1.2 */
     }
     to {
         opacity: 1; /* Termina con opacidad 1 (completamente visible) */

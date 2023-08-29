@@ -1,0 +1,9 @@
+.star-icon{
+    color:rgb(119, 119, 119);
+    
+}
+
+.stars-container{
+    display: flex;
+    align-items: center;
+}
