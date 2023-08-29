@@ -27,17 +27,14 @@ const Detail = () => {
   }, [id]);
 
   
-  const tokenRegister = localStorage.getItem('tokenUser')
-  const tokenLogin = localStorage.getItem('loginToken')
-  
+  const token = localStorage.getItem("tokens");
   const handleShopping = () =>{
-    const addToCart = tokenRegister?tokenRegister:tokenLogin
     const ProdutAdd = {
       coffeeId:id,
       quantity:quantity
     }
-    dispatch(getProductAdd(addToCart ,ProdutAdd))
-    if(!tokenLogin && !tokenRegister){
+    dispatch(getProductAdd(token ,ProdutAdd))
+    if(!token){
       navigate('/auth/sing-in')
     }
   }

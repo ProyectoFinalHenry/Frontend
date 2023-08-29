@@ -6,9 +6,7 @@ import { singInWithGoogle } from "../../functions/loginWithGoogle";
 import { onAuthStateChanged } from "@firebase/auth";
 import { FirebaseAuth } from "../../firebase/credenciales";
 import { useNavigate } from "react-router";
-import registerUser from "../../functions/registerUsers";
-import Swal from "sweetalert2";
-import { NewRegisterUser } from "../../store/reducers/thunk";
+import { NewRegisterUser, SingGoogleAndGitHub } from "../../store/reducers/thunk";
 import { loginGitHub } from "../../functions/githubLogin";
 import { useDispatch } from "react-redux";
 
@@ -58,19 +56,22 @@ const SignUp = () => {
     },
   });
 
-  const local = localStorage.getItem('tokenUser')
+  const local = localStorage.getItem('tokens')
   if(local){
     navigate('/')
   }
 
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
-    if (usuarioFirebase) {   
-      setTimeout(() =>{
-        navigate("/");
-      },1000)  
+    if (usuarioFirebase) {
+      const registerGitAndGoogle ={
+        name : usuarioFirebase.displayName,
+        email: usuarioFirebase.email,
+        image: usuarioFirebase.photoURL,
+      }
+      dispatch(SingGoogleAndGitHub(registerGitAndGoogle))
+      navigate("/");
     }
   });
-
   return (
     <div>
       <form className="formulario" onSubmit={formik.handleSubmit}>

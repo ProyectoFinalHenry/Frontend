@@ -6,11 +6,10 @@ import { singInWithGoogle } from "../../functions/loginWithGoogle";
 import { onAuthStateChanged } from "firebase/auth";
 import { FirebaseAuth } from "../../firebase/credenciales";
 import { useNavigate } from "react-router-dom";
-import loginWithEmailPassword from "../../functions/loginWithEmailPassword";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoginAndLogOut } from "../../store/reducers/Login";
 import { loginGitHub } from "../../functions/githubLogin";
-import { NewRegisterUser, SingInUserLogin } from "../../store/reducers/thunk";
+import { SingGoogleAndGitHub, SingInUserLogin } from "../../store/reducers/thunk";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -45,22 +44,21 @@ const SignIn = () => {
     },
   });
   useEffect(() => {
-    const local = localStorage.getItem("loginToken");
+    const local = localStorage.getItem("tokens");
     if (local) {
       navigate('/');
     }
-  }, [TokenUser]);
+  }, []);
 
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
-      const registerGitAndGoogle ={
+      const autentication = {
         name : usuarioFirebase.displayName,
         email: usuarioFirebase.email,
-        password: usuarioFirebase.uid,
         image: usuarioFirebase.photoURL,
       }
-      dispatch(NewRegisterUser(registerGitAndGoogle))
-      navigate("/");
+      dispatch(SingGoogleAndGitHub(autentication))
+      navigate('/');
     }
   });
   return (

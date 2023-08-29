@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import "./ShoppingCard.css";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch} from "react-redux";
 import Cart from "../Cart/Cart";
 import axios from "axios";
+import { getProductCart } from "../../store/reducers/thunk";
 const ShoppingCart = () => {
   const [productsAddme, setProductsAddme] = useState(0);
   const [total, setTotal] = useState(0);
   const { cart } = useSelector((state) => state.shopping);
   console.log(cart);
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const controlGastos = cart.reduce(
@@ -24,12 +26,10 @@ const ShoppingCart = () => {
   };
 
   const handleClick = async () => {
-    const registerToken = localStorage.getItem("tokenUser");
-    const loginToken = localStorage.getItem("loginToken");
-    const authToken = registerToken ? registerToken : loginToken;
+    const token = localStorage.getItem("tokens");
     const config = {
       headers: {
-        auth_token: authToken,
+        auth_token: token,
       },
     };
 
@@ -42,6 +42,11 @@ const ShoppingCart = () => {
       console.log(error)
     }
   };
+
+  const token = localStorage.getItem("tokens");
+  useEffect(() =>{
+    dispatch(getProductCart(token))
+  },[])
 
   return (
     <div className="shoppingCart">

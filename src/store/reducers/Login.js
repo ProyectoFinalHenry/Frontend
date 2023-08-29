@@ -17,7 +17,7 @@ export const loginSlice = createSlice({
             state.LoginAndLogOut = false
         },
         getTokenUser: (state , action) =>{
-            state.TokenUser = action
+            state.TokenUser = action.payload
         },
         getInformationUser: (state , action) =>{
             state.NewinformationUser = action.payload
