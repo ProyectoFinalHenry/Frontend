@@ -10,27 +10,8 @@ import "./App.css";
 import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import { useEffect } from "react";
-import {
-  getProductCart,
-  informationUser,
-} from "./store/reducers/thunk";
-import { useDispatch } from "react-redux";
 
 function App() {
-  const dispatch = useDispatch();
-
-  const registerToken = localStorage.getItem("tokenUser");
-  const loginToken = localStorage.getItem("loginToken");
-  const response = registerToken ? registerToken : loginToken;
-  useEffect(() => {
-    dispatch(informationUser(response));
-  }, []);
-
-  useEffect(() => {
-    const addToCart = registerToken ? registerToken : loginToken;
-    dispatch(getProductCart(addToCart));
-  }, []);
 
   return (
     <div className="App">

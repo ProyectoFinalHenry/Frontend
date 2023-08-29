@@ -6,6 +6,7 @@ import logOut from "../../functions/logOut";
 import {useNavigate} from "react-router-dom";
 import { informationUser } from "../../store/reducers/thunk";
 import Swal from "sweetalert2";
+import { deleteCart } from "../../store/reducers/shopping/shopping";
 
 const UserAccount = ( {setAccount} ) => {
   const dispatch = useDispatch();
@@ -27,22 +28,21 @@ const UserAccount = ( {setAccount} ) => {
         setTimeout(() =>{
           logOut()
           dispatch(getLogOut())
+          dispatch(deleteCart())
           setAccount(false)
-          localStorage.removeItem('tokenUser')
-          localStorage.removeItem('loginToken')
+          localStorage.removeItem('tokens')
           navigate('/')
+
         },1000)
       }
     })
    
   }
   
-  const userToken = localStorage.getItem('tokenUser')
-  const loginToken = localStorage.getItem('loginToken')
-  const response = userToken? userToken : loginToken
+const token = localStorage.getItem("tokens");
 
   useEffect(() =>{
-    dispatch(informationUser(response))
+    dispatch(informationUser(token))
   },[])
 
 

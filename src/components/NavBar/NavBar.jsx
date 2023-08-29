@@ -16,10 +16,9 @@ const NavBar = () => {
 
   const [account, setAccount] = useState(false);
 
-  const userToken = localStorage.getItem('tokenUser')
-  const loginToken = localStorage.getItem('loginToken')
-
-
+  let token = localStorage.getItem("tokens");;
+  // useEffect(()=>{
+  // },[])
 
   return (
     <div className={"navbar-container " + (shouldFill ? "fill" : "")}>
@@ -30,11 +29,11 @@ const NavBar = () => {
       <Link to="/">Inicio</Link>
       <Link to="/products/page/1">Productos</Link>
       <Link to="/about">Nosotros</Link>
-      { (userToken || loginToken) && <Link to="shoppingCart">
+      { token && <Link to="shoppingCart">
         <AiOutlineShoppingCart 
         className="navbar--shopping"/>
         </Link> }
-      {(userToken || loginToken)? (
+      { token ? (
         <div className="navbar--container" onClick={() => setAccount(!account)}>
           <p  className="navbar--cuenta">
             Cuenta
