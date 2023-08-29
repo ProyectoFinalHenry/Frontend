@@ -1,18 +1,9 @@
 import React, { useEffect } from "react";
 import "./Cart.css";
-import { useDispatch } from "react-redux";
-import { getProductCart } from "../../store/reducers/thunk";
 
 const Cart = ({ product, productsAddme, setProductsAddme }) => {
   const { image, name, price, stock, quantity } = product;
-  const dispatch = useDispatch()
-  const registerToken = localStorage.getItem('tokenUser')
-  const loginToken = localStorage.getItem('loginToken')
-  const response = registerToken? registerToken : loginToken
-
-  useEffect(() =>{
-    dispatch(getProductCart(response))
-  },[])
+  
   return (
     <div className="cart">
       <div className="cart__Container">

@@ -10,9 +10,13 @@ export const shoppingSlice = createSlice({
         getCartProduct: (state, action ) => {
             state.cart = action.payload
         },
+        deleteCart: (state) =>{
+            console.log('hola')
+            state.cart = []
+        }
     }
 });
 
 
 // Action creators are generated for each case reducer function
-export const { getCartProduct } = shoppingSlice.actions;
+export const { getCartProduct , deleteCart } = shoppingSlice.actions;

@@ -22,14 +22,26 @@ export const informationUser = (user) => {
     }
   };
 };
+
+//autenticion de terceros
+
+export const SingGoogleAndGitHub = (email) =>{
+  return async(dispatch , getState) => {
+      try {
+        const {data}  = await axios.post('/user/thirdAutentication' , email)
+        localStorage.setItem("tokens", data.auth_token);
+      } catch (error) {
+        console.log({error})
+      }
+  }
+} 
+
+//register
 export const NewRegisterUser = (newUser) => {
-  console.log(newUser)
   return async (dispatch, getState) => {
     try {
-      const { data } = await axios.post(
-        "http://localhost:3001/user/signup",
-        newUser
-      );
+      const { data } = await axios.post("/user/signup",newUser);
+        console.log(data)
       if (data) {
         Swal.fire({
           position: "top-center",
@@ -39,7 +51,7 @@ export const NewRegisterUser = (newUser) => {
           timer: 900,
         });
       }
-      localStorage.setItem("tokenUser", data.auth_token);
+      localStorage.setItem("tokens", data.auth_token);  
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
@@ -52,6 +64,7 @@ export const NewRegisterUser = (newUser) => {
   };
 };
 
+//Login
 export const SingInUserLogin = (userLogin) => {
   return async (dispatch, getState) => {
     try {
@@ -66,7 +79,7 @@ export const SingInUserLogin = (userLogin) => {
           timer: 900,
         });
       }
-      localStorage.setItem("loginToken", data.auth_token);
+      localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_BAD_REQUEST") {
@@ -92,7 +105,6 @@ export const SingInUserLogin = (userLogin) => {
 
 export const getProductAdd = (token,cantidad) =>{
   return async(dispatch, getState) =>{
-    console.log(token)
     const config = {
       headers: {
         auth_token: token,
@@ -108,9 +120,7 @@ try {
       autoClose:2000
     })
 
-  }
- 
-  
+  } 
 } catch (error) {
   
 }
