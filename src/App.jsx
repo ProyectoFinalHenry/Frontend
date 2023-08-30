@@ -10,7 +10,8 @@ import "./App.css";
 import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import  UserProfile from "./views/UserProfile/UserProfile.jsx"
+import UserProfile from "./views/UserProfile/UserProfile.jsx"
+import Purchases from "./components/Purchases/Purchases";
 
 function App() {
 
@@ -31,6 +32,8 @@ function App() {
         <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
         <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
         <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
+        <Route path="/purchases" element={usuarioAutenticado ? <Navigate to="/" /> : <Purchases/>} />
+        
       </Routes>
       <Footer />
     </div>
