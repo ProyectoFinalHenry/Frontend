@@ -7,9 +7,8 @@
   position: absolute;
   width: 100%;
   top: 0px;
-
   background: rgb(0,0,0);
-background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%);
 }
 
 .navbar-container.fill {
@@ -60,6 +59,7 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
   position: absolute;
   width: 100%;
   top: 0px;
+  color: #191919;
 }
 
 .navbar-white-link a{
@@ -74,6 +74,14 @@ background: linear-gradient(180deg, rgba(0, 0, 0, 0.404) 0%, rgba(0,0,0,0) 100%)
   transition: color 0.3s ease;
   cursor: pointer; 
 }
+
+.navbar-white-link svg,
+.navbar-white-link p{
+  text-decoration: none;
+  color: #191919;
+  cursor: pointer;
+}
+
 .navbar--shopping{
   font-size: 20px;
 }

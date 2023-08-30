@@ -1,0 +1,60 @@
+.user-profile-container{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f3f2;
+}
+
+
+
+.user-profile-seccions-cont{
+    background-color: #ffffffab;
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.1);
+    border-radius: 6px;
+    width: 60%;
+    padding: 3% 4%;
+}
+
+.user-profile-personal-info{
+    position: relative;
+    padding: 2% 2% 2% 10%;
+    margin-bottom: 1em;
+}
+
+
+.user-profile-personal-info p{
+}
+
+
+.profile-user-icon-cont{
+    position: absolute;
+    left: 0px;
+    font-size: 170%;
+    color: rgb(0, 102, 255);
+    border: 1px solid rgba(214, 214, 214, 0.623);
+    border-radius: 100%;
+    width: fit-content;
+    height: fit-content;
+    padding: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.user-profile-personal-info-subs{
+    color: gray;
+    margin-top: .3em;
+}
+
+.user-profile-arrow{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0%;
+    color: gray;
+    font-size: 1.5rem;
+}   

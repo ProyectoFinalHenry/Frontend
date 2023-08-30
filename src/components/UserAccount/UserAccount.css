@@ -10,7 +10,15 @@
 .account__User{
     border-bottom: 1px solid rgb(190, 190, 190);
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
+
+.account__User p{
+    margin-left: 1em;
+}
+
 
 .account__dateUser{
     height: 220px;
