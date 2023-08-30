@@ -51,12 +51,10 @@ const token = localStorage.getItem("tokens");
         <div className="account__User">
           <img className="account__image" src={NewinformationUser.image} alt="" />
           <p>Hola {NewinformationUser.name}</p>
-          <p>ver mi perfil</p>
         </div>
         <div className="account__dateUser">
-          <p>Cuenta</p>
-          <p>Administrador</p>
-          <p onClick={() => navigate('/create')}>Vender un Producto</p>
+        <p onClick={() => navigate('/user/account')}>Cuenta</p>
+          <p onClick={() => navigate('/user/shopping')}>Mis compras</p>
           <p 
           onClick={handleClick}
           className="account__logOut">Cerrar sesion</p>

@@ -6,9 +6,24 @@ import UserAccount from "../UserAccount/UserAccount";
 import { AiOutlineDown ,AiOutlineUp ,AiOutlineShoppingCart} from "react-icons/ai";
 import { useSelector } from "react-redux";
 
+
 const NavBar = () => {
+
   const location = useLocation();
   const shouldFill = PathToFill.includes(location.pathname);
+
+
+  // RUTAS CON LA NABVAR ESTILO WHITE
+  let routeNavWhite = false;
+  if(/^\/detail\/[0-9a-fA-F-]+$/.test(location.pathname)) routeNavWhite = true;
+  if(location.pathname === '/user/account') routeNavWhite = true;
+
+  // CAMBIAMOS LA CLASE DE LA NABVAR SI LA RUTA USA NAVBAR WHITE
+  const containerClass = routeNavWhite ? 'navbar-cont-white' : 'navbar-container';
+  const logoClass = routeNavWhite ? 'navbar-logo' : 'navbar-logo'; 
+  const linkClass = routeNavWhite ? 'navbar-white-link' : 'navbar-links text-shadow'; 
+  const src = routeNavWhite ? '/assets/images/logo-2-back.png' : '/assets/images/logo-3-white.png';
+
 
   const navigate = useNavigate()
 
@@ -21,11 +36,11 @@ const NavBar = () => {
   // },[])
 
   return (
-    <div className={"navbar-container " + (shouldFill ? "fill" : "")}>
-    <div className="navbar-logo">
-      <img onClick={() => navigate('/') } src="/assets/images/logo-3-white.png" alt="logo" />
+    <div className={`${containerClass} ${shouldFill ? "fill" : ""}`}>
+    <div className={`${logoClass}`}>
+      <img src={src} alt="logo" />
     </div>
-    <div className="navbar-links">
+    <div className={`${linkClass}`}>
       <Link to="/">Inicio</Link>
       <Link to="/products/page/1">Productos</Link>
       <Link to="/about">Nosotros</Link>
