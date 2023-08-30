@@ -6,6 +6,7 @@ import logOut from "../../functions/logOut";
 import {useNavigate} from "react-router-dom";
 import { informationUser } from "../../store/reducers/thunk";
 import Swal from "sweetalert2";
+import { deleteCart } from "../../store/reducers/shopping/shopping";
 
 const UserAccount = ( {setAccount} ) => {
   const dispatch = useDispatch();
@@ -27,22 +28,21 @@ const UserAccount = ( {setAccount} ) => {
         setTimeout(() =>{
           logOut()
           dispatch(getLogOut())
+          dispatch(deleteCart())
           setAccount(false)
-          localStorage.removeItem('tokenUser')
-          localStorage.removeItem('loginToken')
+          localStorage.removeItem('tokens')
           navigate('/')
+
         },1000)
       }
     })
    
   }
   
-  const userToken = localStorage.getItem('tokenUser')
-  const loginToken = localStorage.getItem('loginToken')
-  const response = userToken? userToken : loginToken
+const token = localStorage.getItem("tokens");
 
   useEffect(() =>{
-    dispatch(informationUser(response))
+    dispatch(informationUser(token))
   },[])
 
 
@@ -51,12 +51,10 @@ const UserAccount = ( {setAccount} ) => {
         <div className="account__User">
           <img className="account__image" src={NewinformationUser.image} alt="" />
           <p>Hola {NewinformationUser.name}</p>
-          <p>ver mi perfil</p>
         </div>
         <div className="account__dateUser">
-          <p>Cuenta</p>
-          <p>Administrador</p>
-          <p onClick={() => navigate('/create')}>Vender un Producto</p>
+        <p onClick={() => navigate('/user/account')}>Cuenta</p>
+          <p onClick={() => navigate('/user/shopping')}>Mis compras</p>
           <p 
           onClick={handleClick}
           className="account__logOut">Cerrar sesion</p>
