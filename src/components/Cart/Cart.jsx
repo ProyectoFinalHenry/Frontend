@@ -1,9 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Cart.css";
+import { useDispatch } from "react-redux";
+import { getProductoDelete } from "../../store/reducers/thunk";
 
 const Cart = ({ product, productsAddme, setProductsAddme }) => {
-  const { image, name, price, stock, quantity } = product;
+  const { image, name, price, stock, quantity , id} = product;
+  const dispatch = useDispatch()
   
+  const [amount , setAmount] = useState(quantity)
+
+  const handleDelete = () =>{
+    let token = localStorage.getItem('tokens')
+    console.log(token)
+    dispatch(getProductoDelete(id , token))
+  }
+  console.log(quantity)
+
+  const handleAmount = () => {
+    if (amount > 1) {
+      setAmount(amount - 1); // Resta 1 al amount
+    }
+  };
+
+  const handleAmountMore = () => {
+    if (amount < stock) { // Verifica si amount es menor al stock
+      setAmount(amount + 1); // Aumenta 1 al amount
+    }
+  };
+
   return (
     <div className="cart">
       <div className="cart__Container">
@@ -12,7 +36,7 @@ const Cart = ({ product, productsAddme, setProductsAddme }) => {
         <div className="cart__description">
           <p>{name}</p>
           <div className="cart__configuracion">
-            <span className="cart__configuracion--span">Eliminar</span>
+            <span onClick={handleDelete} className="cart__configuracion--span">Eliminar</span>
             <span className="cart__configuracion--span">Guardar</span>
             <span className="cart__configuracion--span">Comprar ahora</span>
           </div>
@@ -20,10 +44,10 @@ const Cart = ({ product, productsAddme, setProductsAddme }) => {
 
         <div className="cart__stock">
           <div className="cart__quanitity">
-            <button className="cart__controlador">-</button>
-            <input className="cart__input" type="text" value={quantity} />
+            <button className="cart__controlador" onClick={handleAmount}>-</button>
+            <input className="cart__input" type="text" value={amount} />
 
-            <button className="cart__controlador">+</button>
+            <button className="cart__controlador" onClick={handleAmountMore}>+</button>
           </div>
           <p className="cart__configuracion--span">{stock} <span>disponibles</span></p>
         </div>

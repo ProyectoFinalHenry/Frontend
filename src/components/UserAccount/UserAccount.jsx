@@ -8,7 +8,7 @@ import { informationUser } from "../../store/reducers/thunk";
 import Swal from "sweetalert2";
 import { deleteCart } from "../../store/reducers/shopping/shopping";
 
-const UserAccount = ( {setAccount} ) => {
+const UserAccount = ( {setAccount } ) => {
   const dispatch = useDispatch();
   const {NewinformationUser} = useSelector(state => state.login)
   const navigate = useNavigate()
@@ -32,7 +32,6 @@ const UserAccount = ( {setAccount} ) => {
           setAccount(false)
           localStorage.removeItem('tokens')
           navigate('/')
-
         },1000)
       }
     })
@@ -45,17 +44,16 @@ const token = localStorage.getItem("tokens");
     dispatch(informationUser(token))
   },[])
 
-
   return (
     <div className="account">
         <div className="account__User">
           <img className="account__image" src={NewinformationUser.image} alt="" />
           <p>Hola {NewinformationUser.name}</p>
-          <p>ver mi perfil</p>
+          <p>{NewinformationUser.email}</p>
         </div>
         <div className="account__dateUser">
           <p>Cuenta</p>
-          <p>Administrador</p>
+          <p>{NewinformationUser.Role=== 'admin' ? 'Administrador': 'Mis Compras'}</p>
           <p onClick={() => navigate('/create')}>Vender un Producto</p>
           <p 
           onClick={handleClick}

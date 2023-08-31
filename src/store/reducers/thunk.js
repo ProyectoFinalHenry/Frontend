@@ -27,7 +27,7 @@ export const informationUser = (user) => {
 
 export const SingGoogleAndGitHub = (email) =>{
   return async(dispatch , getState) => {
-      try {
+    try {
         const {data}  = await axios.post('/user/thirdAutentication' , email)
         localStorage.setItem("tokens", data.auth_token);
       } catch (error) {
@@ -55,10 +55,22 @@ export const NewRegisterUser = (newUser) => {
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
-        alert("Error con el servidor Ingrese mas tarde");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: "Error con el servidor Ingrese mas tarde",
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
       if (error.code === "ERR_BAD_RESPONSE") {
-        alert("El Usuario ya existe");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: `${error.response.data.error}`,
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
     }
   };
@@ -149,3 +161,21 @@ export const getProductCart = (token) =>{
     dispatch(getCartProduct(newData))
   }
 } 
+
+export const getProductoDelete = (id ,token) =>{
+  console.log({token})
+  console.log({id})
+  return async(dispatch, getState) =>{
+    const config = {
+      headers:{
+        auth_token:token
+      }
+    }
+    try {
+      const data = await axios.delete('/cart/delete' , config , {coffeeId : id})
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
