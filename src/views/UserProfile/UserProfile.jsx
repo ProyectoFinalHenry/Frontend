@@ -26,7 +26,7 @@ const UserProfile = () => {
             </div>
           </Link>
   
-          <Link to="/">
+          <Link to="/purchases">
             <div className="user-profile-personal-info">
               <div className="profile-user-icon-cont">
                 <HiOutlineShoppingBag />
@@ -41,7 +41,7 @@ const UserProfile = () => {
             </div>
           </Link>
   
-          <Link to="/">
+          <Link to="/user/address">
             <div className="user-profile-personal-info">
               <div className="profile-user-icon-cont">
                 <SlLocationPin />
