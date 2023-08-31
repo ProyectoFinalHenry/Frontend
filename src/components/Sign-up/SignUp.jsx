@@ -55,12 +55,7 @@ const SignUp = () => {
       // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
-
-  const local = localStorage.getItem('tokens')
-  if(local){
-    navigate('/')
-  }
-
+  
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       const registerGitAndGoogle ={
@@ -69,9 +64,13 @@ const SignUp = () => {
         image: usuarioFirebase.photoURL,
       }
       dispatch(SingGoogleAndGitHub(registerGitAndGoogle))
-      navigate("/");
     }
   });
+  
+    const local = localStorage.getItem('tokens')
+    if(local){
+      navigate('/')
+    }
   return (
     <div>
       <form className="formulario" onSubmit={formik.handleSubmit}>
