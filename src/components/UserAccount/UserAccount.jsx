@@ -54,7 +54,7 @@ const token = localStorage.getItem("tokens");
         </div>
         <div className="account__dateUser">
         <p onClick={() => navigate('/user/account')}>Cuenta</p>
-          <p onClick={() => navigate('/user/purchases')}>Mis compras</p>
+          <p onClick={() => navigate('/purchases')}>Mis compras</p>
           <p 
           onClick={handleClick}
           className="account__logOut">Cerrar sesion</p>

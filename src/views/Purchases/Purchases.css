@@ -1,0 +1,132 @@
+.purchases-container {
+    /*  border: 0.1px solid rgba(219, 219, 219, 0); */
+    margin-bottom: 5em;
+}
+
+
+.purchases-banner {
+    width: 100%;
+    height: 53%;
+    height: 53vh;
+    background: #1d1e20;
+    overflow: hidden;
+    margin-top: -1px;
+    /*margin-bottom: 4em;*/
+    position: relative;
+}
+
+.purchases-image-banner {
+    width: 100%;
+}
+
+.purchases-banner-msj {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    line-height: 40px;
+    letter-spacing: 5px;
+    font-family: Grotesk-Medium, sans-serif;
+}
+
+.purchases {
+    width: 70%;
+    margin: 2%;
+    padding: 0rem;
+    background-color: #f8f8f8;
+    border-radius: 1%;
+    border-width: 0.1cap;
+    border-color: #d4d4d4e7;
+    border-style:ridge;
+}
+
+.purchases-header {
+  
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0%;
+    padding: 1rem;
+    background-color: #eeeeee;
+    border-radius: 1%;
+    border-width: 0.1cap;
+    border-color: #d4d4d4e7;
+
+    border-style:ridge;
+
+}
+.purchases-product-container {
+  
+    display: flex;
+    flex-direction:row;
+    justify-content:left;
+    align-items: left;
+    width: 100%;
+    margin: 0%;
+    padding: 1rem;
+    border-radius: 1%;
+    border-width: 0.1cap;
+    border-color: #d4d4d4e7;
+
+    border-style:ridge;
+
+}
+h4{
+    font-weight: 400; 
+}
+.purchases-img{
+    overflow: hidden;
+    width: 20%;
+    padding: 0%;
+    height: 100px;
+    margin:0
+}
+.purchases-img img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+.purchases-header-content {
+    display: flex;
+    flex-direction:row;
+    padding: 0%;
+    margin: 0%;
+}
+.purchases-header-items {
+    margin-left: 10%;
+    margin-right: 10%;
+
+    text-align: left;
+    display: flex;
+    flex-direction:column;
+}
+.purchases-header-title h1{
+    font-size: small;
+    font-weight: 200;     
+    margin-left: 10%;
+    margin-right: 20%;
+    text-align: left;
+    white-space: nowrap;
+}
+.purchases p {
+    color: rgb(0, 0, 0);
+    font-size: large;
+}
+.purchases a {
+    text-decoration: none; /* Remove underline from links within .purchases */
+}
+.purchases-control {
+    padding: 6px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.purchases-label {
+    display: inline-block;
+    margin: 1rem;
+}

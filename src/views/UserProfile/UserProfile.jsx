@@ -26,7 +26,7 @@ const UserProfile = () => {
             </div>
           </Link>
   
-          <Link to="/">
+          <Link to="/purchases">
             <div className="user-profile-personal-info">
               <div className="profile-user-icon-cont">
                 <HiOutlineShoppingBag />
