@@ -76,6 +76,7 @@ const Purchases = () => {
                                 {order.Details.map((product) => (
                                     <div key={product.Coffee.id}>
                                         {product.status === 'Approved' && <></>}
+                                        
                                         <Link to={`/detail/${product.Coffee.id}`} key={product.Coffee.id}>
                                             <div className="purchases-product-container">
                                                 <div className="purchases-img">
