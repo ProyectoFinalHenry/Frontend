@@ -11,7 +11,7 @@ import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import  UserProfile from "./views/UserProfile/UserProfile.jsx"
-import UserFormAddress from "./views/UserFormAddress/UserFormAddress";
+import UserAddress from "./views/UserAddress/UserAddress";
 
 function App() {
 
@@ -29,7 +29,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/about" element={<About />} />
         <Route path="/user/account" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserProfile />} />
-        <Route path="/user/address" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserFormAddress />} />
+        <Route path="/user/address" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserAddress />} />
         <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
         <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
         <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />

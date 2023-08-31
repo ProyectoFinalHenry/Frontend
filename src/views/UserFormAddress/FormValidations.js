@@ -6,7 +6,7 @@ export const validateForm = (formData) => {
     // Validación para el Código Postal
     if (!formData.postalCode) {
       errors.postalCode = 'Código Postal es requerido';
-    } else if (!/^\d{5}$/.test(formData.postalCode)) {
+    } else if (!/^\d{4}$/.test(formData.postalCode)) {
       errors.postalCode = 'Código Postal debe contener 5 dígitos';
     }
   
@@ -39,6 +39,10 @@ export const validateForm = (formData) => {
     if (formData.betweenStreets.street1 && !formData.betweenStreets.street2) {
       errors.street2 = 'Debe completar la segunda calle';
     }
+
+    if (formData.betweenStreets.street2 && !formData.betweenStreets.street1) {
+      errors.street2 = 'Debe completar la primera calle';
+    }
   
     // Validación para el Tipo de Residencia
     if (!formData.residenceType) {
@@ -54,3 +58,4 @@ export const validateForm = (formData) => {
    return errors ? errors : {none: ''}
   };
   
+

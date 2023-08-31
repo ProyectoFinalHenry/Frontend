@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
 import { FiHome, FiBriefcase } from 'react-icons/fi';
 import './UserFormAddress.css';
-import { validateForm} from './FormValidations';
-
-
-
+import { validateForm } from './FormValidations';
 
 const UserFormAddress = () => {
-
-  const [errors, setErrors] = useState({}); 
+  const [errors, setErrors] = useState({});
   const [formData, setFormData] = useState({
     postalCode: '',
     province: '',
@@ -24,19 +20,21 @@ const UserFormAddress = () => {
     additionalInstructions: '',
   });
 
+  console.log(formData);
   const [remainingChars, setRemainingChars] = useState(128);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
     const updatedFormData = {
-        ...formData,
-        [name]: type === 'checkbox' ? checked : value,
-      };
-    
-      setFormData(updatedFormData);
-      const validationErrors = validateForm(updatedFormData);
-      setErrors(validationErrors);
+      ...formData,
+      [name]: type === 'checkbox' ? checked : value,
+    };
+
+
+    setFormData(updatedFormData);
+    const validationErrors = validateForm(updatedFormData);
+    setErrors(validationErrors);
 
     if (type === 'checkbox') {
       setFormData({
@@ -55,6 +53,19 @@ const UserFormAddress = () => {
     }
   };
 
+
+  const handleStreetChange = (event) => {
+    const streetName = event.target.name;
+    
+    setFormData((prevState) => ({
+      ...prevState,
+      betweenStreets: {
+        ...prevState.betweenStreets,
+        [streetName]: event.target.value,
+      },
+    }));
+  };
+
   const handleResidenceType = (type) => {
     setFormData({
       ...formData,
@@ -65,8 +76,8 @@ const UserFormAddress = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const validationErrors = validateForm(formData); 
-    setErrors(validationErrors); 
+    const validationErrors = validateForm(formData);
+    setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
       // Acá enviar petición al back
@@ -162,18 +173,18 @@ const UserFormAddress = () => {
           <input
             type="text"
             id="street1"
-            name="betweenStreets.street1"
+            name="street1"
             value={formData.betweenStreets.street1}
-            onChange={handleChange}
+            onChange={handleStreetChange}
             className="user-form-address-input user-form-address-between-streets"
             placeholder="Calle 1"
           />
           <input
             type="text"
             id="street2"
-            name="betweenStreets.street2"
+            name="street2"
             value={formData.betweenStreets.street2}
-            onChange={handleChange}
+            onChange={handleStreetChange}
             className="user-form-address-input"
             placeholder="Calle 2"
           />
@@ -184,18 +195,18 @@ const UserFormAddress = () => {
           <div className="user-form-address-residence user-form-address-custom">
             <div
               className={`user-form-address-custom-radio ${
-                formData.residenceType === "Casa" ? "selected" : ""
+                formData.residenceType === 'Casa' ? 'selected' : ''
               }`}
-              onClick={() => handleResidenceType("Casa")}
+              onClick={() => handleResidenceType('Casa')}
             >
               <FiHome />
               Casa
             </div>
             <div
               className={`user-form-address-custom-radio ${
-                formData.residenceType === "Trabajo" ? "selected" : ""
+                formData.residenceType === 'Trabajo' ? 'selected' : ''
               }`}
-              onClick={() => handleResidenceType("Trabajo")}
+              onClick={() => handleResidenceType('Trabajo')}
             >
               <FiBriefcase />
               Trabajo
@@ -222,26 +233,47 @@ const UserFormAddress = () => {
         </div>
 
         <button
-            type="submit"
-            className={`user-form-address-button ${
-                Object.keys(errors).length > 0 ? "user-form-address-button-disabled" : ""
-            }`}
-            disabled={Object.keys(errors).length > 0}
-            >
-            Guardar
+          type="submit"
+          className={`user-form-address-button ${
+            Object.keys(errors).length > 0 ? 'user-form-address-button-disabled' : ''
+          }`}
+          disabled={Object.keys(errors).length > 0}
+        >
+          Guardar
         </button>
 
         {/* MENSAJE DE ERRORES */}
         {Object.keys(errors).length > 0 && (
-        <div className="user-form-address-errors">
+          <div className="user-form-address-errors">
             <p className="user-form-address-error">{Object.values(errors)[0]}</p>
-        </div>
+          </div>
         )}
-
       </form>
     </div>
   );
-
 };
 
 export default UserFormAddress;
+
+
+
+/* 
+
+{
+  postalCode: '12345',
+  province: 'California',
+  locality: 'Los Angeles',
+  street: 'Main Street',
+  number: '1234',
+  floor: '5',                 [OPTIONAL]
+  betweenStreets: {
+    street1: 'First Avenue',  [OPTIONAL]
+    street2: 'Second Avenue', [OPTIONAL]
+  },
+  residenceType: 'Apartment',
+  additionalInstructions: 'Please leave the package at the front desk.' [OPTIONAL]
+}
+
+
+
+*/
