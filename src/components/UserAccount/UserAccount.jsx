@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useRef } from "react";
 import "./UserAccount.css";
 import { useDispatch , useSelector} from "react-redux";
 import { getLogOut,  } from "../../store/reducers/Login";
@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { deleteCart } from "../../store/reducers/shopping/shopping";
 
 const UserAccount = ( {setAccount} ) => {
+  const dropdownRef = useRef(null);
   const dispatch = useDispatch();
   const {NewinformationUser} = useSelector(state => state.login)
   const navigate = useNavigate()
@@ -43,11 +44,23 @@ const token = localStorage.getItem("tokens");
 
   useEffect(() =>{
     dispatch(informationUser(token))
+    //para cerrar ventana con cualquier click de la pantalla:
+    const closeAccountDropdown = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+       setAccount(false);
+     }     
+     };
+ 
+     document.addEventListener('mousedown', closeAccountDropdown);
+   
+     return () => {
+       document.removeEventListener('mousedown', closeAccountDropdown);
+     };
   },[])
 
 
   return (
-    <div className="account">
+    <div className="account" ref={dropdownRef}>
         <div className="account__User">
           <img className="account__image" src={NewinformationUser.image} alt="" />
           <p>Hola {NewinformationUser.name}</p>
