@@ -48,6 +48,11 @@ const SignIn = () => {
     },
   });
   
+  const local = localStorage.getItem('tokens')
+  if(local){
+    navigate('/')
+  }
+  
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       const autentication = {
@@ -55,15 +60,13 @@ const SignIn = () => {
         email: usuarioFirebase.email,
         image: usuarioFirebase.photoURL,
       }
-      dispatch(SingGoogleAndGitHub(autentication))
+      dispatch(SingGoogleAndGitHub(autentication)) 
+      
     }
   });
   
-  const local = localStorage.getItem('tokens')
-  if(local){
-    navigate('/')
-  }
   
+
 
   return (
     <form className="formulario" onSubmit={formik.handleSubmit}>

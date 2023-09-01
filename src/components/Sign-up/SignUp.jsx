@@ -66,11 +66,11 @@ const SignUp = () => {
       dispatch(SingGoogleAndGitHub(registerGitAndGoogle))
     }
   });
-  
-    const local = localStorage.getItem('tokens')
-    if(local){
-      navigate('/')
-    }
+  const localTerceros = localStorage.getItem('tokensTerceros')
+  const local = localStorage.getItem('tokens')
+  if(local || localTerceros){
+    navigate('/')
+  }
     
   return (
     <div>

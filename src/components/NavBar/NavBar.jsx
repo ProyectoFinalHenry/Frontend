@@ -47,7 +47,7 @@ const NavBar = ( ) => {
         <AiOutlineShoppingCart 
         className="navbar--shopping"/>
         </Link> }
-      { token ? (
+      { (token ) ? (
         <div className="navbar--container" onClick={() => setAccount(!account)}>
           <p  className="navbar--cuenta">
             Cuenta
