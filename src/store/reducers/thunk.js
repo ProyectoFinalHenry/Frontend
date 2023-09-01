@@ -27,7 +27,7 @@ export const informationUser = (user) => {
 
 export const SingGoogleAndGitHub = (email) =>{
   return async(dispatch , getState) => {
-      try {
+    try {
         const {data}  = await axios.post('/user/thirdAutentication' , email)
         localStorage.setItem("tokens", data.auth_token);
       } catch (error) {
@@ -51,14 +51,26 @@ export const NewRegisterUser = (newUser) => {
           timer: 900,
         });
       }
-      localStorage.setItem("tokens", data.auth_token);  
+      localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
-        alert("Error con el servidor Ingrese mas tarde");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: "Error con el servidor Ingrese mas tarde",
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
       if (error.code === "ERR_BAD_RESPONSE") {
-        alert("El Usuario ya existe");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: `${error.response.data.error}`,
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
     }
   };
@@ -138,7 +150,7 @@ export const getProductCart = (token) =>{
     const {data} = await axios.get('/cart',config )
     const newData = data.map(value =>(
       {
-        id:value.id,
+        id:value.Coffee.id,
         quantity:value.quantity,
         image:value.Coffee.image,
         name:value.Coffee.name ,
@@ -149,3 +161,23 @@ export const getProductCart = (token) =>{
     dispatch(getCartProduct(newData))
   }
 } 
+
+export const getProductoDelete = (id ,token) =>{
+  return async(dispatch, getState) =>{
+    console.log(token)
+    const config = {
+      headers:{
+        auth_token:token
+      },
+      data: {
+        coffeeId: id
+      }
+    }
+    try {
+      const data = await axios.delete('/cart/delete' , config)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}

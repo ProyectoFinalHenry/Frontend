@@ -6,9 +6,7 @@ import UserAccount from "../UserAccount/UserAccount";
 import { AiOutlineDown ,AiOutlineUp ,AiOutlineShoppingCart} from "react-icons/ai";
 import { useSelector } from "react-redux";
 
-
-const NavBar = () => {
-
+const NavBar = ( ) => {
   const location = useLocation();
   const shouldFill = PathToFill.includes(location.pathname);
 
@@ -29,13 +27,11 @@ const NavBar = () => {
 
   const navigate = useNavigate()
 
-  const { LoginAndLogOut  } = useSelector((state) => state.login);
-
   const [account, setAccount] = useState(false);
 
-  let token = localStorage.getItem("tokens");;
-  // useEffect(()=>{
-  // },[])
+
+  let token = localStorage.getItem('tokens')
+
 
   return (
     <div className={`${containerClass} ${shouldFill ? "fill" : ""}`}>
