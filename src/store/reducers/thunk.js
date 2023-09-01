@@ -164,7 +164,6 @@ export const getProductCart = (token) =>{
 
 export const getProductoDelete = (id ,token) =>{
   return async(dispatch, getState) =>{
-    console.log(token)
     const config = {
       headers:{
         auth_token:token

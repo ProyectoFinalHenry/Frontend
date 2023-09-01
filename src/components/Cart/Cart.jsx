@@ -2,12 +2,38 @@ import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { useDispatch } from "react-redux";
 import { getProductoDelete } from "../../store/reducers/thunk";
+import axios from "axios";
 
 const Cart = ({ product, productsAddme, setProductsAddme }) => {
   const { image, name, price, stock, quantity , id} = product;
   const dispatch = useDispatch()
   console.log(product)
   const [amount , setAmount] = useState(quantity)
+
+
+  useEffect(() => {
+    const handleUpdateAmount = async () => {
+      if (amount !== quantity) {
+        try {
+          let token = localStorage.getItem("tokens");
+          const config = {
+            headers: {
+              auth_token: token,
+            },
+          };
+          const response = await axios.post(
+            `/cart/add/`,
+            { coffeeId: id, quantity: amount },
+            config
+          );
+          console.log(response.data); // Aquí puedes realizar alguna acción con la respuesta de la petición
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    handleUpdateAmount();
+  }, [amount])
   
   const handleDelete = () =>{
     let token = localStorage.getItem('tokens')
