@@ -58,3 +58,36 @@
     color: gray;
     font-size: 1.5rem;
 }   
+
+
+
+
+/* HEADER */
+.user-profile-header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #7979797a;
+}
+
+.user-profile-header-photo-cont{
+    border-radius: 100%;
+    overflow: hidden;
+    width: 55px;
+    height: 55px;
+    margin-right: 1em;
+}
+
+.user-profile-header-photo-cont img{
+    width: 100%;
+}
+
+.user-profile-header-name{
+    font-size: 1.3rem;
+    margin-bottom: .1em;
+}
+
+.user-profile-header-mail{
+    color: gray;
+}
