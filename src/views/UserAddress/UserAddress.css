@@ -1,0 +1,94 @@
+
+.user-address-container{
+    min-height: 100vh;
+    background-color: #f7f3f2;
+    padding-top: 7em;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .user-address-form-c{
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 4em;
+    position: relative;
+  }
+  
+  .user-address-card{
+    background-color: #ffffffab;
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.1);
+    border-radius: 6px;
+    width: 60%;
+    padding: 3% 3% 9% 3%;
+    position: relative;
+    margin: 0 4em 5em 4em;
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  
+  .user-address-icon-h2-container{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    color: #659476;
+  }
+  
+  .user-address-icon-h2-container svg{
+    margin-right:.6em;
+    font-size: 2rem;
+    color: #659476;
+  }
+  
+  .user-address-card-sub-title{
+    margin-bottom: 1em;
+    font-size: 1rem;
+  }
+  
+  .user-address-card p{
+    color: #666;
+    font-size: 15px;
+    margin-bottom: .4em;
+  }
+  
+  .user-address-button {
+    display: block;
+    width: 12%;
+    padding: .5em;
+    background-color: #7fb693;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    position: absolute;
+    right: 2em;
+    bottom:1em;
+  }
+  
+  .user-address-button:hover {
+    background-color: #abd3ba;
+  }
+  
+  
+  .user-address-return-button:hover {
+    background-color: #abd3ba;
+  }
+  
+  .user-address-return-button{
+    background-color: #7fb693;
+    color: #fff;
+    padding: .5em;
+    border-radius: 4px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 21%;
+    top:2%;
+    z-index: 10;
+  }
