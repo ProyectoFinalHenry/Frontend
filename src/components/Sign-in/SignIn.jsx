@@ -40,7 +40,7 @@ const SignIn = () => {
       };
       try {
         dispatch(SingInUserLogin(LoginUser));
-
+        navigate("/")
       } catch (error) {
         console.log(error)
       }
@@ -58,10 +58,7 @@ const SignIn = () => {
       dispatch(SingGoogleAndGitHub(autentication))
     }
   });
-  const local = localStorage.getItem("tokens");
-  if (local) {
-    navigate('/');
-  }
+  
   return (
     <form className="formulario" onSubmit={formik.handleSubmit}>
       <div className="formulario__containerIn">

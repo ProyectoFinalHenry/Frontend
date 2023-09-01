@@ -7,7 +7,6 @@ import { AiOutlineDown ,AiOutlineUp ,AiOutlineShoppingCart} from "react-icons/ai
 import { useSelector } from "react-redux";
 
 const NavBar = ( ) => {
-
   const location = useLocation();
   const shouldFill = PathToFill.includes(location.pathname);
 

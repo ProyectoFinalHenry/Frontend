@@ -67,10 +67,6 @@ const SignUp = () => {
     }
   });
   
-    const local = localStorage.getItem('tokens')
-    if(local){
-      navigate('/')
-    }
   return (
     <div>
       <form className="formulario" onSubmit={formik.handleSubmit}>

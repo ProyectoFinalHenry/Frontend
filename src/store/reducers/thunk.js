@@ -51,7 +51,7 @@ export const NewRegisterUser = (newUser) => {
           timer: 900,
         });
       }
-      localStorage.setItem("tokens", data.auth_token);  
+      localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
@@ -150,7 +150,7 @@ export const getProductCart = (token) =>{
     const {data} = await axios.get('/cart',config )
     const newData = data.map(value =>(
       {
-        id:value.id,
+        id:value.Coffee.id,
         quantity:value.quantity,
         image:value.Coffee.image,
         name:value.Coffee.name ,
@@ -163,16 +163,18 @@ export const getProductCart = (token) =>{
 } 
 
 export const getProductoDelete = (id ,token) =>{
-  console.log({token})
-  console.log({id})
   return async(dispatch, getState) =>{
+    console.log(token)
     const config = {
       headers:{
         auth_token:token
+      },
+      data: {
+        coffeeId: id
       }
     }
     try {
-      const data = await axios.delete('/cart/delete' , config , {coffeeId : id})
+      const data = await axios.delete('/cart/delete' , config)
       console.log(data)
     } catch (error) {
       console.log(error)
