@@ -10,8 +10,11 @@ import "./App.css";
 import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-import UserProfile from "./views/UserProfile/UserProfile.jsx"
+
+import  UserProfile from "./views/UserProfile/UserProfile.jsx"
+import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
+
 
 function App() {
 
@@ -30,6 +33,8 @@ function App() {
         <Route path="/shoppingCart" element={ <ShoppingCart />} />
         <Route path="/auth/sing-in" element={ <SignIn />} />
         <Route path="/auth/sing-up" element={<SignUp />} />
+        <Route path="/user/account" element={<UserProfile />} />
+        <Route path="/user/address" element={ <UserAddress />} />
         <Route path="/purchases" element={<Purchases/>} />
         
       </Routes>
