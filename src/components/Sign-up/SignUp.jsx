@@ -66,9 +66,8 @@ const SignUp = () => {
       dispatch(SingGoogleAndGitHub(registerGitAndGoogle))
     }
   });
-  const localTerceros = localStorage.getItem('tokensTerceros')
   const local = localStorage.getItem('tokens')
-  if(local || localTerceros){
+  if(local ){
     navigate('/')
   }
     

@@ -40,7 +40,7 @@ const SignIn = () => {
       };
       try {
         dispatch(SingInUserLogin(LoginUser));
-
+        navigate("/")
       } catch (error) {
         console.log(error)
       }
@@ -65,9 +65,6 @@ const SignIn = () => {
     }
   });
   
-  
-
-
   return (
     <form className="formulario" onSubmit={formik.handleSubmit}>
       <div className="formulario__containerIn">
