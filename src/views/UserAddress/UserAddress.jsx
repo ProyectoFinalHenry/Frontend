@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import UserFormAddress from '../UserFormAddress/UserFormAddress';
+import UserFormAddress from '../../components/UserFormAddress/UserFormAddress';
 import './UserAddress.css';
 import { LiaHomeSolid } from 'react-icons/lia'
 import { SlArrowLeft } from 'react-icons/sl'
