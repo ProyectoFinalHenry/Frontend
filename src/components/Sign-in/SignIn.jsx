@@ -13,7 +13,6 @@ import { SingGoogleAndGitHub, SingInUserLogin } from "../../store/reducers/thunk
 
 const SignIn = () => {
   const navigate = useNavigate();
-  const { TokenUser } = useSelector((state) => state.login);
 
   const dispatch = useDispatch();
   const validationSchema = Yup.object({
@@ -39,17 +38,16 @@ const SignIn = () => {
         email: values.email,
         password: values.password,
       };
-      dispatch(SingInUserLogin(LoginUser));
+      try {
+        dispatch(SingInUserLogin(LoginUser));
+        navigate("/")
+      } catch (error) {
+        console.log(error)
+      }
       // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
-  useEffect(() => {
-    const local = localStorage.getItem("tokens");
-    if (local) {
-      navigate('/');
-    }
-  }, []);
-
+  
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       const autentication = {
@@ -58,9 +56,9 @@ const SignIn = () => {
         image: usuarioFirebase.photoURL,
       }
       dispatch(SingGoogleAndGitHub(autentication))
-      navigate('/');
     }
   });
+  
   return (
     <form className="formulario" onSubmit={formik.handleSubmit}>
       <div className="formulario__containerIn">
