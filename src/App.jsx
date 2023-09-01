@@ -15,9 +15,7 @@ import Purchases from "./views/Purchases/Purchases";
 
 function App() {
 
-  let usuarioAutenticado = localStorage.getItem("tokens");
-console.log('tokenappppppp', usuarioAutenticado)
-
+ 
   return (
     <div className="App">
       <NavBar />
@@ -28,10 +26,10 @@ console.log('tokenappppppp', usuarioAutenticado)
         <Route path="/products/page/:page?" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/about" element={<About />} />
-        <Route path="/user/account" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserProfile />} />
-        <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
-        <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
-        <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
+        <Route path="/user/account" element={ <UserProfile />} />
+        <Route path="/shoppingCart" element={ <ShoppingCart />} />
+        <Route path="/auth/sing-in" element={ <SignIn />} />
+        <Route path="/auth/sing-up" element={<SignUp />} />
         <Route path="/purchases" element={<Purchases/>} />
         
       </Routes>

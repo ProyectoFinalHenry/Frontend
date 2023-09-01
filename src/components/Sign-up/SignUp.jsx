@@ -71,6 +71,7 @@ const SignUp = () => {
     if(local){
       navigate('/')
     }
+    
   return (
     <div>
       <form className="formulario" onSubmit={formik.handleSubmit}>
