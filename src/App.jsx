@@ -14,12 +14,14 @@ import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 import  UserProfile from "./views/UserProfile/UserProfile.jsx"
 import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
+import UserInfo from './views/UserInfo/UserInfo';
 
 
 function App() {
 
   let usuarioAutenticado = localStorage.getItem("tokens");
-console.log('tokenappppppp', usuarioAutenticado)
+
+
 
   return (
     <div className="App">
@@ -31,12 +33,13 @@ console.log('tokenappppppp', usuarioAutenticado)
         <Route path="/products/page/:page?" element={<Home />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/about" element={<About />} />
+        <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
+        <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
         <Route path="/user/account" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserProfile />} />
         <Route path="/user/address" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserAddress />} />
         <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
-        <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
-        <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
-        <Route path="/purchases" element={<Purchases/>} />
+        <Route path="/user/info" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserInfo />} />
+        <Route path="/purchases" element={!usuarioAutenticado ? <Navigate to="/" /> : <Purchases />} />
         
       </Routes>
       <Footer />

@@ -17,7 +17,7 @@ const NavBar = ( ) => {
   if(/^\/detail\/[0-9a-fA-F-]+$/.test(location.pathname)) routeNavWhite = true;
   if(location.pathname === '/user/account') routeNavWhite = true;
   if(location.pathname === '/user/address') routeNavWhite = true;
-  
+  if(location.pathname === '/user/info') routeNavWhite = true;
 
   // CAMBIAMOS LA CLASE DE LA NABVAR SI LA RUTA USA NAVBAR WHITE
   const containerClass = routeNavWhite ? 'navbar-cont-white' : 'navbar-container';
