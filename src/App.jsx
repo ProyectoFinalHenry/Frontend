@@ -10,19 +10,25 @@ import "./App.css";
 import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
-
-import  UserProfile from "./views/UserProfile/UserProfile.jsx"
+import UserProfile from "./views/UserProfile/UserProfile.jsx";
 import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
 import UserInfo from './views/UserInfo/UserInfo';
-
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  let usuarioAutenticado = localStorage.getItem("tokens");
+  let usuarioAutenticado = localStorage.getItem('tokens');
 
+  useEffect(() => {
+    usuarioAutenticado = localStorage.getItem("tokens");
+  }, [location.pathname, navigate]);
 
-
+ 
+  
   return (
     <div className="App">
       <NavBar />
