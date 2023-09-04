@@ -1,4 +1,8 @@
 import { Link } from "react-router-dom";
+import { useDispatch , useSelector} from "react-redux";
+import { informationUser } from "../../store/reducers/thunk";
+
+import { useEffect } from "react";
 import { RiProfileLine } from 'react-icons/ri'; 
 import { FiUser } from 'react-icons/fi';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
@@ -8,10 +12,35 @@ import './UserProfile.css'
 
 
 const UserProfile = () => {
+
+    const {NewinformationUser} = useSelector(state => state.login)
+    let token = localStorage.getItem("tokens");
+    const dispatch = useDispatch();
+    console.log(token);
+
+    useEffect(() => {
+        dispatch(informationUser(token))
+    },[]);
+
     return (
       <div className="user-profile-container">
+
         <div className="user-profile-seccions-cont">
-          <Link to="/">
+
+
+        <div className="user-profile-header">
+          <div className="user-profile-header-photo-cont">
+            <img src={NewinformationUser.image} alt="foto perfil" />
+          </div>
+          <div className="user-profile-name-email-cont">
+            <p className="user-profile-header-name">{NewinformationUser.name}</p>
+            <p className="user-profile-header-mail">{NewinformationUser.email}</p>
+          </div>
+        </div>
+
+
+
+          <Link to="/user/info">
             <div className="user-profile-personal-info">
               <div className="profile-user-icon-cont">
                 <RiProfileLine />

@@ -47,9 +47,11 @@ export const NewRegisterUser = (newUser) => {
       const { data } = await axios.post("/user/signup", newUser);
       console.log(data)
       if (data) {
+
         setTimeout(() => {
           window.location.href = "/";
         }, 1 * 1500);
+
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -82,7 +84,6 @@ export const NewRegisterUser = (newUser) => {
     }
   };
 };
-
 //Login
 export const SingInUserLogin = (userLogin) => {
   return async (dispatch, getState) => {
