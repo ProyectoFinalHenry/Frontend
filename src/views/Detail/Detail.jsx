@@ -117,11 +117,10 @@ const Detail = () => {
             </li>
           </ul>
         </div>
-        
       </div>
 
       <div className="detail-card-customer-reviews">
-        <Reviews />
+        <Reviews reviews={coffee.Reviews}/>
       </div>
       <ToastContainer/>
     </div>
