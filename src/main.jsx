@@ -8,8 +8,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 
 // Configura la URL base
-//axios.defaults.baseURL = 'http://localhost:3001/';
-axios.defaults.baseURL = import.meta.env.VITE_API;
+axios.defaults.baseURL = 'http://localhost:3001/';
+//axios.defaults.baseURL = import.meta.env.VITE_API;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
