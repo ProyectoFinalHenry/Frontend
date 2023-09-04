@@ -60,7 +60,10 @@ const SignIn = () => {
         email: usuarioFirebase.email,
         image: usuarioFirebase.photoURL,
       }
-      dispatch(SingGoogleAndGitHub(autentication))
+      dispatch(SingGoogleAndGitHub(autentication));
+      setTimeout(() => {
+        navigate('/');
+      }, 1 * 1500);
     }
   });
 
