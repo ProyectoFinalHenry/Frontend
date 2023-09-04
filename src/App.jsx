@@ -11,15 +11,17 @@ import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
 
-import  UserProfile from "./views/UserProfile/UserProfile.jsx"
+import UserProfile from "./views/UserProfile/UserProfile.jsx"
 import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
+import { useEffect, useState } from "react";
 
 
 function App() {
-
-  let usuarioAutenticado = localStorage.getItem("tokens");
-console.log('tokenappppppp', usuarioAutenticado)
+  const [usuarioAutenticado, setUsuarioAutenticado] = useState('');
+  useEffect(() => {
+    setUsuarioAutenticado(localStorage.getItem("tokens"));
+  }, []);
 
   return (
     <div className="App">
@@ -36,8 +38,8 @@ console.log('tokenappppppp', usuarioAutenticado)
         <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
         <Route path="/auth/sing-in" element={usuarioAutenticado ? <Navigate to="/" /> : <SignIn />} />
         <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
-        <Route path="/purchases" element={<Purchases/>} />
-        
+        <Route path="/purchases" element={<Purchases />} />
+
       </Routes>
       <Footer />
     </div>
