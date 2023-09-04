@@ -1,4 +1,3 @@
-
 import Stars from '../../components/Stars/Stars';
 import { AiFillStar } from 'react-icons/ai';
 import {AiOutlineStar} from 'react-icons/ai'
@@ -13,7 +12,7 @@ const Reviews = ({reviews}) =>{
     let star4c=0;
     let star5c=0;
     let cantidad=reviews.length
-    reviews.map((review) => {
+    reviews.forEach((review) => {
         switch (review.rating) {
           case 1:
             star1c += 1;
@@ -79,7 +78,7 @@ const Reviews = ({reviews}) =>{
                         <span> {star3}% ({star3c})</span>
                     </div>
 
-                    <div className="reviews-stars-count-five">
+                    <div className="reviews-stars-count-five" >
                         <Stars stars={2}/>
                         <div className='reviews-stars-count-five-bar'> <div style={{width:`${star2}%`}}></div> </div>
                         <span> {star2}% ({star2c})</span>

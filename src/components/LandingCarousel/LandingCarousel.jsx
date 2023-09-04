@@ -8,8 +8,6 @@ import './LandingCarousel.css'
 
 const LandingCarousel = ({ topSoldProducts }) => {
     const navigate = useNavigate();
-    let promedioStar=0
-    let totalReviews=0
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -33,8 +31,6 @@ const LandingCarousel = ({ topSoldProducts }) => {
     }
 
     const slideItems = topSoldProducts.map((item, i) => {
-        item.Reviews.forEach(review=>totalReviews=totalReviews+review.rating)
-        if(item.Reviews.length>0) {promedioStar=Math.round((totalReviews / item.Reviews.length) * 10) / 10}
         return (<div className="slide-content" key={i}>
         <div
             className='slide-image-cont'
@@ -46,7 +42,7 @@ const LandingCarousel = ({ topSoldProducts }) => {
             <p className="slide-text">{item.description}</p>
         </div>
         <div className='slide-star-icons-cont'>
-            <Stars stars={promedioStar}/>
+            <Stars stars={item.averageRating}/>
         </div>
         </div>
 

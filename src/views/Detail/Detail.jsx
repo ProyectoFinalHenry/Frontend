@@ -12,7 +12,6 @@ import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const Detail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -42,8 +41,6 @@ const Detail = () => {
       navigate('/auth/sing-in')
     }
   }
-  
-  
   // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
@@ -54,14 +51,11 @@ const Detail = () => {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
-
-
   if(coffee.length<1) return(
     <div className="detail-spinner-container">
       <Spinner />
     </div>
   )
-
   return (
     <div className="detail-container">
       <div className="detail-container-card">
@@ -84,7 +78,6 @@ const Detail = () => {
                 < AiOutlineMinus />
               </span>
               <form action="">
-                
               </form>
               <input
                 className="detail-input-add-cart"
