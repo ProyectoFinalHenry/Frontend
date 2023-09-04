@@ -63,7 +63,6 @@ const NavBar = () => {
     </div>
 
     {account && token && <UserAccount setAccount={setAccount}   />}
-    {/*account && <UserAccount setAccount={setAccount}   />*/}
   </div>
 
   );
