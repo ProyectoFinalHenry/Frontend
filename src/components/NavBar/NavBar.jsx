@@ -13,11 +13,10 @@ const NavBar = () => {
   // RUTAS CON LA NABVAR ESTILO WHITE
   let routeNavWhite = false;
 
-  if(/^\/detail\/[0-9a-fA-F-]+$/.test(location.pathname)) routeNavWhite = true;
-  if(location.pathname === '/user/account') routeNavWhite = true;
-  if(location.pathname === '/user/address') routeNavWhite = true;
-  if(location.pathname === '/user/info') routeNavWhite = true;
-
+  if (/^\/detail\/[0-9a-fA-F-]+$/.test(location.pathname)) routeNavWhite = true;
+  if (location.pathname === '/user/account') routeNavWhite = true;
+  if (location.pathname === '/user/address') routeNavWhite = true;
+  if (location.pathname === '/user/info') routeNavWhite = true;
 
   // CAMBIAMOS LA CLASE DE LA NABVAR SI LA RUTA USA NAVBAR WHITE
   const containerClass = routeNavWhite ? 'navbar-cont-white' : 'navbar-container';
@@ -41,8 +40,7 @@ const NavBar = () => {
         <Link to="/products/page/1">Productos</Link>
         <Link to="/about">Nosotros</Link>
         {token && <Link to="shoppingCart">
-          <AiOutlineShoppingCart
-            className="navbar--shopping" />
+          <AiOutlineShoppingCart className="navbar--shopping" />
         </Link>}
         {token ? (
           <div className="navbar--container" onClick={() => setAccount(!account)}>
@@ -61,11 +59,6 @@ const NavBar = () => {
       </div>
       {account && <UserAccount setAccount={setAccount} />}
     </div>
-
-    {account && token && <UserAccount setAccount={setAccount}   />}
-    {/*account && <UserAccount setAccount={setAccount}   />*/}
-  </div>
-
   );
 };
 
