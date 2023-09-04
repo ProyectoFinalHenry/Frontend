@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { getInformationUser, getTokenUser } from "./Login";
 import { toast } from "react-toastify";
 import { getCartProduct } from "./shopping/shopping";
+import { Navigate } from "react-router-dom";
 
 export const informationUser = (user) => {
   return async (dispatch, getState) => {
@@ -15,7 +16,7 @@ export const informationUser = (user) => {
     };
 
     try {
-      const {data} = await axios.get(`/user`, config);
+      const { data } = await axios.get(`/user`, config);
       dispatch(getInformationUser(data))
     } catch (error) {
       console.log(error);
@@ -25,28 +26,31 @@ export const informationUser = (user) => {
 
 //autenticion de terceros
 
-export const SingGoogleAndGitHub = (email) =>{
-  return async(dispatch , getState) => {
-      try {
-        const {data}  = await axios.post('/user/thirdAutentication' , email)
-        localStorage.setItem("tokens", data.auth_token);
-      } catch (error) {
-        console.log({error})
-      }
+export const SingGoogleAndGitHub = (email) => {
+  return async (dispatch, getState) => {
+    try {
+      const { data } = await axios.post('/user/thirdAutentication', email)
+      localStorage.setItem("tokens", data.auth_token);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 1 * 1500);
+    } catch (error) {
+      console.log({ error })
+    }
   }
-} 
+}
 
 //register
 export const NewRegisterUser = (newUser) => {
   return async (dispatch, getState) => {
     try {
-      const { data } = await axios.post("/user/signup",newUser);
-        console.log(data)
+      const { data } = await axios.post("/user/signup", newUser);
+      console.log(data)
       if (data) {
 
-        setTimeout(() =>{
-          window.location.href="/"
-        },3000)
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 1 * 1500);
 
         Swal.fire({
           position: "top-center",
@@ -60,10 +64,22 @@ export const NewRegisterUser = (newUser) => {
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
-        alert("Error con el servidor Ingrese mas tarde");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: "Error con el servidor Ingrese mas tarde",
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
       if (error.code === "ERR_BAD_RESPONSE") {
-        alert("El Usuario ya existe");
+        Swal.fire({
+          position: "top-center",
+          icon: "error",
+          title: `${error.response.data.error}`,
+          showConfirmButton: false,
+          timer: 900,
+        });
       }
     }
   };
@@ -75,6 +91,10 @@ export const SingInUserLogin = (userLogin) => {
       const { data } = await axios.post(`/user/login`, userLogin);
       dispatch(getTokenUser(data));
       if (data) {
+        console.log(data);
+       /** setTimeout(() => {
+          window.location.href = "/";
+        }, 1 * 1500);**/
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -83,10 +103,12 @@ export const SingInUserLogin = (userLogin) => {
           timer: 900,
         });
       }
+      console.log('user token;', data.auth_token);
       localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_BAD_REQUEST") {
+        console.log("ERR_BAD_REQUEST");
         Swal.fire({
           position: "top-center",
           icon: "error",
@@ -107,49 +129,69 @@ export const SingInUserLogin = (userLogin) => {
 // }
 //informacion del carrito de compras
 
-export const getProductAdd = (token,cantidad) =>{
-  return async(dispatch, getState) =>{
+export const getProductAdd = (token, cantidad) => {
+  return async (dispatch, getState) => {
     const config = {
       headers: {
         auth_token: token,
       },
     };
-try {
-  const {data} = await axios.post('/cart/add', cantidad ,config)
-  console.log(data)
-  if(data){
-    toast(data.status,{
-      position:'bottom-right',
-      type:'success',
-      autoClose:2000
-    })
+    try {
+      const { data } = await axios.post('/cart/add', cantidad, config)
+      console.log(data)
+      if (data) {
+        toast(data.status, {
+          position: 'bottom-right',
+          type: 'success',
+          autoClose: 2000
+        })
 
-  } 
-} catch (error) {
-  
-}
-    
+      }
+    } catch (error) {
+
+    }
+
   }
 }
 
-export const getProductCart = (token) =>{
-  return async(dispatch , getState) =>{
+export const getProductCart = (token) => {
+  return async (dispatch, getState) => {
     const config = {
-      headers:{
-        auth_token:token
+      headers: {
+        auth_token: token
       }
     }
-    const {data} = await axios.get('/cart',config )
-    const newData = data.map(value =>(
+    const { data } = await axios.get('/cart', config)
+    const newData = data.map(value => (
       {
-        id:value.id,
-        quantity:value.quantity,
-        image:value.Coffee.image,
-        name:value.Coffee.name ,
-        price:value.Coffee.price,
-        stock:value.Coffee.stock
+        id: value.Coffee.id,
+        quantity: value.quantity,
+        image: value.Coffee.image,
+        name: value.Coffee.name,
+        price: value.Coffee.price,
+        stock: value.Coffee.stock
       }
     ))
     dispatch(getCartProduct(newData))
   }
-} 
+}
+
+export const getProductoDelete = (id, token) => {
+  return async (dispatch, getState) => {
+    console.log(token)
+    const config = {
+      headers: {
+        auth_token: token
+      },
+      data: {
+        coffeeId: id
+      }
+    }
+    try {
+      const data = await axios.delete('/cart/delete', config)
+      console.log(data)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
