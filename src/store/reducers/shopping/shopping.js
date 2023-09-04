@@ -11,7 +11,6 @@ export const shoppingSlice = createSlice({
             state.cart = action.payload
         },
         deleteCart: (state) =>{
-            console.log('hola')
             state.cart = []
         }
     }
