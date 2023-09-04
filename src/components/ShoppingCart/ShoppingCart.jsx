@@ -8,7 +8,6 @@ const ShoppingCart = () => {
   const [productsAddme, setProductsAddme] = useState(0);
   const [total, setTotal] = useState(0);
   const { cart } = useSelector((state) => state.shopping);
-  console.log(cart);
   const dispatch = useDispatch()
 
   useEffect(() => {
