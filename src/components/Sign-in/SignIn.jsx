@@ -53,12 +53,14 @@ const SignIn = () => {
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       const autentication = {
-        name : usuarioFirebase.displayName,
+        name: usuarioFirebase.displayName,
         email: usuarioFirebase.email,
         image: usuarioFirebase.photoURL,
       }
-      dispatch(SingGoogleAndGitHub(autentication))
-      navigate('/');
+      dispatch(SingGoogleAndGitHub(autentication));
+      setTimeout(() => {
+        navigate('/');
+      }, 1 * 1500);
     }
   });
   return (
