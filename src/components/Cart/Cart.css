@@ -19,7 +19,7 @@ hr{
     display: flex;
     gap: 20px;
 }
-.card__configuracion--span{
+.cart__configuracion--span{
     color: #00F;
     font-weight: 400;
     cursor: pointer;
@@ -49,4 +49,5 @@ hr{
 }
 .cart__controlador{
     font-size: 20px;
+    cursor: pointer;
 }
