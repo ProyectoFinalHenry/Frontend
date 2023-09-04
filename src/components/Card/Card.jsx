@@ -1,7 +1,6 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
 import './Card.css';
-
+import Stars from '../../components/Stars/Stars';
 const Card = ({ id, image, title, reviews, price, stock }) => {
   
   const minStock = 5;
@@ -10,7 +9,12 @@ const Card = ({ id, image, title, reviews, price, stock }) => {
     style: "currency",
     currency: "ARS",
   }).format(price);
-
+  
+  let totalReviews=0
+  reviews.forEach(review=>{totalReviews=totalReviews+review.rating})
+  let promedioStar=0
+  if(reviews.length>0) {promedioStar=Math.round((totalReviews / reviews.length) * 10) / 10
+}
   return (
     <div className="Card-container">
         <div className="card-img-cont">
@@ -20,11 +24,7 @@ const Card = ({ id, image, title, reviews, price, stock }) => {
         <div className="card-data-cont">
           <p>{title}</p>
           <div className="star-icons">
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
+            <Stars stars={promedioStar}/>
           </div>
           {/* <span>{reviews}</span> */}
           <span>{formattedPrice}</span>
