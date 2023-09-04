@@ -43,6 +43,11 @@ export const NewRegisterUser = (newUser) => {
       const { data } = await axios.post("/user/signup",newUser);
         console.log(data)
       if (data) {
+
+        setTimeout(() =>{
+          window.location.href="/"
+        },3000)
+
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -51,7 +56,7 @@ export const NewRegisterUser = (newUser) => {
           timer: 900,
         });
       }
-      localStorage.setItem("tokens", data.auth_token);  
+      localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
@@ -75,7 +80,6 @@ export const NewRegisterUser = (newUser) => {
     }
   };
 };
-
 //Login
 export const SingInUserLogin = (userLogin) => {
   return async (dispatch, getState) => {
