@@ -57,7 +57,7 @@ const NavBar = () => {
           <Link to="/auth/sing-in">Acceder</Link>
         )}
       </div>
-      {account && token && <UserAccount setAccount={setAccount} />}
+      {account && <UserAccount setAccount={setAccount} />}
     </div>
   );
 };
