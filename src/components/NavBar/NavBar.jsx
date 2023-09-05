@@ -27,13 +27,14 @@ const NavBar = () => {
   const navigate = useNavigate()
 
   const [account, setAccount] = useState(false);
-  const [token, setToken] = useState();
+  const token = localStorage.getItem('tokens');
 
-  setToken(localStorage.getItem('tokens'))
+  useEffect(() => {
+    
+  },[location])
 
-  useEffect(()=>{
 
-  }, [token])
+
 
   return (
     <div className={`${containerClass} ${shouldFill ? "fill" : ""}`}>
