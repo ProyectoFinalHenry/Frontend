@@ -1,0 +1,36 @@
+.new-review-input {
+    padding: 6px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin: 0;
+    margin-bottom: 1em;
+    background-color: #cccccc1f;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.new-review-textarea {
+    background-color: #cccccc1f;;
+    padding: 6px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 1em;
+}
+.new-reviews-users-container{
+    margin: 3em;
+}
+.review-add-product-btn{
+    background-color: #cccccc6e;
+    padding: 6px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-right: 1em;
+}
+.review-add-product-btn:hover{
+    background-color: #f1f1f1d2;
+    border: 2px solid #ccc;
+}

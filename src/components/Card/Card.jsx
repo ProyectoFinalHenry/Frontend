@@ -1,8 +1,7 @@
 import React from 'react';
-import { FaStar } from 'react-icons/fa';
 import './Card.css';
-
-const Card = ({ id, image, title, reviews, price, stock }) => {
+import Stars from '../../components/Stars/Stars';
+const Card = ({ id, image, title, price, stock, averageRating }) => {
   
   const minStock = 5;
 
@@ -20,11 +19,7 @@ const Card = ({ id, image, title, reviews, price, stock }) => {
         <div className="card-data-cont">
           <p>{title}</p>
           <div className="star-icons">
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
-            <FaStar />
+            <Stars stars={averageRating}/>
           </div>
           {/* <span>{reviews}</span> */}
           <span>{formattedPrice}</span>

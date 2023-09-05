@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../../components/Spinner/Spinner'
 import Reviews  from "../../components/Reviews/Reviews";
+import NewReview from "../../components/NewReview/NewReview";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -11,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 
 const Detail = () => {
   const dispatch = useDispatch()
@@ -21,17 +21,32 @@ const Detail = () => {
   const [coffee, setCoffee] = useState([]);
   const [quantity, setQuantity] = useState(1); 
 
+  const [user, setUser] = useState([]);
+  const token = localStorage.getItem("tokens")
+  console.log(token)
   useEffect(() => {
     async function getCoffeeData() {
       const { data } = await axios.get(`coffee/${id}`);
       setCoffee(data);
     }
     getCoffeeData();
+
+    
+    async function getUserData () {
+      try {
+          if (token) {
+              const response = await axios.get("/user", { headers: { auth_token: token } });
+              setUser(response.data);
+          }
+      } catch (error) {
+          console.log(error);
+      }
+    
+    };
+    getUserData();
+    
   }, [id]);
 
-
-  
-  const token = localStorage.getItem("tokens");
   const handleShopping = () =>{
     const ProdutAdd = {
       coffeeId:id,
@@ -42,28 +57,32 @@ const Detail = () => {
       navigate('/auth/sing-in')
     }
   }
-  
-  
   // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
     if(quantity < coffee.stock) {
       setQuantity(prevQuantity => prevQuantity + 1);
     }
   };
-
+  const comprado=false
+  // orders.forEach(order=>{
+  //   order.forEach(product=>{
+  //     if(product.status==='Appoved'){
+  //       if(product.Coffee.id===id) {
+  //         comprado=true
+  //       }
+  //     }
+  //   })
+  // })
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
-
-
   if(coffee.length<1) return(
     <div className="detail-spinner-container">
       <Spinner />
     </div>
   )
-
   return (
     <div className="detail-container">
       <div className="detail-container-card">
@@ -86,7 +105,6 @@ const Detail = () => {
                 < AiOutlineMinus />
               </span>
               <form action="">
-                
               </form>
               <input
                 className="detail-input-add-cart"
@@ -119,11 +137,14 @@ const Detail = () => {
             </li>
           </ul>
         </div>
-        
       </div>
-
+      {(true)&&(
+        <div className="detail-card-customer-reviews">
+        <NewReview coffeeId={id} name={user.name} image={user.image}/>
+      </div>
+      )}
       <div className="detail-card-customer-reviews">
-        <Reviews />
+        <Reviews reviews={coffee.Reviews}/>
       </div>
       <ToastContainer/>
     </div>
