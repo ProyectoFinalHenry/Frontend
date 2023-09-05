@@ -36,3 +36,25 @@ export const deleteAcount = async () => {
 }
 
 
+export const updateAdress = async (data) => {
+    try {
+        data = {address: data}
+        const adressUpdate = await axios.put('/user/updateData', data, config);
+        const adressData = await axios.get('/user', config);
+        console.log(adressData, adressUpdate);
+        return {status: adressUpdate.status };
+       
+    } catch (error) {
+        console.log(error)
+    }
+};
+
+export const getUserData = async () => {
+    try {
+        const userData = await axios.get('/user', config);
+        console.log(userData);
+        return userData.data;
+    } catch (error) {
+        console.log(error)
+    }
+};
