@@ -62,6 +62,7 @@ export const filtredProducts = createAsyncThunk('product/filtredProducts', async
 
           resolve(response.data ? response.data : 'not found');
         } catch (error) {
+          resolve('not found')
           reject(error);
         }
       }, 1000); // Simulación de una llamada API de 1 segundo
@@ -109,7 +110,7 @@ const productSlice = createSlice({
       })
       .addCase(filtredProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.filtredProducts = action.payload;
+        state.filtredProducts = [action.payload];
       });
   },
 });
