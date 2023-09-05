@@ -6,15 +6,13 @@ import { getProductoDelete } from "../../store/reducers/thunk";
 const Cart = ({ product, productsAddme, setProductsAddme }) => {
   const { image, name, price, stock, quantity , id} = product;
   const dispatch = useDispatch()
-  
+  console.log(product)
   const [amount , setAmount] = useState(quantity)
-
+  
   const handleDelete = () =>{
     let token = localStorage.getItem('tokens')
-    console.log(token)
     dispatch(getProductoDelete(id , token))
   }
-  console.log(quantity)
 
   const handleAmount = () => {
     if (amount > 1) {
@@ -37,8 +35,6 @@ const Cart = ({ product, productsAddme, setProductsAddme }) => {
           <p>{name}</p>
           <div className="cart__configuracion">
             <span onClick={handleDelete} className="cart__configuracion--span">Eliminar</span>
-            <span className="cart__configuracion--span">Guardar</span>
-            <span className="cart__configuracion--span">Comprar ahora</span>
           </div>
         </div>
 

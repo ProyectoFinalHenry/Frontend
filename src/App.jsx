@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import LandinPage from "./views/LandinPage/LandingPage";
 import Home from "./views/Home/Home";
 import Detail from "./views/Detail/Detail";
@@ -6,7 +7,6 @@ import About from "./views/About/About";
 import CreateForm from "./views/CreateForm/CreateForm";
 import Footer from "./components/Footer/Footer";
 import NavBar from "./components/NavBar/NavBar.jsx";
-import "./App.css";
 import SignIn from "./components/Sign-in/SignIn";
 import SignUp from "./components/Sign-up/SignUp";
 import ShoppingCart from "./components/ShoppingCart/ShoppingCart";
@@ -14,21 +14,18 @@ import UserProfile from "./views/UserProfile/UserProfile.jsx";
 import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
 import UserInfo from './views/UserInfo/UserInfo';
-import { useEffect } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
+  const [usuarioAutenticado, setUsuarioAutenticado] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
-
-  let usuarioAutenticado = localStorage.getItem('tokens');
-
   useEffect(() => {
-    usuarioAutenticado = localStorage.getItem("tokens");
-  }, [location.pathname, navigate]);
+    setUsuarioAutenticado(localStorage.getItem("tokens"));
+  }, [location]);
 
- 
-  
+
   return (
     <div className="App">
       <NavBar />
