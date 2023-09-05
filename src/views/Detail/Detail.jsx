@@ -46,7 +46,9 @@ const Detail = () => {
   
   // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    if(quantity < coffee.stock) {
+      setQuantity(prevQuantity => prevQuantity + 1);
+    }
   };
 
   const decreaseQuantity = () => {
