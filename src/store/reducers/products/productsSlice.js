@@ -58,11 +58,11 @@ export const filtredProducts = createAsyncThunk('product/filtredProducts', async
           if (filters.priceMin) response.data.sort((a, b) => a.price - b.price);
           if (filters.priceMax) response.data.sort((a, b) => b.price - a.price);
 
-          console.log('DATA: ', response.data);
+          console.log('DATA STORE: ', response.data);
 
-          resolve(response.data ? response.data : 'not found');
+          resolve(response.data ? response.data : ['not found']);
         } catch (error) {
-          resolve('not found')
+          resolve(['not found'])
           reject(error);
         }
       }, 1000); // Simulación de una llamada API de 1 segundo
@@ -110,10 +110,12 @@ const productSlice = createSlice({
       })
       .addCase(filtredProducts.fulfilled, (state, action) => {
         state.loading = false;
-        state.filtredProducts = [action.payload];
+        state.filtredProducts = action.payload;
       });
   },
 });
 
 export const { clearFilters } = productSlice.actions;
 export default productSlice.reducer;
+
+
