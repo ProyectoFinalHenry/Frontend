@@ -23,9 +23,9 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     setUsuarioAutenticado(localStorage.getItem("tokens"));
-  }, []);
+  }, [location]);
 
-  
+
   return (
     <div className="App">
       <NavBar />
