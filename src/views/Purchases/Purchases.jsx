@@ -17,7 +17,7 @@ const Purchases = () => {
                 console.log(error);
             }
         };
-  {console.log(orders)}
+
         axiosData();
     }, []);
 

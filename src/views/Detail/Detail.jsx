@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../../components/Spinner/Spinner'
 import Reviews  from "../../components/Reviews/Reviews";
+import NewReview from "../../components/NewReview/NewReview";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -20,17 +21,32 @@ const Detail = () => {
   const [coffee, setCoffee] = useState([]);
   const [quantity, setQuantity] = useState(1); 
 
+  const [user, setUser] = useState([]);
+  const token = localStorage.getItem("tokens")
+  console.log(token)
   useEffect(() => {
     async function getCoffeeData() {
       const { data } = await axios.get(`coffee/${id}`);
       setCoffee(data);
     }
     getCoffeeData();
+
+    
+    async function getUserData () {
+      try {
+          if (token) {
+              const response = await axios.get("/user", { headers: { auth_token: token } });
+              setUser(response.data);
+          }
+      } catch (error) {
+          console.log(error);
+      }
+    
+    };
+    getUserData();
+    
   }, [id]);
 
-
-  
-  const token = localStorage.getItem("tokens");
   const handleShopping = () =>{
     const ProdutAdd = {
       coffeeId:id,
@@ -45,7 +61,16 @@ const Detail = () => {
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
-
+  const comprado=false
+  // orders.forEach(order=>{
+  //   order.forEach(product=>{
+  //     if(product.status==='Appoved'){
+  //       if(product.Coffee.id===id) {
+  //         comprado=true
+  //       }
+  //     }
+  //   })
+  // })
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
@@ -111,7 +136,11 @@ const Detail = () => {
           </ul>
         </div>
       </div>
-
+      {(true)&&(
+        <div className="detail-card-customer-reviews">
+        <NewReview coffeeId={id} name={user.name} image={user.image}/>
+      </div>
+      )}
       <div className="detail-card-customer-reviews">
         <Reviews reviews={coffee.Reviews}/>
       </div>
