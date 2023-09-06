@@ -1,7 +1,7 @@
 .banCard-container{
     width: 100vw;
     height: 100vh;
-    z-index: 150;
+    z-index: 500;
     position: fixed;
     display:flex;
     justify-content: center;
@@ -46,4 +46,8 @@
 
 .ban-card-span{
     text-decoration: underline;
+}
+
+.banCard-container-hide{
+   display: none;
 }

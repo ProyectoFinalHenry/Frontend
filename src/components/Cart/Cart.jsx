@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getProductCart, getProductoDelete } from "../../store/reducers/thunk";
 import axios from "axios";
 import { getCantidadGasto } from "../../store/reducers/shopping/shopping";
+import Swal from "sweetalert2";
+import {getUserData} from '../../store/reducers/user/userSlice';
+
 
 const Cart = ({ product, setCambio, cambio,FormatearCantidad}) => {
   const { image, name, price, stock, quantity, id } = product;
@@ -12,7 +15,13 @@ const Cart = ({ product, setCambio, cambio,FormatearCantidad}) => {
   const [spiner, setSpiner] = useState(false);
   const [deleteCart, setDeleteCart] = useState(false);
 
-  console.log(amount);
+  // código baneo
+  const user = useSelector((state) => state.user.user); 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
+  
+
   useEffect(() => {
     console.log("entro al cambiio");
     const handleUpdateAmount = async () => {
@@ -59,6 +68,15 @@ const Cart = ({ product, setCambio, cambio,FormatearCantidad}) => {
   };
 
   const handleAmount = () => {
+    if(user.isActive === false){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta ha sido baneada",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+
     if (amount > 1) {
       setSpiner(true);
       setTimeout(() => {
@@ -69,6 +87,15 @@ const Cart = ({ product, setCambio, cambio,FormatearCantidad}) => {
   };
 
   const handleAmountMore = () => {
+    if(user.isActive === false){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta ha sido baneada",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+
     if (amount < stock) {
       setSpiner(true);
       setTimeout(() => {

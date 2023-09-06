@@ -8,12 +8,16 @@ import NewReview from "../../components/NewReview/NewReview";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
-import { useDispatch } from "react-redux";
 import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import {useSelector, useDispatch} from "react-redux";
+import {getUserData as getUserDataBan} from '../../store/reducers/user/userSlice';
+import Swal from "sweetalert2";
+
 
 const Detail = () => {
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams();
@@ -25,6 +29,9 @@ const Detail = () => {
   const token = localStorage.getItem("tokens")
   console.log(token)    
   
+
+
+
   async function getUserData () {
       try {
           if (token) {
@@ -57,7 +64,46 @@ async function getCoffeeData() {
     
   }, [id]);
 
+    // código baneo
+    const userBan = useSelector((state) => state.user.user); 
+    useEffect(() => {
+      dispatch(getUserDataBan());
+    }, [dispatch]);
+
   const handleShopping = () =>{
+    //ALERTA SI EL USER ESTÁ BANEADO
+    if(userBan.isActive === false){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta ha sido baneada",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+
+    //ALERTA SI EL USER NO ESTÁ VERIFICADO
+    if(userBan.validated === false){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+
+    //ALERTA SI EL PRODUCTO ESTÁ COMPRADO
+    if(comprado === true){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, el producto ya ha sido comprado",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+
+    //ALERTA SI EL PRODUCTO NO EXISTE
+
+
     const ProdutAdd = {
       coffeeId:id,
       quantity:quantity
@@ -118,7 +164,7 @@ async function getCoffeeData() {
               </span>
             </div>
 
-            <button onClick={handleShopping} className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> ADD TO CART</button>
+            <button onClick={handleShopping} className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> AGREGAR AL CARRITO</button>
           </div>
 
           <p className="detail-product-description">{coffee?.description}</p>
