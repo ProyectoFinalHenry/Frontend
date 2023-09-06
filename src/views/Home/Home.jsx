@@ -53,9 +53,6 @@ const Home = () => {
   return (
     <div className="home-container">
 
-      {user && user.isActive === false && ( <BanCard />)}
-
-
       <div className="home-banner">
         <p className='home-banner-msj text-shadow'>NUESTROS PRODUCTOS</p>
         <SearchBar />
@@ -132,25 +129,3 @@ export default Home;
 
 
 
-
-/* 
-{
-    "id": "cab1b36e-92cf-4681-8c67-5fa3bafb2c85",
-    "name": "Testing",
-    "lastname": null,
-    "image": "https://i.pinimg.com/564x/0e/6e/aa/0e6eaa94ab71d91b7d0f1dea83d49f61.jpg",
-    "email": "gastonnietodsdsdarte@gmail.com",
-    "phone": null,
-    "address": null,
-    "localRegistration": true,
-    "validated": false,
-    "isActive": true,
-    "createdAt": "2023-09-06T04:12:29.168Z",
-    "updatedAt": "2023-09-06T04:12:29.257Z",
-    "Role": {
-        "role": "user"
-    },
-    "Orders": []
-}
-
-*/
