@@ -1,0 +1,14 @@
+.starRating-container{
+    margin-bottom: 1em;
+}
+.selected-star{
+        
+        color: #eeca00; /* Amarillo más oscuro */  
+        padding: 2px;
+        cursor: pointer;
+}
+.unselected-star{
+    color: #b1adad; /* Amarillo más oscuro */
+    padding: 2px;
+    cursor: pointer;
+}

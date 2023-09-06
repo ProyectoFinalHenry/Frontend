@@ -47,7 +47,7 @@ const Reviews = ({reviews}) =>{
       
     return(
        <div className="reviews-container">
-        <h2 className="reviews-h2">OPINIONES DE LOS USUARIOS</h2>
+      
 
         {/* CARD REVIEWS */}
         <div className="reviews-total">

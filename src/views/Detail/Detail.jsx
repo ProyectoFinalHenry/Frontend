@@ -19,24 +19,36 @@ const Detail = () => {
   const params = useParams();
   const { id } = params;
   const [coffee, setCoffee] = useState([]);
+  const [comprado, setComprado] = useState(false);
   const [quantity, setQuantity] = useState(1); 
-
   const [user, setUser] = useState([]);
   const token = localStorage.getItem("tokens")
   console.log(token)
   useEffect(() => {
     async function getCoffeeData() {
-      const { data } = await axios.get(`coffee/${id}`);
+      const { data } = await axios.get(`coffee/${id}`);        
+      console.log('sdfsdfsdfsdfsdfsdfsdf',data)
       setCoffee(data);
     }
     getCoffeeData();
 
-    
     async function getUserData () {
       try {
           if (token) {
               const response = await axios.get("/user", { headers: { auth_token: token } });
               setUser(response.data);
+          
+              response.data.Orders.forEach(order=>{ 
+                  
+                order.Details.forEach(product=>{
+                  
+                    if(product.Coffee.id===id) {
+                      setComprado(true)
+              
+                    }
+                  
+                })
+              })
           }
       } catch (error) {
           console.log(error);
@@ -57,20 +69,11 @@ const Detail = () => {
       navigate('/auth/sing-in')
     }
   }
-  // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
     setQuantity(prevQuantity => prevQuantity + 1);
   };
-  const comprado=false
-  // orders.forEach(order=>{
-  //   order.forEach(product=>{
-  //     if(product.status==='Appoved'){
-  //       if(product.Coffee.id===id) {
-  //         comprado=true
-  //       }
-  //     }
-  //   })
-  // })
+
+
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
@@ -136,15 +139,15 @@ const Detail = () => {
           </ul>
         </div>
       </div>
-      {(true)&&(
+      {(comprado)&&(
         <div className="detail-card-customer-reviews">
-        <NewReview coffeeId={id} name={user.name} image={user.image}/>
-      </div>
+          <NewReview coffeeId={id} name={user.name} image={user.image}/>
+        </div>
       )}
       <div className="detail-card-customer-reviews">
         <Reviews reviews={coffee.Reviews}/>
       </div>
-      <ToastContainer/>
+        <ToastContainer/>
     </div>
   );
 };
