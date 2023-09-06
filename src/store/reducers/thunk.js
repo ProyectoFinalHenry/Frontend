@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import { getInformationUser, getTokenUser } from "./Login";
 import { toast } from "react-toastify";
 import { getCartProduct } from "./shopping/shopping";
-import { Navigate } from "react-router-dom";
 
 export const informationUser = (user) => {
   return async (dispatch, getState) => {
@@ -17,7 +16,7 @@ export const informationUser = (user) => {
 
     try {
       const { data } = await axios.get(`/user`, config);
-      dispatch(getInformationUser(data))
+      dispatch(getInformationUser(data));
     } catch (error) {
       console.log(error);
     }
@@ -29,28 +28,25 @@ export const informationUser = (user) => {
 export const SingGoogleAndGitHub = (email) => {
   return async (dispatch, getState) => {
     try {
-      const { data } = await axios.post('/user/thirdAutentication', email)
+      const { data } = await axios.post("/user/thirdAutentication", email);
+      
       localStorage.setItem("tokens", data.auth_token);
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 1 * 1500);
+      dispatch(getTokenUser(data.auth_token));
+
     } catch (error) {
-      console.log({ error })
+      console.log({ error });
     }
-  }
-}
+  };
+};
+
 
 //register
 export const NewRegisterUser = (newUser) => {
   return async (dispatch, getState) => {
     try {
       const { data } = await axios.post("/user/signup", newUser);
-      console.log(data)
+      dispatch(getTokenUser(data))
       if (data) {
-
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 1 * 1500);
 
         Swal.fire({
           position: "top-center",
@@ -61,6 +57,7 @@ export const NewRegisterUser = (newUser) => {
         });
       }
       localStorage.setItem("tokens", data.auth_token);
+      
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
@@ -91,10 +88,6 @@ export const SingInUserLogin = (userLogin) => {
       const { data } = await axios.post(`/user/login`, userLogin);
       dispatch(getTokenUser(data));
       if (data) {
-        console.log(data);
-       /** setTimeout(() => {
-          window.location.href = "/";
-        }, 1 * 1500);**/
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -137,61 +130,61 @@ export const getProductAdd = (token, cantidad) => {
       },
     };
     try {
-      const { data } = await axios.post('/cart/add', cantidad, config)
-      console.log(data)
+      const { data } = await axios.post("/cart/add", cantidad, config);
+      console.log(data);
       if (data) {
         toast(data.status, {
-          position: 'bottom-right',
-          type: 'success',
-          autoClose: 2000
-        })
-
+          position: "bottom-right",
+          type: "success",
+          autoClose: 2000,
+        });
       }
-    } catch (error) {
-
-    }
-
-  }
-}
+    } catch (error) {}
+  };
+};
 
 export const getProductCart = (token) => {
   return async (dispatch, getState) => {
     const config = {
       headers: {
-        auth_token: token
-      }
-    }
-    const { data } = await axios.get('/cart', config)
-    const newData = data.map(value => (
-      {
+        auth_token: token,
+      },
+    };
+    try {
+      const { data } = await axios.get("/cart", config);
+      
+      const newData = data.map((value) => ({
         id: value.Coffee.id,
+        coffee:value.Coffee.isActive,
         quantity: value.quantity,
         image: value.Coffee.image,
         name: value.Coffee.name,
         price: value.Coffee.price,
-        stock: value.Coffee.stock
-      }
-    ))
-    dispatch(getCartProduct(newData))
-  }
-}
+        stock: value.Coffee.stock,
+      }));  
+      dispatch(getCartProduct(newData));
+    } catch (error) {
+      dispatch(getCartProduct([]))
+      console.log(error)
+    }
+  };
+};
 
 export const getProductoDelete = (id, token) => {
   return async (dispatch, getState) => {
-    console.log(token)
     const config = {
       headers: {
-        auth_token: token
+        auth_token: token,
       },
       data: {
-        coffeeId: id
-      }
-    }
+        coffeeId: id,
+      },
+    };
     try {
-      const data = await axios.delete('/cart/delete', config)
-      console.log(data)
+      const data = await axios.delete("/cart/delete", config);
+      console.log(data);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};

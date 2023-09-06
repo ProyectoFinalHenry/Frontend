@@ -24,7 +24,6 @@ const NavBar = () => {
   const linkClass = routeNavWhite ? 'navbar-white-link' : 'navbar-links text-shadow';
   const src = routeNavWhite ? '/assets/images/logo-2-back.png' : '/assets/images/logo-3-white.png';
 
-  const navigate = useNavigate()
 
   const [account, setAccount] = useState(false);
   const token = localStorage.getItem('tokens');
@@ -32,7 +31,6 @@ const NavBar = () => {
   useEffect(() => {
     
   },[location])
-
 
 
 

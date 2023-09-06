@@ -6,20 +6,26 @@
     box-sizing: border-box;
     margin: 0;
     margin-bottom: 1em;
-    background-color: #cccccc1f;
+    
+    background-color: #ffffffad;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .new-review-textarea {
-    background-color: #cccccc1f;;
+    background-color: #ffffff1f;;
     padding: 6px 20px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     margin-bottom: 1em;
+
 }
 .new-reviews-users-container{
-    margin: 3em;
+    margin: 2em;
+    margin-left: 2em;
+    background-color: #ffffff00;
+    padding: 1em;
+    width: 50%;
 }
 .review-add-product-btn{
     background-color: #cccccc6e;
@@ -29,6 +35,7 @@
     border-radius: 4px;
     box-sizing: border-box;
     margin-right: 1em;
+    margin-top: 1em;
 }
 .review-add-product-btn:hover{
     background-color: #f1f1f1d2;

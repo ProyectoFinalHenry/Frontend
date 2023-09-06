@@ -9,6 +9,8 @@ import Filters from '../../components/Filters/Filters';
 import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
+import {getUserData} from '../../store/reducers/user/userSlice';
+import BanCard from '../../components/BanCard/BanCard'
 
 
 
@@ -16,11 +18,12 @@ import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopBut
 const Home = () => {
   const products = useSelector((state) => state.product.product);
   const filtredProducts = useSelector((state) => state.product.filtredProducts);
+  const user = useSelector((state) => state.user.user); 
   const loading = useSelector((state) => state.product.loading);
   const productRender = filtredProducts ? filtredProducts : products;
 
 
-
+  //PAGINADO
   let { page } = useParams();
   const navigate = useNavigate();
   const pageNumber = page ? parseInt(page) : 1;
@@ -29,6 +32,7 @@ const Home = () => {
   const totalPages = Math.ceil(productRender.length / itemsPerPage);
   const visibleProduct = productRender.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); 
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -40,10 +44,17 @@ const Home = () => {
     dispatch(clearFilters());
   };
 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
 
+ console.log('USER HOME: ', user)
 
   return (
     <div className="home-container">
+
+      {user && user.isActive === false && ( <BanCard />)}
+
 
       <div className="home-banner">
         <p className='home-banner-msj text-shadow'>NUESTROS PRODUCTOS</p>
@@ -115,3 +126,31 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+
+
+/* 
+{
+    "id": "cab1b36e-92cf-4681-8c67-5fa3bafb2c85",
+    "name": "Testing",
+    "lastname": null,
+    "image": "https://i.pinimg.com/564x/0e/6e/aa/0e6eaa94ab71d91b7d0f1dea83d49f61.jpg",
+    "email": "gastonnietodsdsdarte@gmail.com",
+    "phone": null,
+    "address": null,
+    "localRegistration": true,
+    "validated": false,
+    "isActive": true,
+    "createdAt": "2023-09-06T04:12:29.168Z",
+    "updatedAt": "2023-09-06T04:12:29.257Z",
+    "Role": {
+        "role": "user"
+    },
+    "Orders": []
+}
+
+*/

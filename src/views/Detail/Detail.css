@@ -26,7 +26,7 @@
     align-items: center;
     padding: 2em 3em;
     background-color: #f5ded98e;
-    margin: 0em 2em 3em 2em;
+    margin: 0em 2em 4em 2em;
 }
 
 .detail-contaner-card-img{
@@ -155,13 +155,13 @@
     height: 61px;
     letter-spacing: 3px;
     line-height: 38px;
-    margin-bottom: 1em;
+    margin-bottom: 0em;
     color: #191919;
     margin-left: 3em;
 }
 
 .detail-card-customer-reviews{
    /*  background-color:  #c0d6d7; */
-    padding: 2em 0em;
+    padding: 0em 0em;
     margin: 0em 0em;
 }
