@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import React, { useState, useEffect } from 'react';
+import { AiFillStar } from 'react-icons/ai';
 import './StarRating.css'
-const StarRating = ({ onRatingChange,isFormVisible }) => {
+const StarRating = ({ onRatingChange,isFormVisible, rating2}) => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
-
+  useEffect(() => {
+    if(rating2) setRating(rating2)
+  }, []);
   const handleMouseOver = (value) => {
     setHoverRating(value);
   };
@@ -24,7 +25,6 @@ const StarRating = ({ onRatingChange,isFormVisible }) => {
         console.log('rating',rating)
     } 
   };
-  const colorStar = '#FFD700';
   return (
     <div className='starRating-container'>
       {[1, 2, 3, 4, 5].map(value =>(

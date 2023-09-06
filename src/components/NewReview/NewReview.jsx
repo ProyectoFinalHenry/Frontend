@@ -4,11 +4,11 @@ import axios from 'axios';
 import { useForm } from "react-hook-form"
 import useFormPersist from 'react-hook-form-persist'
 import StarRating from '../StarRating/StarRating';
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 
 const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const [isFormVisible, setIsFormVisible] = useState(false); 
-    const { setValue,register, handleSubmit, watch, formState: { errors },reset } = useForm();
+    const { setValue,register, handleSubmit, watch, formState: { errors } } = useForm();
     const titleInput = watch("title");
     const commentsInput = watch("comments");
     const token = localStorage.getItem("tokens")
@@ -20,16 +20,19 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const handleToggle = () => {
         setIsFormVisible(!isFormVisible); // Alternar entre true y false
     }
-    const handlePostRating = async (postData) => { console.log(postData)
+    const handlePostRating = async (postData) => { 
         try {
             if (token) { 
                 postData.coffeeId=coffeeId
                 const { data } = await axios.post('review/add',postData,{ headers: { auth_token: token } });
                 const { status } = data;
                
-                if (status) {
+                if (status) {                  
+                  handleToggle()
                   getCoffeeData()
-                
+                  setValue('title','')
+                  setValue('comments','')
+
                 }
 
         }
@@ -49,6 +52,10 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
                 const { status } = data;
                 if (status) {
                   getCoffeeData()
+                  setValue('title','')
+                  setValue('comments','')
+                  handleToggle()
+                  setValue('rating',0)
                 }
         }
         } catch (error) {
@@ -72,6 +79,7 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
                 handleToggle();
               }}
               isFormVisible={isFormVisible} 
+              rating={watch("rating")}
             />
           </div>
       

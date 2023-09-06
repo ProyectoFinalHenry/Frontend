@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Cart.css";
 import { useDispatch } from "react-redux";
-import { getProductoDelete } from "../../store/reducers/thunk";
+import { getProductoDelete,getProductCart } from "../../store/reducers/thunk";
 
 const Cart = ({ product, productsAddme, setProductsAddme }) => {
   const { image, name, price, stock, quantity , id} = product;
@@ -12,6 +12,7 @@ const Cart = ({ product, productsAddme, setProductsAddme }) => {
   const handleDelete = () =>{
     let token = localStorage.getItem('tokens')
     dispatch(getProductoDelete(id , token))
+    dispatch(getProductCart(token))
   }
 
   const handleAmount = () => {
