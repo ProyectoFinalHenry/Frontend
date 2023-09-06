@@ -1,6 +1,11 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { TbAlertTriangleFilled } from 'react-icons/tb'
+import { useDispatch , useSelector} from "react-redux";
+import Swal from "sweetalert2";
+import { getDeleteToken, getLogOut,  } from "../../store/reducers/Login";
+import { deleteCart } from "../../store/reducers/shopping/shopping";
+import logOut from "../../functions/logOut";
 import './BanCard.css'
 
 
@@ -8,13 +13,40 @@ import './BanCard.css'
 const BanCard = () =>{
 
     const location = useLocation();
-
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [isBanned, setIsBanned] = useState(false);
     let banned = true;
 
     const handlerButton = () => {
-        setIsBanned(true);
+        
+    Swal.fire({
+        position:"center",
+        text:'Estas seguro que quieres cerrar Sesion',
+        icon:'warning',
+        showCancelButton:true,
+        confirmButtonText:'Si cerrar',
+        confirmButtonColor:"#00F",
+        cancelButtonText:'No cerrar'
+      }).then(result =>{
+        if(result.isConfirmed){
+          Swal.fire('Adios','Esperamos verte aqui',"success")
+          setTimeout(() =>{
+            logOut()
+            dispatch(getLogOut())
+            dispatch(deleteCart())
+            dispatch(getDeleteToken())
+            /* setAccount(false) */
+            localStorage.removeItem('tokens')
+            /* navigate('/') */
+            window.location.href = '/'
+          },1000)
+        }
+      })
+     
+    
     }
+
 
 
     const rutasProhibidas = [
@@ -56,7 +88,7 @@ const BanCard = () =>{
                 </p>
 
 
-                {!esRutaProhibida && 
+                {/* !esRutaProhibida &&  */
                 <button className="ban-card-button" onClick={handlerButton}>Aceptar</button>}
 
             </div>

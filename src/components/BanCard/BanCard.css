@@ -42,6 +42,7 @@
     color: #5c5d5f;
     width: 90%;
     line-height: 24px;
+    margin-bottom: 1em;
 }
 
 .ban-card-span{
@@ -50,4 +51,16 @@
 
 .banCard-container-hide{
    display: none;
+}
+
+
+.ban-card-button{
+    padding:.6em 1.5em;
+    border-radius: 50px;
+    background-color: rgb(148, 151, 158);
+    cursor: pointer;
+}
+
+.ban-card-button:hover{
+    background-color: rgb(162, 166, 175);
 }
