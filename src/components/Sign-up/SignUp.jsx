@@ -8,10 +8,11 @@ import { FirebaseAuth } from "../../firebase/credenciales";
 import { useNavigate } from "react-router";
 import { NewRegisterUser, SingGoogleAndGitHub } from "../../store/reducers/thunk";
 import { loginGitHub } from "../../functions/githubLogin";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SignUp = () => {
 
+  const {TokenUser} = useSelector(state => state.login)
   const dispatch = useDispatch()
   const navigate = useNavigate();
   const [validando, setValidando] = useState(false)
@@ -46,30 +47,25 @@ const SignUp = () => {
         }
         dispatch(NewRegisterUser(newUser))
         setValidando(true)
-        // registerUser(values.email, values.password);
-
         setTimeout(() =>{
           setValidando(false)
         },500)
       }
-      // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
-  
+  if(TokenUser){
+    navigate('/')
+  }
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
-      const registerGitAndGoogle ={
+      const autentication = {
         name : usuarioFirebase.displayName,
         email: usuarioFirebase.email,
         image: usuarioFirebase.photoURL,
       }
-      dispatch(SingGoogleAndGitHub(registerGitAndGoogle))
+      dispatch(SingGoogleAndGitHub(autentication)) 
     }
   });
-  const local = localStorage.getItem('tokens')
-  if(local ){
-    navigate('/')
-  }
     
   return (
     <div>

@@ -9,11 +9,15 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getLoginAndLogOut } from "../../store/reducers/Login";
 import { loginGitHub } from "../../functions/githubLogin";
-import { SingGoogleAndGitHub, SingInUserLogin } from "../../store/reducers/thunk";
+import {
+  SingGoogleAndGitHub,
+  SingInUserLogin,
+} from "../../store/reducers/thunk";
 
 const SignIn = () => {
   const navigate = useNavigate();
 
+  const {TokenUser} = useSelector(state => state.login)
   const dispatch = useDispatch();
   const validationSchema = Yup.object({
     email: Yup.string()
@@ -40,31 +44,27 @@ const SignIn = () => {
       };
       try {
         dispatch(SingInUserLogin(LoginUser));
-        navigate("/")
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
       // Aquí podrías agregar la lógica para registrar al usuario
     },
   });
-  
-  const local = localStorage.getItem('tokens')
-  if(local){
+  if(TokenUser){
     navigate('/')
   }
-  
+
   onAuthStateChanged(FirebaseAuth, (usuarioFirebase) => {
     if (usuarioFirebase) {
       const autentication = {
-        name : usuarioFirebase.displayName,
+        name: usuarioFirebase.displayName,
         email: usuarioFirebase.email,
         image: usuarioFirebase.photoURL,
-      }
-      dispatch(SingGoogleAndGitHub(autentication)) 
-      
+      };
+      dispatch(SingGoogleAndGitHub(autentication));
     }
   });
-  
+
   return (
     <form className="formulario" onSubmit={formik.handleSubmit}>
       <div className="formulario__containerIn">

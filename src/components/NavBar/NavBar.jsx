@@ -24,14 +24,10 @@ const NavBar = ( ) => {
   const linkClass = routeNavWhite ? 'navbar-white-link' : 'navbar-links text-shadow'; 
   const src = routeNavWhite ? '/assets/images/logo-2-back.png' : '/assets/images/logo-3-white.png';
 
-
-  const navigate = useNavigate()
-
   const [account, setAccount] = useState(false);
 
 
   let token = localStorage.getItem('tokens')
-
 
   return (
     <div className={`${containerClass} ${shouldFill ? "fill" : ""}`}>
@@ -46,7 +42,7 @@ const NavBar = ( ) => {
         <AiOutlineShoppingCart 
         className="navbar--shopping"/>
         </Link> }
-      { (token ) ? (
+      { token ? (
         <div className="navbar--container" onClick={() => setAccount(!account)}>
           <p  className="navbar--cuenta">
             Cuenta

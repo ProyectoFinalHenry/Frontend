@@ -1,0 +1,41 @@
+.carritoVacio{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.carritoVacio__Bolsa{
+    width: 100px;
+    margin-top: 40px;
+}
+
+.carritoVacio__Container{
+    position: relative;
+}
+.carrito__Empieza{
+    margin-top: 20px;
+    font-size: 18px;
+}
+.carrito__Texto{
+    margin-top: 10px;
+    color: rgb(188, 188, 188);
+
+}
+.carritoVacio__Descubrir{
+    background: #3483fa;
+    color: white;
+    width: 328px;
+    height: 48px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 20px;
+}
+.carritoVacio__Descubrir:hover{
+    background: #185dc5;
+    transition: .5s;
+
+}
