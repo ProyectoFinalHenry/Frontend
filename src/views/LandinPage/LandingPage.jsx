@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import LandingCarousel from '../../components/LandingCarousel/LandingCarousel';
+import Spinner from '../../components/Spinner/Spinner';
 import './LandingPage.css'
 
 const LandingPage = () => {
@@ -33,7 +34,16 @@ const LandingPage = () => {
 
             <div className='ladin-p1-cont'>
                 <h1>Nuestros Productos Más Vendidos</h1>
-                <LandingCarousel topSoldProducts={topSoldProducts} />
+                {
+                    (!topSoldProducts.length) ?
+                        (
+                            <div className='landding-spinner-cont'>
+                                <Spinner />
+                            </div>
+                        ) :
+                        (<LandingCarousel topSoldProducts={topSoldProducts} />)
+                }
+
             </div>
 
         </div>

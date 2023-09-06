@@ -46,6 +46,9 @@ video {
 .ladin-p1-cont h1 {
     margin-bottom: 1rem;
     color: #895929;
+    text-align: center;
+    margin: 1rem;
+    padding: 1rem;
 }
 
 .landin-p1 {
@@ -102,4 +105,18 @@ video {
     color: #000000;
     transition: background-color 0.5s, color 0.5s;
     /* Transición lenta */
+}
+
+.landding-spinner-cont {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+.spinner-cont {
+    width: 50%;
+    margin: auto;
+}
+
+.spinner-cont img {
+    margin: auto;
 }
