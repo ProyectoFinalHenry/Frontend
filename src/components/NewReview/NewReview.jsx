@@ -55,7 +55,6 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
                   setValue('title','')
                   setValue('comments','')
                   handleToggle()
-                  setValue('rating',0)
                 }
         }
         } catch (error) {
