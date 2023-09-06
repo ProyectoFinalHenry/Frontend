@@ -1,15 +1,14 @@
 
 .shoppingCart{
-    padding-top:  90px;
+    padding-top:  130px;
     width:100%;
-    background: #000;
+    background: #f7f3f2;
     min-height: 100vh;
 }
 .shoppingCard__container{
     width:80%;
     margin: 0 auto;
     padding: 10px 0;
-    border: 1px solid #000;
     display: grid;
     grid-template-columns: 1fr 400px;
     gap: 50px;
@@ -17,7 +16,10 @@
 .shopping__Productos{
     background: #FFF;
     min-height:400px ;
-    border-radius: 3px;
+    border-radius: 5px;
+    box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+-webkit-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+-moz-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
 }
 .shopping__subtitulo{
     padding: 20px ;
@@ -30,6 +32,14 @@
 }
 
 .shopping__Pago{
+    height: 250px;
+    border-radius: 10px;
+    background: #FFF;  
+    padding: 20px
+
+}
+.shopping__Pago .vacio{
+    cursor:not-allowed;    
     height: 250px;
     border-radius: 10px;
     background: #FFF;  
@@ -71,4 +81,12 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+}
+.shopping__cartVacio ,.shoping__compraVacia{
+    opacity: .5;
+    padding-bottom: 20px;
+
+}
+.shoping__compraVacia{
+    font-size: 20px;
 }

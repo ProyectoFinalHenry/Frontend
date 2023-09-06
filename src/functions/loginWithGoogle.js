@@ -1,4 +1,4 @@
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup} from "firebase/auth";
 import { FirebaseAuth } from "../firebase/credenciales";    
 import Swal from "sweetalert2";
 

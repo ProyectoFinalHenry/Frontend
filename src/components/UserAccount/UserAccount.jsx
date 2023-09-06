@@ -1,7 +1,7 @@
 import React, { useEffect,useRef } from "react";
 import "./UserAccount.css";
 import { useDispatch , useSelector} from "react-redux";
-import { getLogOut,  } from "../../store/reducers/Login";
+import { getDeleteToken, getLogOut,  } from "../../store/reducers/Login";
 import logOut from "../../functions/logOut";
 import {useNavigate} from "react-router-dom";
 import { informationUser } from "../../store/reducers/thunk";
@@ -30,6 +30,7 @@ const UserAccount = ( {setAccount} ) => {
           logOut()
           dispatch(getLogOut())
           dispatch(deleteCart())
+          dispatch(getDeleteToken())
           setAccount(false)
           localStorage.removeItem('tokens')
           navigate('/')
