@@ -67,8 +67,7 @@ const token = localStorage.getItem("tokens");
         </div>
         <div className="account__dateUser">
           <p onClick={() => navigate('/user/account')}>Cuenta</p>
-          {NewinformationUser.Role === 'admin' ? <p>Administrador</p>: <p onClick={() => navigate('/purchases')}>Mis compras</p>}
-          <p onClick={() => navigate('/create')}>Vender un Producto</p>
+          <p onClick={() => navigate('/purchases')}>Mis compras</p>
           <p onClick={handleClick}
           className="account__logOut">Cerrar sesion</p>
         </div>
