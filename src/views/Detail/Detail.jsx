@@ -23,16 +23,9 @@ const Detail = () => {
   const [quantity, setQuantity] = useState(1); 
   const [user, setUser] = useState([]);
   const token = localStorage.getItem("tokens")
-  console.log(token)
-  useEffect(() => {
-    async function getCoffeeData() {
-      const { data } = await axios.get(`coffee/${id}`);        
-      console.log('sdfsdfsdfsdfsdfsdfsdf',data)
-      setCoffee(data);
-    }
-    getCoffeeData();
-
-    async function getUserData () {
+  console.log(token)    
+  
+  async function getUserData () {
       try {
           if (token) {
               const response = await axios.get("/user", { headers: { auth_token: token } });
@@ -52,9 +45,14 @@ const Detail = () => {
           }
       } catch (error) {
           console.log(error);
-      }
-    
-    };
+      } 
+};
+async function getCoffeeData() {
+  const { data } = await axios.get(`coffee/${id}`);        
+  setCoffee(data);
+}    
+  useEffect(() => {
+    getCoffeeData();
     getUserData();
     
   }, [id]);
@@ -143,7 +141,7 @@ const Detail = () => {
       </div>
       {(comprado)&&(
         <div className="detail-card-customer-reviews">
-          <NewReview coffeeId={id} name={user.name} image={user.image}/>
+          <NewReview coffeeId={id} name={user.name} image={user.image} getCoffeeData={getCoffeeData} />
         </div>
       )}
       <div className="detail-card-customer-reviews">

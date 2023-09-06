@@ -6,7 +6,7 @@ import useFormPersist from 'react-hook-form-persist'
 import StarRating from '../StarRating/StarRating';
 import React, { useState } from 'react';
 
-const NewReview = ({coffeeId,image,name}) =>{
+const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const [isFormVisible, setIsFormVisible] = useState(false); 
     const { setValue,register, handleSubmit, watch, formState: { errors },reset } = useForm();
     const titleInput = watch("title");
@@ -28,11 +28,7 @@ const NewReview = ({coffeeId,image,name}) =>{
                 const { data } = await axios.post('review/add',postData,{ headers: { auth_token: token } });
                 const { status } = data;
                 if (status) {
-                    window.location.href = '/detail/'+coffeeId;
-                    reset({
-                        title: '',
-                        comments: '',
-                      });
+                  getCoffeeData()
                 }
 
         }
@@ -51,7 +47,7 @@ const NewReview = ({coffeeId,image,name}) =>{
                 const { data } = await axios.delete('review/delete', { headers: { auth_token: token },data:cof});
                 const { status } = data;
                 if (status) {
-                    window.location.href = '/detail/'+coffeeId;
+                  getCoffeeData()
                 }
         }
         } catch (error) {
