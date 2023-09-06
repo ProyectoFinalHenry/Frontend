@@ -33,7 +33,6 @@ const UserAccount = ( {setAccount} ) => {
           setAccount(false)
           localStorage.removeItem('tokens')
           navigate('/')
-
         },1000)
       }
     })
@@ -58,18 +57,18 @@ const token = localStorage.getItem("tokens");
      };
   },[])
 
-
   return (
     <div className="account" ref={dropdownRef}>
         <div className="account__User">
           <img className="account__image" src={NewinformationUser.image} alt="" />
           <p>Hola {NewinformationUser.name}</p>
+          <p>{NewinformationUser.email}</p>
         </div>
         <div className="account__dateUser">
-        <p onClick={() => navigate('/user/account')}>Cuenta</p>
-          <p onClick={() => navigate('/purchases')}>Mis compras</p>
-          <p 
-          onClick={handleClick}
+          <p onClick={() => navigate('/user/account')}>Cuenta</p>
+          {NewinformationUser.Role === 'admin' ? <p>Administrador</p>: <p onClick={() => navigate('/purchases')}>Mis compras</p>}
+          <p onClick={() => navigate('/create')}>Vender un Producto</p>
+          <p onClick={handleClick}
           className="account__logOut">Cerrar sesion</p>
         </div>
     </div>

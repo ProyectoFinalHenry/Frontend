@@ -3,6 +3,7 @@ import './Card.css';
 import Stars from '../../components/Stars/Stars';
 const Card = ({ id, image, title, price, stock, averageRating }) => {
   
+
   const minStock = 5;
 
   const formattedPrice = new Intl.NumberFormat("es-AR", {

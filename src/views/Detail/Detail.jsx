@@ -70,7 +70,9 @@ const Detail = () => {
     }
   }
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    if(quantity < coffee.stock) {
+      setQuantity(prevQuantity => prevQuantity + 1);
+    }
   };
 
 
