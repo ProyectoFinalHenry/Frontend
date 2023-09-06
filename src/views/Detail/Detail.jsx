@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import Spinner from '../../components/Spinner/Spinner'
 import Reviews  from "../../components/Reviews/Reviews";
+import NewReview from "../../components/NewReview/NewReview";
 import "./Detail.css";
 import { BsCart2 } from 'react-icons/bs';
 import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
@@ -12,26 +13,50 @@ import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const Detail = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const params = useParams();
   const { id } = params;
   const [coffee, setCoffee] = useState([]);
+  const [comprado, setComprado] = useState(false);
   const [quantity, setQuantity] = useState(1); 
-
+  const [user, setUser] = useState([]);
+  const token = localStorage.getItem("tokens")
+  console.log(token)    
+  
+  async function getUserData () {
+      try {
+          if (token) {
+              const response = await axios.get("/user", { headers: { auth_token: token } });
+              setUser(response.data);
+          
+              response.data.Orders.forEach(order=>{ 
+                  
+                order.Details.forEach(product=>{
+                  
+                    if(product.Coffee.id===id) {
+                      setComprado(true)
+              
+                    }
+                  
+                })
+              })
+          }
+      } catch (error) {
+          console.log(error);
+      } 
+};
+async function getCoffeeData() {
+  const { data } = await axios.get(`coffee/${id}`);        
+  setCoffee(data);
+}    
   useEffect(() => {
-    async function getCoffeeData() {
-      const { data } = await axios.get(`coffee/${id}`);
-      setCoffee(data);
-    }
     getCoffeeData();
+    getUserData();
+    
   }, [id]);
 
-
-  
-  const token = localStorage.getItem("tokens");
   const handleShopping = () =>{
     const ProdutAdd = {
       coffeeId:id,
@@ -42,26 +67,23 @@ const Detail = () => {
       navigate('/auth/sing-in')
     }
   }
-  
-  
-  // Funciones para manejar el aumento y la disminución de la cantidad
   const increaseQuantity = () => {
-    setQuantity(prevQuantity => prevQuantity + 1);
+    if(quantity < coffee.stock) {
+      setQuantity(prevQuantity => prevQuantity + 1);
+    }
   };
+
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(prevQuantity => prevQuantity - 1);
     }
   };
-
-
   if(coffee.length<1) return(
     <div className="detail-spinner-container">
       <Spinner />
     </div>
   )
-
   return (
     <div className="detail-container">
       <div className="detail-container-card">
@@ -84,7 +106,6 @@ const Detail = () => {
                 < AiOutlineMinus />
               </span>
               <form action="">
-                
               </form>
               <input
                 className="detail-input-add-cart"
@@ -117,13 +138,16 @@ const Detail = () => {
             </li>
           </ul>
         </div>
-        
       </div>
-
+      {(comprado)&&(
+        <div className="detail-card-customer-reviews">
+          <NewReview coffeeId={id} name={user.name} image={user.image} getCoffeeData={getCoffeeData} />
+        </div>
+      )}
       <div className="detail-card-customer-reviews">
-        <Reviews />
+        <Reviews reviews={coffee.Reviews}/>
       </div>
-      <ToastContainer/>
+        <ToastContainer/>
     </div>
   );
 };

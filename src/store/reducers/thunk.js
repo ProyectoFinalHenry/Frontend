@@ -3,7 +3,6 @@ import Swal from "sweetalert2";
 import { getInformationUser, getTokenUser } from "./Login";
 import { toast } from "react-toastify";
 import { getCartProduct } from "./shopping/shopping";
-import { Navigate } from "react-router-dom";
 
 export const informationUser = (user) => {
   return async (dispatch, getState) => {
@@ -48,6 +47,7 @@ export const NewRegisterUser = (newUser) => {
       const { data } = await axios.post("/user/signup", newUser);
       dispatch(getTokenUser(data))
       if (data) {
+
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -81,7 +81,6 @@ export const NewRegisterUser = (newUser) => {
     }
   };
 };
-
 //Login
 export const SingInUserLogin = (userLogin) => {
   return async (dispatch, getState) => {
@@ -97,10 +96,12 @@ export const SingInUserLogin = (userLogin) => {
           timer: 900,
         });
       }
+      console.log('user token;', data.auth_token);
       localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_BAD_REQUEST") {
+        console.log("ERR_BAD_REQUEST");
         Swal.fire({
           position: "top-center",
           icon: "error",

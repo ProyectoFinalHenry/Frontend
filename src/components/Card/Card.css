@@ -50,6 +50,9 @@
 
 .star-icons{
     color: #777777;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card-stock{

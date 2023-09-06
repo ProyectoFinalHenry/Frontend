@@ -77,7 +77,8 @@ const Home = () => {
               </div>
             ): (
               <div className='home-card-container'>
-                {visibleProduct.map((product) => (
+                {visibleProduct.map((product) => { 
+                  return(
                   <Link to={`/detail/${product.id}`} key={product.id}>
                     <Card
                       id={product.id}
@@ -86,9 +87,12 @@ const Home = () => {
                       price={product.price}
                       reviews={product.Reviews}
                       stock={product.stock}
+                      averageRating={product.averageRating}
+                     
                     />
                   </Link>
-                ))}
+                  )
+                  })}
               </div>
             )}
             <ScrollToTopButton />

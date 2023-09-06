@@ -1,13 +1,13 @@
 import { FaStar } from 'react-icons/fa';
 import { useNavigate } from "react-router-dom"
 import Carousel from "react-multi-carousel";
+import Stars from '../../components/Stars/Stars';
 import "react-multi-carousel/lib/styles.css";
 import './LandingCarousel.css'
 
 
 const LandingCarousel = ({ topSoldProducts }) => {
     const navigate = useNavigate();
-
     const responsive = {
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
@@ -30,25 +30,23 @@ const LandingCarousel = ({ topSoldProducts }) => {
         navigate(`detail/${coffeeId}`);
     }
 
-    const slideItems = topSoldProducts.map((item, i) => (
-        <div className="slide-content" key={i}>
-            <div
-                className='slide-image-cont'
-                onClick={() => handleCoffeeDetail(item.id)} >
-                <img src={item.image} alt="stuff" width="320" height="240" />
-            </div>
-            <div>
-                <h3 className="slide-title"><strong>{item.name}</strong></h3>
-                <p className="slide-text">{item.description}</p>
-            </div>
-            <div className='slide-star-icons-cont'>
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-            </div>
+    const slideItems = topSoldProducts.map((item, i) => {
+        return (<div className="slide-content" key={i}>
+        <div
+            className='slide-image-cont'
+            onClick={() => handleCoffeeDetail(item.id)} >
+            <img src={item.image} alt="stuff" width="320" height="240" />
         </div>
-    ));
+        <div>
+            <h3 className="slide-title"><strong>{item.name}</strong></h3>
+            <p className="slide-text">{item.description}</p>
+        </div>
+        <div className='slide-star-icons-cont'>
+            <Stars stars={item.averageRating}/>
+        </div>
+        </div>
+
+    )});
     return (
         <div className='carousel-cont'>
             <Carousel
