@@ -11,7 +11,6 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const { setValue,register, handleSubmit, watch, formState: { errors },reset } = useForm();
     const titleInput = watch("title");
     const commentsInput = watch("comments");
-    const ratingInput = (watch("rating"));
     const token = localStorage.getItem("tokens")
     useFormPersist("newCoffeForm", {
         watch, 
@@ -21,14 +20,16 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const handleToggle = () => {
         setIsFormVisible(!isFormVisible); // Alternar entre true y false
     }
-    const handlePostRating = async (postData) => {
+    const handlePostRating = async (postData) => { console.log(postData)
         try {
             if (token) { 
                 postData.coffeeId=coffeeId
                 const { data } = await axios.post('review/add',postData,{ headers: { auth_token: token } });
                 const { status } = data;
+               
                 if (status) {
                   getCoffeeData()
+                
                 }
 
         }
