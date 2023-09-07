@@ -40,7 +40,7 @@ function App() {
         <Route path="/auth/sing-up" element={usuarioAutenticado ? <Navigate to="/" /> : <SignUp />} />
         <Route path="/user/account" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserProfile />} />
         <Route path="/user/address" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserAddress />} />
-        <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
+        <Route path="/shoppingCart" element={<ShoppingCart />} />
         <Route path="/user/info" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserInfo />} />
         <Route path="/purchases" element={!usuarioAutenticado ? <Navigate to="/" /> : <Purchases />} />
         

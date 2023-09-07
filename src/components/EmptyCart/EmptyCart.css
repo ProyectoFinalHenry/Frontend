@@ -10,6 +10,7 @@
     margin-top: 40px;
 }
 
+
 .carritoVacio__Container{
     position: relative;
 }
@@ -33,6 +34,11 @@
     align-items: center;
     cursor: pointer;
     margin: 20px;
+}
+@media (min-width:360px) and (max-width:500px){
+    .carritoVacio__Descubrir{
+        width: 250px;
+    }
 }
 .carritoVacio__Descubrir:hover{
     background: #185dc5;
