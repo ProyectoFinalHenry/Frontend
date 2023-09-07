@@ -10,7 +10,6 @@ import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
 import {getUserData} from '../../store/reducers/user/userSlice';
-import BanCard from '../../components/BanCard/BanCard'
 
 
 
@@ -18,7 +17,6 @@ import BanCard from '../../components/BanCard/BanCard'
 const Home = () => {
   const products = useSelector((state) => state.product.product);
   const filtredProducts = useSelector((state) => state.product.filtredProducts);
-  const user = useSelector((state) => state.user.user); 
   const loading = useSelector((state) => state.product.loading);
   const productRender = filtredProducts ? filtredProducts : products;
 
@@ -48,7 +46,10 @@ const Home = () => {
     dispatch(getUserData());
   }, [dispatch]);
 
- console.log('USER HOME: ', user)
+
+  useEffect(() => {
+    setCurrentPage(1); 
+  },[page])
 
   return (
     <div className="home-container">

@@ -105,7 +105,7 @@ export const SingInUserLogin = (userLogin) => {
         Swal.fire({
           position: "top-center",
           icon: "error",
-          title: "Email o contraseña incorrecta",
+          title: error.response.data.error,
           showConfirmButton: false,
           timer: 900,
         });
