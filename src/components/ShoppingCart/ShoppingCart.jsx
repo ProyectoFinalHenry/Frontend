@@ -1,17 +1,34 @@
 import { useEffect, useState } from "react";
 import "./ShoppingCard.css";
+import {useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "../Cart/Cart";
 import axios from "axios";
 import { getProductCart } from "../../store/reducers/thunk";
 import { getCantidadGasto } from "../../store/reducers/shopping/shopping";
 import EmptyCart from "../EmptyCart/EmptyCart";
+import Swal from "sweetalert2";
+import {getUserData} from '../../store/reducers/user/userSlice';
+
+
+
 const ShoppingCart = () => {
+
   const [productsAddme, setProductsAddme] = useState(0);
   const [cambio, setCambio] = useState(false);
   const [cambioTotal, setCambioTotal] = useState(false);
   const { cart, total } = useSelector((state) => state.shopping);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // código baneo
+  const user = useSelector((state) => state.user.user); 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
+
+
+
   useEffect(() => {
     const token1 = localStorage.getItem("tokens");
     dispatch(getProductCart(token1));
@@ -29,6 +46,38 @@ const ShoppingCart = () => {
   };
 
   const handleClick = async () => {
+     //ALERTA SI EL USER NO ESTÁ VERIFICADO
+     if(user.validated === false){
+      return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+    }
+    
+    if(user.isActive === false){
+     return Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, tu cuenta ha sido baneada",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+
+    }
+    if(user.address === null){
+      Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, debes agregar una dirección de envío",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+      return setTimeout(() => {
+        navigate("/user/address");
+      },3000)
+    }
+
+
     const token = localStorage.getItem("tokens");
     const config = {
       headers: {

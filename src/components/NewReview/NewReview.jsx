@@ -11,8 +11,8 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const { setValue,register, handleSubmit, watch, formState: { errors },reset } = useForm();
     const titleInput = watch("title");
     const commentsInput = watch("comments");
-    const ratingInput = (watch("rating"));
     const token = localStorage.getItem("tokens")
+    const [loadingBtn,setLoadingBtn] = useState('Calificar')
     useFormPersist("newCoffeForm", {
         watch, 
         setValue,
@@ -21,14 +21,19 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
     const handleToggle = () => {
         setIsFormVisible(!isFormVisible); // Alternar entre true y false
     }
-    const handlePostRating = async (postData) => {
+    const handlePostRating = async (postData) => { console.log(postData)
         try {
             if (token) { 
                 postData.coffeeId=coffeeId
                 const { data } = await axios.post('review/add',postData,{ headers: { auth_token: token } });
                 const { status } = data;
+               
                 if (status) {
                   getCoffeeData()
+                  setValue('comments','')
+                  setValue('title','')
+                  handleToggle()
+                  setLoadingBtn('Calificar')
                 }
 
         }
@@ -48,6 +53,9 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
                 const { status } = data;
                 if (status) {
                   getCoffeeData()
+                  setValue('comments','')
+                  setValue('title','')
+                  handleToggle()
                 }
         }
         } catch (error) {
@@ -114,8 +122,8 @@ const NewReview = ({coffeeId,image,name,getCoffeeData}) =>{
                 ></textarea>
                 <p>{!commentsInput ? '* Este campo es requerido...' : errors.comments?.message}</p>
               </div>
-              <button type="submit" className="review-add-product-btn">
-                Calificar
+              <button type="submit" className="review-add-product-btn" onClick={()=>setLoadingBtn('Cargando comentario...')}>
+               {loadingBtn}
               </button>
               <button type="button" className="review-add-product-btn" onClick={handleDelete}>
                 Eliminar mi calificación

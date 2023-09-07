@@ -45,7 +45,7 @@ function Filters({ handleClearFilters }) {
     // Agrega una condición para evitar que se apliquen los filtros cuando loading es true
     if (!loading) {
       dispatch(filtredProducts(filters));
-      navigate(`/products/page/${''}`);
+      navigate(`/products/page/${'1'}`);
     }
   };
 

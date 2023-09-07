@@ -9,6 +9,7 @@ import Filters from '../../components/Filters/Filters';
 import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
+import {getUserData} from '../../store/reducers/user/userSlice';
 
 
 
@@ -20,7 +21,7 @@ const Home = () => {
   const productRender = filtredProducts ? filtredProducts : products;
 
 
-
+  //PAGINADO
   let { page } = useParams();
   const navigate = useNavigate();
   const pageNumber = page ? parseInt(page) : 1;
@@ -29,6 +30,7 @@ const Home = () => {
   const totalPages = Math.ceil(productRender.length / itemsPerPage);
   const visibleProduct = productRender.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); 
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -40,7 +42,14 @@ const Home = () => {
     dispatch(clearFilters());
   };
 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
 
+
+  useEffect(() => {
+    setCurrentPage(1); 
+  },[page])
 
   return (
     <div className="home-container">
@@ -115,3 +124,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+

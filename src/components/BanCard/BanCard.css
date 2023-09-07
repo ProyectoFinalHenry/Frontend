@@ -1,0 +1,66 @@
+.banCard-container{
+    width: 100vw;
+    height: 100vh;
+    z-index: 500;
+    position: fixed;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-color: rgba(255, 255, 255, 0.644);
+    background-color: rgba(0, 0, 0, 0.514);
+ }
+
+
+
+.ban-card{
+    background-color:rgb(255, 255, 255);
+    width: 50%;
+    padding: 2em;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #5a5c5e9f; 
+
+    box-shadow: 6px 7px 14px 1px rgba(0,0,0,0.33);
+-webkit-box-shadow: 6px 7px 14px 1px rgba(0,0,0,0.33);
+-moz-box-shadow: 6px 7px 14px 1px rgba(0,0,0,0.33);}
+
+.ban-card-icon svg{
+    color: #95191f; 
+    font-size: 4.4em;
+    margin-bottom: .2em;
+}
+
+.ban-card-h2{
+    font-size: 1.9rem;
+    margin-bottom: 1em;
+}
+
+.ban-card-p{
+    color: #5c5d5f;
+    width: 90%;
+    line-height: 24px;
+    margin-bottom: 1em;
+}
+
+.ban-card-span{
+    text-decoration: underline;
+}
+
+.banCard-container-hide{
+   display: none;
+}
+
+
+.ban-card-button{
+    padding:.6em 1.5em;
+    border-radius: 50px;
+    background-color: rgb(148, 151, 158);
+    cursor: pointer;
+}
+
+.ban-card-button:hover{
+    background-color: rgb(162, 166, 175);
+}
