@@ -2,77 +2,68 @@ import React, { useEffect, useState } from "react";
 import "./Detail.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import Spinner from '../../components/Spinner/Spinner'
-import Reviews  from "../../components/Reviews/Reviews";
+import Spinner from "../../components/Spinner/Spinner";
+import Reviews from "../../components/Reviews/Reviews";
 import NewReview from "../../components/NewReview/NewReview";
 import "./Detail.css";
-import { BsCart2 } from 'react-icons/bs';
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai';
+import { BsCart2 } from "react-icons/bs";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import { getProductAdd, getProductCart } from "../../store/reducers/thunk";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import {useSelector, useDispatch} from "react-redux";
-import {getUserData as getUserDataBan} from '../../store/reducers/user/userSlice';
+import "react-toastify/dist/ReactToastify.css";
+import { useSelector, useDispatch } from "react-redux";
+import { getUserData as getUserDataBan } from "../../store/reducers/user/userSlice";
 import Swal from "sweetalert2";
 
-
 const Detail = () => {
-
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const params = useParams();
   const { id } = params;
   const [coffee, setCoffee] = useState([]);
   const [comprado, setComprado] = useState(false);
-  const [quantity, setQuantity] = useState(1); 
+  const [quantity, setQuantity] = useState(1);
   const [user, setUser] = useState([]);
-  const token = localStorage.getItem("tokens")
-  console.log(token)    
-  
+  const token = localStorage.getItem("tokens");
 
+  async function getUserData() {
+    try {
+      if (token) {
+        const response = await axios.get("/user", {
+          headers: { auth_token: token },
+        });
+        setUser(response.data);
 
-
-  async function getUserData () {
-      try {
-          if (token) {
-              const response = await axios.get("/user", { headers: { auth_token: token } });
-              setUser(response.data);
-          
-              response.data.Orders.forEach(order=>{ 
-                  
-                order.Details.forEach(product=>{
-                  
-                    if(product.Coffee.id===id) {
-                      setComprado(true)
-              
-                    }
-                  
-                })
-              })
-          }
-      } catch (error) {
-          console.log(error);
-      } 
-};
-async function getCoffeeData() {
-  const { data } = await axios.get(`coffee/${id}`);        
-  setCoffee(data);
-}    
+        response.data.Orders.forEach((order) => {
+          order.Details.forEach((product) => {
+            if (product.Coffee.id === id) {
+              setComprado(true);
+            }
+          });
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  async function getCoffeeData() {
+    const { data } = await axios.get(`coffee/${id}`);
+    setCoffee(data);
+  }
   useEffect(() => {
     getCoffeeData();
     getUserData();
-    
   }, [id]);
 
-    // código baneo
-    const userBan = useSelector((state) => state.user.user); 
-    useEffect(() => {
-      dispatch(getUserDataBan());
-    }, [dispatch]);
+  // código baneo
+  const userBan = useSelector((state) => state.user.user);
+  useEffect(() => {
+    dispatch(getUserDataBan());
+  }, [dispatch]);
 
-  const handleShopping = () =>{
+  const handleShopping = () => {
     //ALERTA SI EL USER ESTÁ BANEADO
-    if(userBan.isActive === false){
+    if (userBan.isActive === false) {
       return Swal.fire({
         icon: "error",
         title: "No puedes realizar esta acción, tu cuenta ha sido baneada",
@@ -82,20 +73,22 @@ async function getCoffeeData() {
     }
 
     //ALERTA SI EL USER NO ESTÁ VERIFICADO
-    if(userBan.validated === false){
+    if (userBan.validated === false) {
       return Swal.fire({
         icon: "error",
-        title: "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
+        title:
+          "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
         showConfirmButton: false,
         timer: 4000,
       });
     }
 
     //ALERTA SI EL PRODUCTO ESTÁ COMPRADO
-    if(comprado === true){
+    if (comprado === true) {
       return Swal.fire({
         icon: "error",
-        title: "No puedes realizar esta acción, el producto ya ha sido comprado",
+        title:
+          "No puedes realizar esta acción, el producto ya ha sido comprado",
         showConfirmButton: false,
         timer: 4000,
       });
@@ -103,39 +96,38 @@ async function getCoffeeData() {
 
     //ALERTA SI EL PRODUCTO NO EXISTE
 
-
     const ProdutAdd = {
-      coffeeId:id,
-      quantity:quantity
-    }
-    dispatch(getProductAdd(token ,ProdutAdd))
-    if(!token){
-      navigate('/auth/sing-in')
-    }
-  }
-  const increaseQuantity = () => {
-    if(quantity < coffee.stock) {
-      setQuantity(prevQuantity => prevQuantity + 1);
+      coffeeId: id,
+      quantity: quantity,
+    };
+    dispatch(getProductAdd(token, ProdutAdd));
+    if (!token) {
+      navigate("/auth/sing-in");
     }
   };
-
+  const increaseQuantity = () => {
+    if (quantity < coffee.stock) {
+      setQuantity((prevQuantity) => prevQuantity + 1);
+    }
+  };
 
   const decreaseQuantity = () => {
     if (quantity > 1) {
-      setQuantity(prevQuantity => prevQuantity - 1);
+      setQuantity((prevQuantity) => prevQuantity - 1);
     }
   };
-  if(coffee.length<1) return(
-    <div className="detail-spinner-container">
-      <Spinner />
-    </div>
-  )
+  if (coffee.length < 1)
+    return (
+      <div className="detail-spinner-container">
+        <Spinner />
+      </div>
+    );
   return (
     <div className="detail-container">
       <div className="detail-container-card">
-
         <div className="detail-contaner-card-img">
-          <img className="detail-product-img"
+          <img
+            className="detail-product-img"
             src={coffee?.image}
             alt={coffee?.name}
           />
@@ -145,27 +137,33 @@ async function getCoffeeData() {
           <h1 className="detail-product-name">{coffee?.name}</h1>
           <span className="detail-product-price">$ {coffee?.price}</span>
 
+          {token ? (
+            <div className="detail-add-product">
+              <div className="detail-add-product-amount">
+                <span className="detail-minus-btn" onClick={decreaseQuantity}>
+                  <AiOutlineMinus />
+                </span>
+                <form action=""></form>
+                <input
+                  className="detail-input-add-cart"
+                  type="text"
+                  value={quantity}
+                  readOnly
+                />
+                <span className="detail-plus-btn" onClick={increaseQuantity}>
+                  <AiOutlinePlus />
+                </span>
+              </div>
 
-          <div className="detail-add-product">
-            <div className="detail-add-product-amount">
-              <span className="detail-minus-btn" onClick={decreaseQuantity}>
-                < AiOutlineMinus />
-              </span>
-              <form action="">
-              </form>
-              <input
-                className="detail-input-add-cart"
-                type="text"
-                value={quantity}
-                readOnly
-              />
-              <span className="detail-plus-btn" onClick={increaseQuantity}>
-                <AiOutlinePlus />
-              </span>
+              <button
+                onClick={handleShopping}
+                className="detail-add-product-btn"
+              >
+                {" "}
+                <BsCart2 className="detail-cart-icon" /> AGREGAR AL CARRITO
+              </button>
             </div>
-
-            <button onClick={handleShopping} className="detail-add-product-btn"> <BsCart2 className="detail-cart-icon"/> AGREGAR AL CARRITO</button>
-          </div>
+          ) : null}
 
           <p className="detail-product-description">{coffee?.description}</p>
           {/* <span className="stock">{coffee?.stock} units</span> */}
@@ -185,15 +183,20 @@ async function getCoffeeData() {
           </ul>
         </div>
       </div>
-      {(comprado)&&(
+      {comprado && (
         <div className="detail-card-customer-reviews">
-          <NewReview coffeeId={id} name={user.name} image={user.image} getCoffeeData={getCoffeeData} />
+          <NewReview
+            coffeeId={id}
+            name={user.name}
+            image={user.image}
+            getCoffeeData={getCoffeeData}
+          />
         </div>
       )}
       <div className="detail-card-customer-reviews">
-        <Reviews reviews={coffee.Reviews}/>
+        <Reviews reviews={coffee.Reviews} />
       </div>
-        <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 };
