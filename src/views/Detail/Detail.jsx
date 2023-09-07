@@ -66,6 +66,7 @@ async function getCoffeeData() {
 
     // código baneo
     const userBan = useSelector((state) => state.user.user); 
+    userBan? userBan = userBan : userBan = '';
     useEffect(() => {
       dispatch(getUserDataBan());
     }, [dispatch]);
