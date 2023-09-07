@@ -36,7 +36,7 @@ function App() {
     dispatch(getUserData());
   }, [dispatch]);
 
- console.log('USER HOME: ', user)
+ //console.log('USER HOME: ', user)
 
 
   return (
