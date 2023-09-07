@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./ShoppingCard.css";
+import {useNavigate} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Cart from "../Cart/Cart";
 import axios from "axios";
@@ -18,6 +19,7 @@ const ShoppingCart = () => {
   const [cambioTotal, setCambioTotal] = useState(false);
   const { cart, total } = useSelector((state) => state.shopping);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // código baneo
   const user = useSelector((state) => state.user.user); 
@@ -45,7 +47,7 @@ const ShoppingCart = () => {
 
   const handleClick = async () => {
      //ALERTA SI EL USER NO ESTÁ VERIFICADO
-     if(userBan.validated === false){
+     if(user.validated === false){
       return Swal.fire({
         icon: "error",
         title: "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
@@ -61,7 +63,21 @@ const ShoppingCart = () => {
         showConfirmButton: false,
         timer: 4000,
       });
+
     }
+    if(user.address === null){
+      Swal.fire({
+        icon: "error",
+        title: "No puedes realizar esta acción, debes agregar una dirección de envío",
+        showConfirmButton: false,
+        timer: 4000,
+      });
+      return setTimeout(() => {
+        navigate("/user/address");
+      },3000)
+    }
+
+
     const token = localStorage.getItem("tokens");
     const config = {
       headers: {
