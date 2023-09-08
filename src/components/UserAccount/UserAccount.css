@@ -1,39 +1,91 @@
 .account{
-    background: #13161c;
+    background: #f7f3f2;
     position: absolute;
-    right: 0;
+    right: 20px;
     top: 70px;
-    min-height: 350px;
-    width: 300px;
+    min-height: 195px;
+    width: 180px;
     border-radius: 7px ;
+    box-shadow: 0px 8px 10px black;
+    color: black;
 }
 .account__User{
     border-bottom: 1px solid rgb(190, 190, 190);
     padding: 10px;
-}
-
-.account__dateUser{
-    height: 220px;
-    width: 90%;
-    margin: 10px auto;
-    color: white;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-
+    align-items: center;
+    color: black;
+}
+.account__dateUser{
+    height: 120px;
+    width: 90%;
+    margin: 3px auto;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 .account__dateUser p{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: end;
     cursor: pointer;
+    height: 28%;
+    border-radius: 6px;
+    margin: 3px 0;
+    padding-left: 10px;
 }
-.account__User p{
-    color: white;
+.account__dateUser p:hover {
+    background-color: #ff967a;
 }
 .account__image{
     height: 50px;
     width: 50px;
-    border-radius: 10px;
+    border: 2px solid black;
+    border-radius: 200px;
 }
 .account__logOut{
-    color: red;
+    color: rgb(218, 30, 30);
     cursor: pointer;
 }
+
+.account__loader {
+    width: 100%;
+    height: 100%;
+}
+
+#log_out:hover {
+    color: #f7f3f2;
+    background-color: rgb(218, 30, 30);
+}
+
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 195px;
+    width: 180px;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #f7f3f2;
+    border-bottom-color: #FF3D00;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
