@@ -47,9 +47,9 @@ const Home = () => {
   }, [dispatch]);
 
 
-  useEffect(() => {
-    setCurrentPage(1); 
-  },[page])
+   useEffect(() => {
+    setCurrentPage(pageNumber); 
+  },[page]) 
 
   return (
     <div className="home-container">
