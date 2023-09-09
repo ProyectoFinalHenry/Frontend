@@ -12,11 +12,16 @@ const NavBar = () => {
 
   // RUTAS CON LA NABVAR ESTILO WHITE
   let routeNavWhite = false;
+  const regexReset = /^\/reset\/.*/;
 
   if (/^\/detail\/[0-9a-fA-F-]+$/.test(location.pathname)) routeNavWhite = true;
   if (location.pathname === '/user/account') routeNavWhite = true;
   if (location.pathname === '/user/address') routeNavWhite = true;
   if (location.pathname === '/user/info') routeNavWhite = true;
+  if (location.pathname === "/shoppingCart") routeNavWhite = true;
+  if (location.pathname === "/send/reset") routeNavWhite = true;
+  if (location.pathname === "/send/validation") routeNavWhite = true;
+  if (regexReset.test(location.pathname)) routeNavWhite = true;
 
   // CAMBIAMOS LA CLASE DE LA NABVAR SI LA RUTA USA NAVBAR WHITE
   const containerClass = routeNavWhite ? 'navbar-cont-white' : 'navbar-container';
