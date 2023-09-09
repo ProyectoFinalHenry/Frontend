@@ -48,12 +48,15 @@ const ShoppingCart = () => {
   const handleClick = async () => {
      //ALERTA SI EL USER NO ESTÁ VERIFICADO
      if(user.validated === false){
-      return Swal.fire({
+      Swal.fire({
         icon: "error",
         title: "No puedes realizar esta acción, tu cuenta no ha sido verificada aún",
         showConfirmButton: false,
         timer: 4000,
       });
+      return setTimeout(() => {
+        navigate("/send/validation")
+      }, 4000)
     }
     
     if(user.isActive === false){

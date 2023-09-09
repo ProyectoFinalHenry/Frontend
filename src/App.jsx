@@ -14,6 +14,9 @@ import UserProfile from "./views/UserProfile/UserProfile.jsx";
 import UserAddress from "./views/UserAddress/UserAddress";
 import Purchases from "./views/Purchases/Purchases";
 import UserInfo from './views/UserInfo/UserInfo';
+import SendReset from "./views/SendEmail/SendReset";
+import SendValidation from "./views/SendEmail/SendValidation";
+import ResetPassword from "./views/Reset/ResetPassword";
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -56,7 +59,9 @@ function App() {
         <Route path="/shoppingCart" element={!usuarioAutenticado ? <Navigate to="/" /> : <ShoppingCart />} />
         <Route path="/user/info" element={!usuarioAutenticado ? <Navigate to="/" /> : <UserInfo />} />
         <Route path="/purchases" element={!usuarioAutenticado ? <Navigate to="/" /> : <Purchases />} />
-        
+        <Route path="/send/reset" element={<SendReset/>}/>
+        <Route path="/send/validation" element={<SendValidation/>}/>
+        <Route path="/reset/:token" element={<ResetPassword/>}/>
       </Routes>
       <Footer />
     </div>
