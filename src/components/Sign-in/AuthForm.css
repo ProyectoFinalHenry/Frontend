@@ -3,14 +3,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
+    background: #feddd3;
 }
 .formulario__containerIn{
     height: 520px;
     width: 400px;
     padding: 10px;
     position: relative;
-    background-color: #FFF;
+    background-color:#efb8a9;
+    border-radius: 5px;
+    box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+    -webkit-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+    -moz-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
 }
 .formulario__logo{
     display: flex;
@@ -20,6 +24,7 @@
 }
 .formulario__tituloIn{
     text-align: center;
+    color: white;
 }
 .formulario__grano{
     height: 50px;
@@ -90,13 +95,15 @@ background-color: rgb(0, 0, 106);
 .formulario__input{
     width: 95%;
     display: block;
-    border-bottom: 1px solid #000;    
-    height: 30px;
+    background: #FFF;  
+    height: 35px;
+    
+    border-radius: 5px;
     padding-left: 10px;
 }
 .formulario__loginIn{
     width: 90%;
-    background-color: blue;
+    background-color: #ff967a;
     border:none;
     height: 40px;
     font-weight: 600; 
@@ -110,7 +117,8 @@ background-color: rgb(0, 0, 106);
     margin-left: 10px;    
 }
 .formulario__loginIn:hover{
-    background-color: rgb(0, 0, 133);
+    background-color: #c8725a;
+    transition: .6s;
 }
 
 .formulario__loginRegister{
