@@ -8,13 +8,10 @@ const PaginationButtons = ({ currentPage, totalPages, setCurrentPage }) => {
 
 
    const navigate = useNavigate();
-  
-
-
 
    const handlePage = (e) => {
       const buttonValue = e.currentTarget.name;
-    
+
       let newPage = currentPage; 
     
       if (!isNaN(parseInt(buttonValue))) {

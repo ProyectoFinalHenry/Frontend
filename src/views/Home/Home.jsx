@@ -9,6 +9,7 @@ import Filters from '../../components/Filters/Filters';
 import './Home.css'
 import Spinner from '../../components/Spinner/Spinner';
 import ScrollToTopButton from '../../components/ScrollToTopButton/ScrollToTopButton' 
+import {getUserData} from '../../store/reducers/user/userSlice';
 
 
 
@@ -20,7 +21,7 @@ const Home = () => {
   const productRender = filtredProducts ? filtredProducts : products;
 
 
-
+  //PAGINADO
   let { page } = useParams();
   const navigate = useNavigate();
   const pageNumber = page ? parseInt(page) : 1;
@@ -29,6 +30,7 @@ const Home = () => {
   const totalPages = Math.ceil(productRender.length / itemsPerPage);
   const visibleProduct = productRender.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage); 
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -40,7 +42,14 @@ const Home = () => {
     dispatch(clearFilters());
   };
 
+  useEffect(() => {
+    dispatch(getUserData());
+  }, [dispatch]);
 
+
+   useEffect(() => {
+    setCurrentPage(pageNumber); 
+  },[page]) 
 
   return (
     <div className="home-container">
@@ -77,7 +86,8 @@ const Home = () => {
               </div>
             ): (
               <div className='home-card-container'>
-                {visibleProduct.map((product) => (
+                {visibleProduct.map((product) => { 
+                  return(
                   <Link to={`/detail/${product.id}`} key={product.id}>
                     <Card
                       id={product.id}
@@ -86,9 +96,12 @@ const Home = () => {
                       price={product.price}
                       reviews={product.Reviews}
                       stock={product.stock}
+                      averageRating={product.averageRating}
+                     
                     />
                   </Link>
-                ))}
+                  )
+                  })}
               </div>
             )}
             <ScrollToTopButton />
@@ -111,3 +124,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
+
+
+

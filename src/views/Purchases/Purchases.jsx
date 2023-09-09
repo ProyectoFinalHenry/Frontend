@@ -1,5 +1,4 @@
 import React, { useEffect,useState} from "react";
-import Card from '../../components/Card/Card';
 import './Purchases.css'
 import axios from "axios"
 import { Link } from 'react-router-dom';
@@ -18,7 +17,7 @@ const Purchases = () => {
                 console.log(error);
             }
         };
-  {console.log(orders)}
+
         axiosData();
     }, []);
 
@@ -35,24 +34,24 @@ const Purchases = () => {
             <div>
                 {orders.length === 0 ? (
                     <div className="purchases">
-                    <div className="purchases-header">
-                        <div className="purchases-header-content">
-                            <div className="purchases-header-title">
-                                <h1>!Todavia no has comprado nada!</h1>
+                        <div className="purchases-header">
+                            <div className="purchases-header-content">
+                                <div className="purchases-header-title">
+                                    <h1>!Todavia no has comprado nada!</h1>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     </div>
                 ) : (
                     <>
                         <div className="purchases">
-                        <div className="purchases-header">
-                            <div className="purchases-header-content">
-                                <div className="purchases-header-items">
-                                    <h1>Compras</h1>
+                            <div className="purchases-header">
+                                <div className="purchases-header-content">
+                                    <div className="purchases-header-items">
+                                        <h1>Compras</h1>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </div>
 
                         {orders.map((order) => (

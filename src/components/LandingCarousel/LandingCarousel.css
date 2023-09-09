@@ -16,6 +16,14 @@
     cursor: pointer;
 }
 
+.react-multi-carousel-list {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    padding: 2rem;
+}
+
 .slide-text {
     font-size: smaller;
 }

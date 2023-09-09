@@ -21,6 +21,9 @@ export const loginSlice = createSlice({
         },
         getInformationUser: (state , action) =>{
             state.NewinformationUser = action.payload
+        },
+        getDeleteToken:(state ) =>{
+            state.TokenUser = ''
         }
     }
 });
@@ -28,4 +31,4 @@ export const loginSlice = createSlice({
 
 
 // Action creators are generated for each case reducer function
-export const { getLoginAndLogOut ,getLogOut , getTokenUser , getInformationUser} = loginSlice.actions;
+export const { getLoginAndLogOut ,getLogOut , getTokenUser , getInformationUser ,getDeleteToken} = loginSlice.actions;

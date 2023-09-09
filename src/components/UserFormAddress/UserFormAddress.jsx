@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { FiHome, FiBriefcase } from 'react-icons/fi';
 import './UserFormAddress.css';
 import { validateForm } from './FormValidations';
+import { updateAdress } from '../../services/api'
+import Swal from "sweetalert2";
+import {useNavigate} from 'react-router-dom';
+
 
 const UserFormAddress = () => {
   const [errors, setErrors] = useState({});
@@ -20,7 +24,7 @@ const UserFormAddress = () => {
     additionalInstructions: '',
   });
 
-  console.log(formData);
+  const navigate = useNavigate();
   const [remainingChars, setRemainingChars] = useState(128);
 
   const handleChange = (e) => {
@@ -73,7 +77,7 @@ const UserFormAddress = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = validateForm(formData);
@@ -81,6 +85,23 @@ const UserFormAddress = () => {
 
     if (Object.keys(validationErrors).length === 0) {
       // Acá enviar petición al back
+     const response = await updateAdress(formData);
+      if(response){
+        Swal.fire({
+          icon:'success',
+          title: 'Dirección actualizada correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        navigate('/user/account');
+      }else{
+        Swal.fire({
+          icon: 'error',
+          title: 'Algo salió mal',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     }
   };
 

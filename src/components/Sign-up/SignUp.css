@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background-color: grey;
     
 }
 .formulario__container{
@@ -11,6 +11,8 @@
     height: 520px;
     width: 400px;
     padding: 10px;
+    position: relative;
+
 }
 .formulario__titulo{
     text-align: center;

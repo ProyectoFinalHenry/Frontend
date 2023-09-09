@@ -15,8 +15,8 @@ export const informationUser = (user) => {
     };
 
     try {
-      const {data} = await axios.get(`/user`, config);
-      dispatch(getInformationUser(data))
+      const { data } = await axios.get(`/user`, config);
+      dispatch(getInformationUser(data));
     } catch (error) {
       console.log(error);
     }
@@ -25,24 +25,29 @@ export const informationUser = (user) => {
 
 //autenticion de terceros
 
-export const SingGoogleAndGitHub = (email) =>{
-  return async(dispatch , getState) => {
+export const SingGoogleAndGitHub = (email) => {
+  return async (dispatch, getState) => {
     try {
-        const {data}  = await axios.post('/user/thirdAutentication' , email)
-        localStorage.setItem("tokens", data.auth_token);
-      } catch (error) {
-        console.log({error})
-      }
-  }
-} 
+      const { data } = await axios.post("/user/thirdAutentication", email);
+      
+      localStorage.setItem("tokens", data.auth_token);
+      dispatch(getTokenUser(data.auth_token));
+
+    } catch (error) {
+      console.log({ error });
+    }
+  };
+};
+
 
 //register
 export const NewRegisterUser = (newUser) => {
   return async (dispatch, getState) => {
     try {
-      const { data } = await axios.post("/user/signup",newUser);
-        console.log(data)
+      const { data } = await axios.post("/user/signup", newUser);
+      dispatch(getTokenUser(data))
       if (data) {
+
         Swal.fire({
           position: "top-center",
           icon: "success",
@@ -52,6 +57,7 @@ export const NewRegisterUser = (newUser) => {
         });
       }
       localStorage.setItem("tokens", data.auth_token);
+      
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_NETWORK") {
@@ -75,7 +81,6 @@ export const NewRegisterUser = (newUser) => {
     }
   };
 };
-
 //Login
 export const SingInUserLogin = (userLogin) => {
   return async (dispatch, getState) => {
@@ -91,14 +96,16 @@ export const SingInUserLogin = (userLogin) => {
           timer: 900,
         });
       }
+      console.log('user token;', data.auth_token);
       localStorage.setItem("tokens", data.auth_token);
     } catch (error) {
       console.log(error);
       if (error.code === "ERR_BAD_REQUEST") {
+        console.log("ERR_BAD_REQUEST");
         Swal.fire({
           position: "top-center",
           icon: "error",
-          title: "Email o contraseña incorrecta",
+          title: error.response.data.error,
           showConfirmButton: false,
           timer: 900,
         });
@@ -115,69 +122,69 @@ export const SingInUserLogin = (userLogin) => {
 // }
 //informacion del carrito de compras
 
-export const getProductAdd = (token,cantidad) =>{
-  return async(dispatch, getState) =>{
+export const getProductAdd = (token, cantidad) => {
+  return async (dispatch, getState) => {
     const config = {
       headers: {
         auth_token: token,
       },
     };
-try {
-  const {data} = await axios.post('/cart/add', cantidad ,config)
-  console.log(data)
-  if(data){
-    toast(data.status,{
-      position:'bottom-right',
-      type:'success',
-      autoClose:2000
-    })
-
-  } 
-} catch (error) {
-  
-}
-    
-  }
-}
-
-export const getProductCart = (token) =>{
-  return async(dispatch , getState) =>{
-    const config = {
-      headers:{
-        auth_token:token
-      }
-    }
-    const {data} = await axios.get('/cart',config )
-    const newData = data.map(value =>(
-      {
-        id:value.Coffee.id,
-        quantity:value.quantity,
-        image:value.Coffee.image,
-        name:value.Coffee.name ,
-        price:value.Coffee.price,
-        stock:value.Coffee.stock
-      }
-    ))
-    dispatch(getCartProduct(newData))
-  }
-} 
-
-export const getProductoDelete = (id ,token) =>{
-  return async(dispatch, getState) =>{
-    console.log(token)
-    const config = {
-      headers:{
-        auth_token:token
-      },
-      data: {
-        coffeeId: id
-      }
-    }
     try {
-      const data = await axios.delete('/cart/delete' , config)
-      console.log(data)
+      const { data } = await axios.post("/cart/add", cantidad, config);
+      console.log(data);
+      if (data) {
+        toast(data.status, {
+          position: "bottom-right",
+          type: "success",
+          autoClose: 2000,
+        });
+      }
+    } catch (error) {}
+  };
+};
+
+export const getProductCart = (token) => {
+  return async (dispatch, getState) => {
+    const config = {
+      headers: {
+        auth_token: token,
+      },
+    };
+    try {
+      const { data } = await axios.get("/cart", config);
+      
+      const newData = data.map((value) => ({
+        id: value.Coffee.id,
+        coffee:value.Coffee.isActive,
+        quantity: value.quantity,
+        image: value.Coffee.image,
+        name: value.Coffee.name,
+        price: value.Coffee.price,
+        stock: value.Coffee.stock,
+      }));  
+      dispatch(getCartProduct(newData));
     } catch (error) {
+      dispatch(getCartProduct([]))
       console.log(error)
     }
-  }
-}
+  };
+};
+
+export const getProductoDelete = (id, token) => {
+  return async (dispatch, getState) => {
+    const config = {
+      headers: {
+        auth_token: token,
+      },
+      data: {
+        coffeeId: id,
+      },
+    };
+    try {
+      const data = await axios.delete("/cart/delete", config);
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
