@@ -1,0 +1,276 @@
+.team-container{
+    background-color: #f7f3f2;
+    padding-top: 8em;
+    min-height: 100vh;
+    border: 1px solid rgba(255, 255, 255, 0);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+@keyframes acomodar {
+    0% {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .team-cards-container{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 5em;
+      width: 90%;
+  }
+  
+  .team-card{
+      width: 270px;
+      min-height: 380px;
+      margin:2em ;
+      
+       /* Agregamos la animación */
+       animation-name : acomodar ;
+       animation-duration : .5s ; 
+       animation-fill-mode : forwards ;
+  
+       perspective :1000px ;
+  }
+  
+.team-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.999s;
+}
+
+.team-card:hover .team-card-inner {
+    transform: rotateY(180deg);
+}
+
+
+.team-card-front,
+.team-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.team-card-front{
+    background-color:#fff;
+    padding: 2.2em 1.5em 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    -moz-box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    border-radius: 20px;
+    transform: rotateY(0deg);
+}
+
+/* CARD BACK  */
+.team-card-back{
+    background-color: #fff;
+    padding: 2.2em 1.5em 1em 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    -webkit-box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    -moz-box-shadow: 1px 2px 48px -9px rgba(0,0,0,0.59);
+    border-radius: 20px;
+    transform: rotateY(180deg);
+}
+
+.team-card-back svg{
+    font-size: 7rem;
+    cursor: pointer;
+}
+
+@keyframes fadeInSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.team-h1{
+  font-family: Montserrat, sans-serifs, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 4rem;
+  line-height: 24px;
+  letter-spacing: 1.5px;
+  margin-bottom: 1em;
+  text-align: center;
+  font-weight: 800;
+  color:#582ca3;
+
+   /* Agrega estas líneas */
+   animation-name: fadeInSlideDown; 
+   animation-duration: .8s; /* Controla la duración de la animación */
+}
+
+.team-subtitle{
+ font-family : PostGrotesk-Bold, "Helvetica Neue", Helvetica, Arial, sans-serif;
+ font-size:2.1rem ;
+ text-align:center ;
+ color:#8a969c ;
+ margin-bottom :2em ;
+
+ /* Agrega estas líneas */
+ animation-name :fadeInSlideDown ; 
+ animation-duration:.8s ; /* Controla la duración de la animación */
+}
+
+
+.team-card-img-cont{
+    width: 100px;
+    height: 100px;
+    outline: 6px solid #9865f0;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-bottom: 1.5em;
+}
+
+.team-card-img-cont img{
+    width: 100%;
+    height: 100%;
+}
+
+.team-card-name{
+    font-size: 1.4rem;
+    font-family:  PostGrotesk-Book, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    line-height: 24px;
+    letter-spacing: 1.5px;
+    margin-bottom: .4em;
+}
+
+
+.team-card-subtitle{
+    font-family:  PostGrotesk-Book, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 24px;
+    letter-spacing: .2px;
+    font-size: 1.1rem;
+    margin-bottom: .8em;
+    color:rgb(153, 153, 153);
+    color: #582ca3;
+    font-weight: 600;
+}
+
+.team-card-p-msj{
+    font-family:  PostGrotesk-Book, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color:rgb(43, 43, 43);
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+
+/* ICONS CARD */
+.team-card-icons-cont {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 1em;
+  }
+  
+  .team-card-icons-cont svg {
+    font-size: 24px;
+    margin: .1em .3em;
+    transition: transform 0.3s, color 0.3s;
+    color: #582ca3;
+  }
+  
+  .team-card-icons-cont svg:hover {
+    color:  #9c27b0;
+    transform: scale(1.3); 
+  }
+
+  .team-card-icons-cv {
+    position: relative;
+    overflow: hidden;
+    width: 100px;
+    height: 110px;
+    display: flex;
+    justify-content: center;
+  }
+
+
+  .team-card-icons-cv-animation{
+    position: absolute;
+    z-index: 5;
+    bottom: -13px; 
+    padding-bottom: 1em;
+    color: rgb(118, 174, 211);
+    transform: scale(1);
+    transition: all .5s ease-in-out; 
+    margin-bottom: .7em;
+  }
+
+  
+  .team-card-icon-cv-down {
+    margin-bottom: 1em;
+    color:#90caf9;
+  }
+  
+  .team-card-icon-cv-down svg,
+  .team-card-icons-cv svg{
+    font-size: 75px;
+  }
+
+
+  .team-card-icons-cv:hover .team-card-icons-cv-animation{
+      position: absolute;
+      bottom:-105px;
+      background-color:#fff;
+
+  }
+  
+  .team-card-icon-cv-down{
+    text-align: center;
+    animation-name:pulse; 
+    animation-duration:1.6s; 
+    animation-iteration-count:infinite; 
+  }
+  
+  @keyframes pulse{
+        0% {transform : scale(1)}
+      50% {transform : scale(1.1)}
+      100% {transform : scale(1)}
+  }
+  
+
+
+  .team-card-p-cv-donw{
+    font-family:  PostGrotesk-Medium, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color:rgb(153, 153, 153);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .team-card-icon-cv-none{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    color:#90caf9;
+  }
+
+  .team-card-icon-cv-none svg{
+    color: gray;
+    cursor:not-allowed;
+    stroke-width: 1.1px;
+  }
