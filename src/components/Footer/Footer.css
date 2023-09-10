@@ -7,7 +7,8 @@
 }
 
 .footer-social-icons {
-    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 25px;
 }
 
 .footer-icon {
@@ -19,4 +20,34 @@
 
 .footer-icon:hover {
     color: #1d1e20;
+}
+
+  
+.footer-team {
+    display: inline-block;
+    animation-name :growShrink ;
+    animation-duration :8s ; /* Controla la duración de la animación */
+    animation-iteration-count :infinite ; /* Hace que la animación se repita indefinidamente */
+    margin: 0em .1em 1em 0em;
+    font-size: 22px;
+ }
+ 
+
+ @keyframes heartbeat {
+   0% { transform: scale(1); stroke-width:0;}
+   50% { transform: scale(1.3); stroke-width:.8 ;} /* Cambia a cualquier tamaño que desees */
+   100% { transform: scale(1); stroke-width:.1.8;}
+ }
+
+ 
+ .footer-team svg{
+   font-size: 26px;
+   color: red;
+   margin-bottom: -5px;
+   margin-left: .3em;
+
+   /* Agrega estas líneas */
+   animation-name :heartbeat ;
+   animation-duration :1s ; /* Controla la duración de la animación */
+   animation-iteration-count :infinite ; /* Hace que la animación se repita indefinidamente */
 }
