@@ -1,26 +1,25 @@
-.formulario{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: grey;
-    
-}
+
 .formulario__container{
-    background: #FFF;
     height: 520px;
     width: 400px;
     padding: 10px;
     position: relative;
-
+    background-color:#efb8a9;
+    border-radius: 5px;
+    box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+    -webkit-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
+    -moz-box-shadow: -1px 2px 28px 9px rgba(208, 208, 208, 0.75);
 }
 .formulario__titulo{
     text-align: center;
+    color: white;
 }
-.formulario__cuentas{
+.formulario__centerForm{
+    margin-top: 10px;
+}
+.formulario__cuentasUp{ 
     margin: 10px;
     display: flex;
-    flex-direction: column;
     gap: 10px;
 }
 .formulario__google{
@@ -53,22 +52,26 @@ background-color: rgb(0, 0, 106);
 .formulario__gitHud:hover{
     background-color: rgb(133, 8, 8);
 }
-
+.formulario__contenido{
+    position: relative;
+    height: 90px;
+}
+.formulario__error{
+    color: rgb(115, 102, 102);
+}
 .formulario__label{
     text-transform: uppercase;
     font-size: 20px;
-    
+    color: white;
 }
 .formulario__input{
     width: 95%;
     display: block;
-    border-bottom: 1px solid #000;    
-    height: 30px;
     padding-left: 10px;
 }
 .formulario__login{
-    width: 100%;
-    background-color: blue;
+    width: 94%;
+    background-color: #ff967a;
     border:none;
     height: 40px;
     font-weight: 600; 
@@ -77,13 +80,14 @@ background-color: rgb(0, 0, 106);
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    
+    position: absolute;
+    bottom: 30px;
 }
-.formulario__loginRegister{
-    color: blue;
-    text-align: end;
-    cursor: pointer ;
+.formulario__login:hover{
+    background-color: #c8725a;
+    transition: .6s;
 }
+
 .lds-dual-ring {
     display: inline-block;
     width: 30px;
