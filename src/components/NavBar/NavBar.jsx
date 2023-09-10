@@ -22,6 +22,8 @@ const NavBar = () => {
   if (location.pathname === "/send/reset") routeNavWhite = true;
   if (location.pathname === "/send/validation") routeNavWhite = true;
   if (regexReset.test(location.pathname)) routeNavWhite = true;
+  if(location.pathname === '/purchases') routeNavWhite = true;
+  if(location.pathname === '/team') routeNavWhite = true;
 
   // CAMBIAMOS LA CLASE DE LA NABVAR SI LA RUTA USA NAVBAR WHITE
   const containerClass = routeNavWhite ? 'navbar-cont-white' : 'navbar-container';

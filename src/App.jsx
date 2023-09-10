@@ -17,6 +17,7 @@ import UserInfo from './views/UserInfo/UserInfo';
 import SendReset from "./views/SendEmail/SendReset";
 import SendValidation from "./views/SendEmail/SendValidation";
 import ResetPassword from "./views/Reset/ResetPassword";
+import Team from './views/Team/Team'
 import { useEffect, useState } from "react";
 import "./App.css";
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/send/reset" element={<SendReset/>}/>
         <Route path="/send/validation" element={<SendValidation/>}/>
         <Route path="/reset/:token" element={<ResetPassword/>}/>
+        <Route path="/team" element={<Team />} />
       </Routes>
       <Footer />
     </div>
