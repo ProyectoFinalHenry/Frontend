@@ -101,7 +101,6 @@ const SignIn = () => {
               Ingresa tu correo
             </label>
             <input
-              id="email"
               className="formulario__input"
               type="text"
               {...formik.getFieldProps("email")}
@@ -115,7 +114,6 @@ const SignIn = () => {
               Ingresa tu contraseña
             </label>
             <input
-              id="password"
               className="formulario__input"
               type="password"
               {...formik.getFieldProps("password")}
@@ -128,6 +126,11 @@ const SignIn = () => {
         <button type="submit" className="formulario__loginIn">
           Inicia Sesion
         </button>
+        <p className="formulario__restablecer"
+        onClick={() => navigate('/send/reset')}
+        >
+          ¿Olvidaste tu contraseña?
+        </p>
         <p
           onClick={() => navigate("/auth/sing-up")}
           className="formulario__loginRegister"
