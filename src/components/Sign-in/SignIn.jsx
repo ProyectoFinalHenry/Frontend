@@ -135,7 +135,7 @@ const SignIn = () => {
           onClick={() => navigate("/auth/sing-up")}
           className="formulario__loginRegister"
         >
-          ¿No tienes cuenta? Regístrate.
+          ¿No tienes cuenta? Regístrate
         </p>
       </div>
     </form>
